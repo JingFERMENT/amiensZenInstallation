@@ -1,0 +1,17 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.logo_site {
+    height: 12%;
+    width: 10%;
+}
+
+.bi-search {
+    font-size: 20px;
+    color: #03aec9;
+}
+
+.image-cover {
+    object-fit: cover;
+}
