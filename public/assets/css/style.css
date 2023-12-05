@@ -80,11 +80,6 @@ a:hover {
 /********** formulaire de contact ***********/
 
 /* champs obligatoire */
-label.required:after {
-    content: "*";
-    color: red;
-}
-
 .image-our-mission {
     height:auto;
     width: auto;
@@ -99,8 +94,6 @@ label.required:after {
 .text-justify {
     text-align: justify !important;
 }
-
-
 
 
 /* page connexion */
@@ -120,16 +113,6 @@ label.required:after {
     color:#6BC1FF
 }
 
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
-.footer-sticky-bottom {
-    position: relative;
-    bottom:0;
-}
 
 
 
