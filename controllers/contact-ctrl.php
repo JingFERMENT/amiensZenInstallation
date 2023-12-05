@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // TELEPHONE
     $telephone = filter_input(INPUT_POST, 'telephone', FILTER_SANITIZE_NUMBER_INT);
-    if (!empty($telephone)) {
+    if (!empty($telephone)) { // pour les champs non-obligatoires
         $isOk = filter_var($telephone, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => '/' . REGEX_TELEPHONE . '/')));
         if (!$isOk) {
             $error['telephone'] = 'Votre numéro de téléphone est invalide.';
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // MESSAGE
     $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_SPECIAL_CHARS);
-    if (!empty($message)) {
+    if (!empty($message)) { // pour les champs non-obligatoires
         if (strlen($message) > 1000) {
             $error['message'] = 'Merci de ne pas dépasser 1000 mots.';
         }
