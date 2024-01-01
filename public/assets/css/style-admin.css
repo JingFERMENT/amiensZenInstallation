@@ -9,6 +9,7 @@ body {
 
 /********** header ***********/
 
+
 /* taille du logo */
 .logo_site {
     height: 65px;
@@ -24,27 +25,35 @@ body {
     font-weight: 600;
 }
 
+
+.link-my-account {
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    background-color: #fff;
+}
+
 /********** main ***********/
 
 /* image de fond pour la page d'accueil */
 .cover-image {
-    background-image: url("../img/amiens_parc_st_pierre_medium.jpg");
+    background-image: url("../img/amiens_parc_st_pierre.jpg");
     background-size: cover;
-    background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    height: 85vh;
+    height: 75vh;
 }
 
 .titleName {
-    background-color: #6BC1FF;
+     background-color: rgba(35, 34, 34, 0.5)
 }
 
-hr {
-    height: 2px;
-    width: 85%;
-    background-color: #fff;
-    opacity: 1;
+h2 {
+    color: #0d2f47
 }
 
 .bi {
@@ -65,9 +74,14 @@ a:hover {
     text-decoration: solid underline #6BC1FF 2px;
 }
 
+.rounded-circle {
+    width:150px;
+    height:150px;
+}
+
 /********** footer ***********/
 .text-footer {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 
 
@@ -124,4 +138,6 @@ a:hover {
     align-items: center;
     background-color: rgba(35, 34, 34, 0.5)
 }
+
+
 

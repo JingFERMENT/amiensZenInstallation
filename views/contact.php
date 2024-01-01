@@ -1,11 +1,11 @@
 <section class="container">
-    <h2 class="text-center mt-5">Nous contacter</h2>
-    <p class="text-center text-connexion">Vous désirez nous contacter ? Remplissez le formulaire
+    <h2 class="text-center pt-5">Nous contacter</h2>
+    <p class="text-center text-connexion pb-3">Vous désirez nous contacter ? Remplissez le formulaire
         ci-dessous !
     </p>
     <div class="row" id="contact">
         <div class="col-12 d-none d-lg-block col-lg-4 ">
-            <img class="img-fluid" src="/public/assets/img/mid-shot-femme-parlant-au-telephone.jpg"
+            <img class="img-fluid" src="/public/assets/img/woman_speak_on_the_phone.jpg"
                 alt="Portrait d'une femme qui parle au téléphone">
         </div>
         <div class="col-12 col-lg-6 m-auto">

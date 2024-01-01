@@ -7,6 +7,9 @@
                 <div class="text-footer text-center mx-3"><a href="">Protection des données</a></div>
                 <div class="text-footer text-center mx-3"><a href="">Cookie</a></div>
             </div>
+            <div class="text-footer col-12 col-md-4 text-center p-3">Amiens Zen
+                Installation - © 2023
+            </div>
             <div class="col-12 col-md-4 d-flex align-items-center justify-content-evenly p-3">
                 <div class="text-footer">Suivez-nous:</div>
                 <a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a>
@@ -14,9 +17,7 @@
                 <a href="https://www.instagram.com/"><i class="bi bi-instagram"></i></a>
                 <a href="https://www.linkedin.com/"><i class="bi bi-linkedin"></i></a>
             </div>
-            <div class="text-footer col-12 col-md-4 text-center p-3">Amiens Zen
-                Installation - © 2023
-            </div>
+            
         </div>
     </footer>
     <!-- end footer -->

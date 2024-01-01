@@ -19,7 +19,7 @@
 
 <body>
     <!-- begin header -->
-    <header>
+    <header class="sticky-top">
         <!-- begin navbar -->
         <nav class="navbar navbar-expand-lg">
             <div class="container">
@@ -53,7 +53,7 @@
                         </li>
                     </ul>
                     <div class="text-center d-lg-none">
-                        <a href="./signUp-ctrl.php" class="nav-link"><i class="bi bi-person-circle"></i> Mon compte</a>
+                        <a class="nav-link link-my-account" href="./signUp-ctrl.php" ><i class="bi bi-person-circle"></i> Mon compte</a>
                     </div>
                 </div>
             </div>
@@ -61,4 +61,4 @@
         <!--end navbar-->
     </header>
     <!-- end header -->
-    <main class="container-fluid">
+    <main>
