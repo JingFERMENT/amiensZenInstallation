@@ -18,7 +18,7 @@ body {
 
 /* navbar */
 .navbar-toggler {
-    color: #6BC1FF;
+    color: #37B6FC;
 }
 
 .nav-link {
@@ -41,7 +41,7 @@ body {
 
 /* image de fond pour la page d'accueil */
 .cover-image {
-    background-image: url("../img/amiens_parc_st_pierre.jpg");
+    background-image: url("../img/amiens_parc_st_pierre.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -53,12 +53,12 @@ body {
 }
 
 h2 {
-    color: #0d2f47
+    color: #0d2f47;
 }
 
 .bi {
     font-size: 20px;
-    color: #6BC1FF;
+    color: #37B6FC;
 }
 
 ul {
@@ -71,7 +71,7 @@ a {
 }
 
 a:hover {
-    text-decoration: solid underline #6BC1FF 2px;
+    text-decoration: solid underline #37B6FC 2px;
 }
 
 .rounded-circle {
@@ -97,8 +97,8 @@ a:hover {
 /* page contact */
 #btn-send-contact,
 #btn-send-connexion {
-    background-color: #6BC1FF;
-    border-color: #6BC1FF;
+    background-color: #37B6FC;
+    border-color: #37B6FC;
 }
 
 .text-justify {
@@ -120,7 +120,7 @@ a:hover {
 
 .text-strong {
     font-weight: bold;
-    color: #6BC1FF
+    color: #37B6FC
 }
 
 #main__pic {

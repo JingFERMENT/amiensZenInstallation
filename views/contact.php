@@ -5,7 +5,7 @@
     </p>
     <div class="row" id="contact">
         <div class="col-12 d-none d-lg-block col-lg-4 ">
-            <img class="img-fluid" src="/public/assets/img/woman_speak_on_the_phone.jpg"
+            <img class="img-fluid" src="/public/assets/img/woman_speak_on_the_phone.webp"
                 alt="Portrait d'une femme qui parle au téléphone">
         </div>
         <div class="col-12 col-lg-6 m-auto">

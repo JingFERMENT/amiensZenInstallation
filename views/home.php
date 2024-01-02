@@ -18,9 +18,9 @@
 <!-- begin section "our mission" -->
 <section class="container p-5" id="our-mission">
     <div class="row">
-        <h2 class="text-center fw-bold p-5">Notre mission</h2>
+        <h2 class="text-center fw-bold p-4">Notre mission</h2>
         <div class="col-12 col-xl-6 p-0 d-none d-sm-block">
-            <img class="img-fluid image-our-mission w-100 h-100" src="/public/assets/img/little_story.jpg" alt="image d'un homme qui pointe sur une cible">
+            <img class="img-fluid image-our-mission w-100 h-100" src="/public/assets/img/little_story.webp" alt="image d'un homme qui pointe sur une cible">
         </div>
         <div class="col-12 col-xl-6 bg-light text-center p-5 d-none d-sm-block">
             <h5 class="fw-bold pb-2">La petite histoire</h5>
@@ -28,7 +28,7 @@
             <p>Mais l'installation est loin d’être évident pour nous. Nous nous sommes aperçus que notre expérience était loin d’être isolé et que beaucoup de personnes auraient bien aimé être plus guidé dans ce changement.</p>
             <p>Zen Installation est né dans ce contexte pour accompagner ces personnes à s'installer en toute sérénité dans cette nouvelle ville.</p>
         </div>
-        <div class="col-12 col-xl-6 bg-light text-center p-5 ">
+        <div class="col-12 col-xl-6 bg-light text-center p-5">
             <h5 class="fw-bold pb-2">Installez-vous de manière zen</h5>
             <p>Offir un conseil personnalisé pour chaque projet d’installation.</p>
             <p>Faciliter l'intégration et l'installation de nouveaux habitants.</p>
@@ -36,8 +36,8 @@
             <p>Permettre aux habitants de partager des recommandations sur les expériences et activités</p>
             <p>Renforcer les sentiments d'appartenance pour les nouveaux habitants.</p>
         </div>
-        <div class="col-12 col-xl-6 p-0">
-            <img class="img-fluid image-our-mission w-100" src="/public/assets/img/amiens_maison_jules_verne.jpg" alt="image de la maison de Jules vernes">
+        <div class="col-12 col-xl-6 p-0 d-none d-sm-block">
+            <img class="img-fluid image-our-mission w-100" src="/public/assets/img/amiens_maison_jules_verne.webp" alt="image de la maison de Jules vernes">
         </div>
     </div>
 </section>
@@ -50,7 +50,7 @@
         <p class="text-center pb-5">Un guide complet, personnalisé et interactive pour vous !</p>
         <div class="col-12 col-md-6 col-lg-3 mb-3 ">
             <div class="card shadow">
-                <img src="../public/assets/img/personalized_service.jpg" class="card-img-top img-fluid" alt="Quartier saint-leu à Amiens">
+                <img src="../public/assets/img/personalized_service.webp" class="card-img-top img-fluid" alt="Quartier saint-leu à Amiens">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Conseil</h5>
                     <p class="card-text text-justify">Envie d'accélérer votre projet avec un accompagnement personnalisé ?</p>
@@ -61,7 +61,7 @@
 
         <div class="col-12 col-md-6 col-lg-3 mb-3 ">
             <div class="card shadow">
-                <img src="../public/assets/img/find_work.jpg" class="card-img-top img-fluid" alt="Quartier saint-leu à Amiens">
+                <img src="../public/assets/img/find_work.webp" class="card-img-top img-fluid" alt="Quartier saint-leu à Amiens">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Emploi</h5>
                     <p class="card-text text-justify">Identifier les opportunités d'emploi alignées avec vos attentes ?</p>
@@ -72,7 +72,7 @@
 
         <div class="col-12 col-md-6 col-lg-3 mb-3 ">
             <div class="card shadow">
-                <img src="../public/assets/img/find_house.jpg" class="card-img-top img-fluid" alt="Quartier saint-leu à Amiens">
+                <img src="../public/assets/img/find_house.webp" class="card-img-top img-fluid" alt="Quartier saint-leu à Amiens">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Logement</h5>
                     <p class="card-text text-justify">Envie de trouver un logement mais ne sait pas par quoi commencer ?</p>
@@ -83,7 +83,7 @@
 
         <div class="col-12 col-md-6 col-lg-3 mb-3 ">
             <div class="card shadow">
-                <img src="../public/assets/img/ride_bike.jpg" class="card-img-top img-fluid" alt="Quartier saint-leu à Amiens">
+                <img src="../public/assets/img/ride_bike.webp" class="card-img-top img-fluid" alt="Quartier saint-leu à Amiens">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Vie amiénoise</h5>
                     <p class="card-text text-justify">Quelles sont les principales activités de loisirs et culturelles à découvrir ?</p>
@@ -96,7 +96,7 @@
 
 <!-- begin section image -->
 <section class="py-5">
-    <img class="img-fluid w-100" src="../public/assets/img/familly_move.jpg" alt="Une famille toute contente s'assoit ensemble par terre dans leur nouveau logement.">
+    <img class="img-fluid w-100" src="../public/assets/img/familly_move.webp" alt="Une famille toute contente s'assoit ensemble par terre dans leur nouveau logement.">
 </section>
 <!-- end section image -->
 
@@ -111,7 +111,7 @@
   <div class="row text-center">
     <div class="col-md-4 mb-5 mb-md-0">
       <div class="d-flex justify-content-center mb-4">
-        <img src="../public/assets/img/Testimonial_1.jpg"
+        <img src="../public/assets/img/Testimonial_1.webp"
           class="img-fluid rounded-circle"/>
       </div>
       <h5 class="mb-3">Alexandre</h5>
@@ -123,26 +123,26 @@
 
     <div class="col-md-4 mb-5 mb-md-0">
       <div class="d-flex justify-content-center mb-4">
-        <img src="../public/assets/img/Testimonial_2.jpg"
+        <img src="../public/assets/img/Testimonial_2.webp"
           class="img-fluid rounded-circle"/>
       </div>
       <h5 class="mb-3">Sarah</h5>
       <p class="px-xl-3 fst-italic">
-      « Grâce à Zen Installation, mon arrivée à Amiens a été sans tracas. Une équipe dévouée a assuré une transition en douceur. »
+      « J'ai choisi Zen Installation. Gain de temps, efficacité remarquable. Une solution idéale pour installer à Amiens. »
       </p>
-      <h6 class="mb-3">Salariée et mère de 2 enfants</h6>
+      <h6 class="mb-3">Salariée et mère de deux enfants</h6>
     </div>
 
     <div class="col-md-4 mb-5 mb-md-0">
       <div class="d-flex justify-content-center mb-4">
-        <img src="../public/assets/img/Testimonial_3.jpg"
+        <img src="../public/assets/img/Testimonial_3.webp"
           class="img-fluid rounded-circle"/>
       </div>
       <h5 class="mb-3">Julien</h5>
       <p class="px-xl-3 fst-italic">
-      « Grâce à Zen Installation, mon arrivée à Amiens a été sans tracas. Une équipe dévouée a assuré une transition en douceur. »
+      « Satisfait des services de Zen Installation. Professionnalisme et qualité remarquables. Un partenaire de confiance ! »
       </p>
-      <h6 class="mb-3">Entrepreuneur et père de famille</h6>
+      <h6 class="mb-3">Gérant d'une société à Amiens</h6>
     </div>
 
     <div class="col-md-4 mb-5 mb-md-0 m-auto p-5">

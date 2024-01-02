@@ -1,5 +1,5 @@
 <section class="container">
-    <h2 class="text-center p-5">Vie amiénoise</h2>
+    <h2 class="text-center p-5">Agenda</h2>
     <div class="row">
         <!-- article card 1 -->
         <div class="col-12 col-md-6 col-lg-4 mb-3 ">

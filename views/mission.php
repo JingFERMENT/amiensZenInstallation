@@ -2,7 +2,7 @@
     <div class="row">
         <h2 class="text-center fw-bold p-5">Notre mission</h2>
         <div class="col-12 col-xl-6 p-0">
-            <img class="img-fluid image-our-mission w-100 h-100" src="/public/assets/img/little_story.jpg" alt="image d'un homme qui pointe sur une cible">
+            <img class="img-fluid image-our-mission w-100 h-100" src="/public/assets/img/little_story.webp" alt="image d'un homme qui pointe sur une cible">
         </div>
         <div class="col-12 col-xl-6 bg-light text-center p-5">
             <h5 class="fw-bold pb-2">La petite histoire</h5>
@@ -19,7 +19,7 @@
             <p>Renforcer les sentiments d'appartenance pour les nouveaux habitants.</p>
         </div>
         <div class="col-12 col-xl-6 p-0">
-            <img class="img-fluid image-our-mission w-100" src="/public/assets/img/amiens_maison_jules_verne.jpg" alt="image de la maison de Jules vernes">
+            <img class="img-fluid image-our-mission w-100" src="/public/assets/img/amiens_maison_jules_verne.webp" alt="image de la maison de Jules vernes">
         </div>
     </div>
 

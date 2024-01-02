@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amiens Zen Installation</title>
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/assets/img/favicon-32x32.png">
     <!-- google font "Josefin" for titles et "Montserrat" for texts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +17,7 @@
     <!-- bootstrap icon file-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <!-- my css file -->
-    <link rel="stylesheet" href="/public/assets/css/style-admin.css">
+    <link rel="stylesheet" href="/public/assets/css/style.css">
 </head>
 
 <body>
@@ -49,11 +52,15 @@
                             <a class="nav-link" href="./life-ctrl.php">Vie amiénoise</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="./agenda-ctrl.php">Agenda</a>
+                        </li>
+                        
+                        <li class="nav-item">
                             <a class="nav-link" href="./contact-ctrl.php">Contact</a>
                         </li>
                     </ul>
                     <div class="text-center d-lg-none">
-                        <a class="nav-link link-my-account" href="./signUp-ctrl.php" ><i class="bi bi-person-circle"></i> Mon compte</a>
+                        <a class="nav-link link-my-account" href="./signUp-ctrl.php"><i class="bi bi-person-circle"></i> Mon compte</a>
                     </div>
                 </div>
             </div>

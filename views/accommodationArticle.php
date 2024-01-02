@@ -7,7 +7,7 @@
                     <small class="text-body-secondary">Jean Dupont | 14, déc 2023 </small>
                 </div>
                 <div>
-                    <img src="../public/assets/img/amiens_hortillonage.jpg" class="card-img-top" alt="image de l'hortillonage à Amiens">
+                    <img src="../public/assets/img/amiens_hortillonage.webp" class="card-img-top" alt="image de l'hortillonage à Amiens">
                 </div>
                 <div class="article-content p-5">
                         <p class="description">Vous avez décidé de venir habiter à Amiens ? Mais connaissez-vous bien la ville et ses différents quartiers ? Savez-vous où habiter à Amiens ? Dans cet article, on lève le voile sur les différents quartiers où vivre en fonction de votre situation.</p>

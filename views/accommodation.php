@@ -4,7 +4,7 @@
         <!-- article card 1 -->
         <div class="col-12 col-md-6 col-lg-4 mb-3 ">
             <div class="card h-100">
-                <img src="../public/assets/img/amiens_quartier_st_leu.jpg" class="card-img-top" alt="...">
+                <img src="../public/assets/img/amiens_quartier_st_leu.webp" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Où habite à Amiens ?</h5>
                     <p class="text-justify">Vous avez décidé de venir habiter à Amiens ? Mais connaissez-vous bien la ville et ses différents quartiers ? Savez-vous où habiter à Amiens ?</p>
@@ -16,7 +16,7 @@
         <!-- article card 2 -->
         <div class="col-12 col-md-6 col-lg-4 mb-3 ">
             <div class="card h-100">
-                <img src="../public/assets/img/amiens_quartier_st_leu.jpg" class="card-img-top" alt="...">
+                <img src="../public/assets/img/amiens_quartier_st_leu.webp" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Où habite à Amiens ?</h5>
                     <p class="text-justify">Vous avez décidé de venir habiter à Amiens ? Mais connaissez-vous bien la ville et ses différents quartiers ? Savez-vous où habiter à Amiens ?</p>
@@ -28,7 +28,7 @@
         <!-- article card 3-->
         <div class="col-12 col-md-6 col-lg-4 mb-3 ">
             <div class="card h-100">
-                <img src="../public/assets/img/amiens_quartier_st_leu.jpg" class="card-img-top" alt="...">
+                <img src="../public/assets/img/amiens_quartier_st_leu.webp" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Où habite à Amiens ?</h5>
                     <p class="text-justify">Vous avez décidé de venir habiter à Amiens ? Mais connaissez-vous bien la ville et ses différents quartiers ? Savez-vous où habiter à Amiens ?</p>
@@ -40,7 +40,7 @@
         <!-- article card 4 -->
         <div class="col-12 col-md-6 col-lg-4 mb-3 ">
             <div class="card h-100">
-                <img src="../public/assets/img/amiens_quartier_st_leu.jpg" class="card-img-top" alt="...">
+                <img src="../public/assets/img/amiens_quartier_st_leu.webp" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Où habite à Amiens ?</h5>
                     <p class="text-justify">Vous avez décidé de venir habiter à Amiens ? Mais connaissez-vous bien la ville et ses différents quartiers ? Savez-vous où habiter à Amiens ?</p>
@@ -52,7 +52,7 @@
         <!-- article card 5 -->
         <div class="col-12 col-md-6 col-lg-4 mb-3 ">
             <div class="card h-100">
-                <img src="../public/assets/img/amiens_quartier_st_leu.jpg" class="card-img-top" alt="...">
+                <img src="../public/assets/img/amiens_quartier_st_leu.webp" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Où habite à Amiens ?</h5>
                     <p class="text-justify">Vous avez décidé de venir habiter à Amiens ? Mais connaissez-vous bien la ville et ses différents quartiers ? Savez-vous où habiter à Amiens ?</p>
@@ -64,7 +64,7 @@
         <!-- article card 6 -->
         <div class="col-12 col-md-6 col-lg-4 mb-3 ">
             <div class="card h-100">
-                <img src="../public/assets/img/amiens_quartier_st_leu.jpg" class="card-img-top" alt="...">
+                <img src="../public/assets/img/amiens_quartier_st_leu.webp" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Où habite à Amiens ?</h5>
                     <p class="text-justify">Vous avez décidé de venir habiter à Amiens ? Mais connaissez-vous bien la ville et ses différents quartiers ? Savez-vous où habiter à Amiens ?</p>
