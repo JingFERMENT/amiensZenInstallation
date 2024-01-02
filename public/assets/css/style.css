@@ -79,6 +79,17 @@ a:hover {
     height:150px;
 }
 
+#profile_comment {
+    width: 70px;
+    height: 70px;
+}
+
+.send_button {
+    background-color: #37B6FC;
+    border-color: #37B6FC;
+}
+
+
 /********** footer ***********/
 .text-footer {
     font-size: 0.8rem;
