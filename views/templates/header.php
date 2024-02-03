@@ -52,10 +52,6 @@
                             <a class="nav-link" href="./life-ctrl.php">Vie amiénoise</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./agenda-ctrl.php">Agenda</a>
-                        </li>
-                        
-                        <li class="nav-item">
                             <a class="nav-link" href="./contact-ctrl.php">Contact</a>
                         </li>
                     </ul>
