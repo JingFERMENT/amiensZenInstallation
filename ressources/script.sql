@@ -20,7 +20,6 @@ CREATE TABLE subscribers(
    is_admin BOOLEAN,
    personal_advice BOOLEAN NOT NULL,
    family_situation VARCHAR(255)  NOT NULL,
-   interested_topics VARCHAR(255)  NOT NULL,
    PRIMARY KEY(id_subscriber),
    UNIQUE(email)
 );

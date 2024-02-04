@@ -1,0 +1,241 @@
+<?php
+require_once(__DIR__ . '/../helpers/connect.php');
+
+class Subscriber {
+
+    private int $id_subscriber;
+    private string $lastname;
+    private string $firstname;
+    private string $email;
+    private string $password;
+    private ?DateTime $birthdate;
+    private ?string $phone;
+    private ?string $profile_picture;
+    private ?DateTime $subscribed_at;
+    private DateTime $updated_at;
+    private DateTime $deleted_at;
+    private ?bool $is_admin;
+    private ?bool $personal_advice;
+    private ?string $family_situation;
+
+    
+    //*************** ID SUBSCRIBER ***************//
+    public function getId_subscriber():?int
+    {
+        return $this->id_subscriber;
+    }
+
+    public function setId_subscriber(int $id_subscriber)
+    {
+        $this->id_subscriber = $id_subscriber;
+    }
+ 
+    //*************** LASTNAME ***************//
+    public function getLastname():string
+    {
+        return $this->lastname;
+    }
+ 
+    public function setLastname(string $lastname)
+    {
+        $this->lastname = $lastname;
+    }
+
+    //*************** FIRSTNAME ***************//
+    public function getFirstname():string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname)
+    {
+        $this->firstname = $firstname;
+    }
+
+    //*************** EMAIL ***************//
+    public function getEmail():string
+    {
+        return $this->email;
+    }
+ 
+    public function setEmail(string $email)
+    {
+        $this->email = $email;
+    }
+
+    //*************** PASSWORD ***************// 
+    public function getPassword():string
+    {
+        return $this->password;
+    }
+ 
+    public function setPassword(string $password)
+    {
+        $this->password = $password;
+    }
+
+    //*************** BIRTHDATE ***************// 
+ 
+    public function getBirthdate():DateTime
+    {
+        return $this->birthdate;
+    }
+
+    public function setBirthdate(string $birthdate)
+    {
+        $this->birthdate = new DateTime($birthdate);
+    }
+
+    //*************** PHONE ***************// 
+
+    public function getPhone():string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone)
+    {
+        $this->phone = $phone;
+    }
+
+    //*************** PROFILE PICTURE ***************// 
+    public function getProfile_picture():string
+    {
+        return $this->profile_picture;
+    }
+
+    public function setProfile_picture(string $profile_picture)
+    {
+        $this->profile_picture = $profile_picture;
+    }
+
+    //*************** SUBSCRIBED_AT ***************// 
+    public function getSubscribed_at():DateTime
+    {
+        return $this->subscribed_at;
+    }
+
+    public function setSubscribed_at(string $subscribed_at)
+    {
+        $this->subscribed_at = new DateTime($subscribed_at);
+
+    }
+
+    //*************** SUBSCRIBED_AT ***************// 
+    public function getUpdated_at():DateTime
+    {
+        return $this->updated_at;
+    }
+ 
+    public function setUpdated_at(string $updated_at)
+    {
+        $this->updated_at = new DateTime($updated_at);
+    }
+
+    //*************** DELETED_AT ***************// 
+    public function getDeleted_at():DateTime
+    {
+        return $this->deleted_at;
+    }
+
+    public function setDeleted_at(string $deleted_at)
+    {
+        $this->deleted_at = new DateTime($deleted_at);
+    }
+
+    //*************** IS_ADMIN***************// 
+    public function getIs_admin():bool
+    {
+        return $this->is_admin;
+    }
+
+    public function setIs_admin(bool $is_admin)
+    {
+        $this->is_admin = $is_admin;
+    }
+
+    //*************** PERSONAL_ADIVCE ***************//  
+    public function getPersonal_advice():bool
+    {
+        return $this->personal_advice;
+    }
+
+    public function setPersonal_advice(bool $personal_advice)
+    {
+        $this->personal_advice = $personal_advice;
+    }
+
+    //*************** FAMILY_SITUATION ***************// 
+    public function getFamily_situation():string
+    {
+        return $this->family_situation;
+    }
+
+    public function setFamily_situation(string $family_situation)
+    {
+        $this->family_situation = $family_situation;
+
+    }
+
+    /**
+     * Méthode permettant l'enregistrement d'un nouvel abonné
+     * 
+     * @return bool True en cas de succès, sinon une erreur de type Exception est générée
+     */
+    public function insert(): bool
+
+    {
+        // Création d'une variable recevant un objet issu de la classe PDO 
+        $pdo = Database::connect();
+
+        // Requête contenant des marqueurs nominatifs
+        $sql = 'INSERT INTO `subscribers` 
+                    (`lastname`, `firstname`, `email`, `password`) 
+                VALUES
+                    (:lastname, :firstname, :email, :password);';
+    
+        // Si marqueur nominatif, il faut préparer la requête
+        $sth = $pdo->prepare($sql);
+
+        // Affectation de la valeur correspondant au marqueur nominatif concerné
+        $sth->bindValue(':lastname', $this->getLastname());
+        $sth->bindValue(':firstname', $this->getFirstname());
+        $sth->bindValue(':email', $this->getEmail());
+        $sth->bindValue(':password', $this->getPassword());
+
+        // Exécution de la requête
+        $sth->execute();
+
+        // Appel à la méthode rowCount permettant de savoir combien d'enregistrements ont été affectés
+        // par la dernière requête (fonctionnel uniquement sur insert, update, ou delete. PAS SUR SELECT!!)
+        if ($sth->rowCount() <= 0) {
+            // Génération d'une exception renvoyant le message en paramètre au catch créé en amont et arrêt du traitement.
+            throw new Exception("Erreur lors de l'enregistrement de l'abonné.");
+        } else {
+         // Retourne true dans le cas contraire (tout s'est bien passé)
+         return true;
+        }
+    }
+
+    /**
+     * 
+     * Méthode permettant de récupérer la liste des abonnés sous forme de tableau d'objets
+     * 
+     * @return array Tableau d'objets
+     */
+    public static function getAll(): array | false
+    {
+        $pdo = Database::connect();
+        $sql = 'SELECT * from `subscribers` ORDER by `lastname`';
+        $sth = $pdo->query($sql);
+        $datas = $sth->fetchAll();
+        return $datas;
+    }
+
+
+
+
+
+
+
+}
