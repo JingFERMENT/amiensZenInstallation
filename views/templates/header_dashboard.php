@@ -45,10 +45,10 @@
           <a href="/controllers/dashboard/category/list-ctrl.php"><i class="fa-solid fa-layer-group"></i>Catégories</a>
         </li>
         <li>
-          <a href="#"><i class="fa-solid fa-newspaper"></i>Articles</a>
+          <a href="/controllers/dashboard/post/list-ctrl.php"><i class="fa-solid fa-newspaper"></i>Articles</a>
         </li>
         <li>
-          <a href="#"><i class="fa-solid fa-comment"></i>Commentaires</a>
+          <a href="/controllers/dashboard/comment/list-ctrl.php"><i class="fa-solid fa-comment"></i>Commentaires</a>
         </li>
       </ul>
       <div class="text-center">

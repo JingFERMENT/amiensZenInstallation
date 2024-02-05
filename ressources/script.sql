@@ -30,9 +30,9 @@ CREATE TABLE posts(
    content TEXT NOT NULL,
    published_at DATETIME,
    updated_at DATETIME,
-   archived_at DATE NOT NULL,
+   archived_at DATETIME,
    deleted_at DATETIME,
-   image VARCHAR(50) ,
+   image VARCHAR(50) NOT NULL,
    id_subscriber INT NOT NULL,
    PRIMARY KEY(id_post),
    FOREIGN KEY(id_subscriber) REFERENCES subscribers(id_subscriber)
