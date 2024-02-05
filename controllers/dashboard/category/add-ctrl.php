@@ -46,8 +46,7 @@ try {
             // Si la méthode a retourné "true", alors on redirige vers la liste
             if($isOk){
                 $msg = 'La catégorie a bien été inséré. Vous pouvez en saisir une autre.';
-                // header("Refresh: 1; url=/controllers/dashboard/categories/list-ctrl.php");
-                die;
+                header("Refresh: 1; url=/controllers/dashboard/category/list-ctrl.php");
             } else {
                 $msg = 'Erreur, la donnée n\'a pas été insérée. Veuillez réessayer.';
             }

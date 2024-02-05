@@ -1,7 +1,8 @@
 <?php
 require_once(__DIR__ . '/../helpers/connect.php');
 
-class Category {
+class Category
+{
 
     private ?int $id_category;
     private string $name;
@@ -13,7 +14,7 @@ class Category {
     }
 
     //*************** ID CATEGORY ***************//
-    public function getId_category():int
+    public function getId_category(): int
     {
         return $this->id_category;
     }
@@ -24,7 +25,7 @@ class Category {
     }
 
     //*************** NAME ***************//
-    public function getName():string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -34,7 +35,7 @@ class Category {
         $this->name = $name;
     }
 
-    public function insert():bool
+    public function insert(): bool
     {
         // Création d'une variable recevant un objet issu de la classe PDO 
         $pdo = Database::connect();
@@ -62,7 +63,7 @@ class Category {
         }
     }
 
-    public static function isExist($name):bool
+    public static function isExist($name): bool
     {
         $pdo = Database::connect();
         $sql = 'SELECT COUNT(*) FROM `categories` WHERE `name` = :name';
@@ -77,5 +78,19 @@ class Category {
         return $rowCount > 0;
     }
 
+    /**
+     * Méthode permettant de récupérer la liste des catégories sous forme de tableau d'objets
+     * @return array Tableau d'objets
+     */
+    public static function getAll(): array
+    {
+        $pdo = Database::connect();
+        $sql = 'SELECT * from `categories` ORDER by `name`';
+        $sth = $pdo->query($sql);
+        $datas = $sth->fetchAll();
+        return $datas;
+    }
 
+
+    
 }
