@@ -232,10 +232,70 @@ class Subscriber {
         return $datas;
     }
 
+    /**
+     * 
+     * Méthode permettant  de récupérer un objet standard avec pour propriétés, les colonnes sélectionnées
+     * 
+     * @param int $id_subscriber
+     * 
+     * @return object
+     */
+    public static function get(int $id_subscriber): object|false
+    {
+        $pdo = Database::connect();
+        $sql = 'SELECT * from `subscribers` WHERE `id_subscriber` = :id_subscriber';
 
+        // Si marqueur nominatif, il faut préparer la requête
+        $sth = $pdo->prepare($sql);
 
+        // Affectation de la valeur correspondant au marqueur nominatif concerné
+        $sth->bindValue(':id_subscriber', $id_subscriber);
 
+        // Exécution de la requête
+        $sth->execute();
+        $data = $sth->fetch();
+        // On teste si data est vide.
+        if (!$data) {
+            // Génération d'une exception renvoyant le message en paramètre au catch créé en amont et arrêt du traitement.
+            throw new Exception('Erreur lors de la récupération de l\'abonné');
+        } else {
+            // Retourne la data dans le cas contraire (tout s'est bien passé)
+            return $data;
+        }
+    }
 
+    /**
+     * 
+     * Méthode permettant la suppression d'un abonné
+     * 
+     * @param int $id_subscriber
+     * 
+     * @return bool True en cas de succès, sinon une erreur de type Exception est générée
+     */
+    public static function delete(int $id_subscriber) :bool 
+    {
+        // Création d'une variable recevant un objet issu de la classe PDO 
+        $pdo = Database::connect();
+
+        // Requête contenant des marqueurs nominatifs
+        $sql = 'DELETE FROM `subscribers` WHERE `id_subscriber` = :id_subscriber;';
+        
+         // Si marqueur nominatif, il faut préparer la requête
+        $sth = $pdo->prepare($sql);
+        
+        // Affectation de la valeur correspondant au marqueur nominatif concerné
+        $sth->bindValue(':id_subscriber', $id_subscriber);
+        $sth->execute();
+
+        // Appel à la méthode rowCount permettant de savoir combien d'enregistrements ont été affectés
+        if ($sth->rowCount() <= 0) {
+            // Génération d'une exception renvoyant le message en paramètre au catch créé en amont et arrêt du traitement.
+            throw new Exception("Erreur lors de la suppression de l'abonné");
+        } else {
+            // Retourne true dans le cas contraire (tout s'est bien passé)
+            return true;
+        }
+    }
 
 
 }

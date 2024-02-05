@@ -1,6 +1,6 @@
 body {
     overflow-x: hidden;
-    font-family: 'Montserrat', sans-serif;;
+    font-family: 'Montserrat', sans-serif;
  }
 
 /* Toggle Styles */
@@ -168,11 +168,11 @@ input:placeholder-shown {
  
 #btnQuit {
     position: absolute;
-    bottom: 0px;
+    bottom: 10px;
     background-color: #fff;
     color:#37B6FC;
 }
 
-#btn-add {
+#btn-add{
     background-color: #37B6FC;
 }

@@ -42,7 +42,7 @@
           <a href="#"><i class="fa-solid fa-user"></i>Abonnés</a>
         </li>
         <li>
-          <a href="#"><i class="fa-solid fa-table-list"></i>Catégories</a>
+          <a href="#"><i class="fa-solid fa-layer-group"></i></i>Catégories</a>
         </li>
         <li>
           <a href="#"><i class="fa-solid fa-newspaper"></i>Articles</a>
@@ -52,7 +52,7 @@
         </li>
       </ul>
       <div class="text-center">
-        <a href="/index.php" class="btn fw-bold px-4" id="btnQuit">Quitter</a>
+        <a href="/index.php" class="btn fw-bold px-4 text-uppercase" id="btnQuit">Quitter</a>
       </div>
     </div>
     <div id="page-content-wrapper" class="mx-auto">
