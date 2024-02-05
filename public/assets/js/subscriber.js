@@ -1,13 +1,11 @@
 //jquery
 
-// attention de récupéer les id_category dans la bouton oui du modal
-
-// ouvrir la modal delete
+// ouvrir la modal delete subscriber
 $('.modalOpenSubscriberDeleteBtn').on("click", showConfirmationSubscriberDeletePopup);
-// cliquer 'oui' dans la page modal delete
+// cliquer 'oui' dans la page modal delete subscriber
 $(".deleteSubscriberBtn").on("click", doDeleteSubscriber);
 
-
+// function subscriber
 function showConfirmationSubscriberDeletePopup(event) {
     const clickedSubscriberId = ($(this).data('id'));
     // attribuer une valeur à l'attribut 'data-id'

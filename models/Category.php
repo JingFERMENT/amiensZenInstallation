@@ -152,5 +152,23 @@ class Category
         }
     }
 
-    
+    /**
+     * Méthode permettant la suppression d'une catégorie
+     * 
+     * @return bool True en cas de succès, sinon une erreur de type Exception est générée
+     */
+    public static function delete (int $id_category): bool
+    {
+        $pdo = Database::connect();
+        $sql = 'DELETE FROM `categories` WHERE `id_category` = :id_category;';
+        $sth = $pdo->prepare($sql);
+        $sth->bindValue(':id_category', $id_category);
+        $sth->execute();
+        if ($sth->rowCount() <= 0) {
+            throw new Exception('Erreur lors de la suppression de la catégorie');
+        } else {
+            return true;
+        }
+    }
+
 }

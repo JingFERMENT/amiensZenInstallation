@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once(__DIR__ . '/../../../models/Category.php');
 require_once(__DIR__ . '/../../../config/init.php');
 require_once(__DIR__ . '/../../../helpers/dd.php');
@@ -56,7 +58,7 @@ try {
             // Si la méthode a retourné "true", alors on redirige vers la liste
             if($isOk){
                 $msg = 'Catégorie modifiée avec succès';
-                // header('location: /controllers/dashboard/category/list-ctrl.php');
+                header('location: /controllers/dashboard/category/list-ctrl.php');
             } else {
                 $msg = 'Erreur, la catégorie n\'a pas été modifiée.';
             }
