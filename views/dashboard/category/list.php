@@ -24,7 +24,7 @@
                         <tr>
                             <th scope="row" class="fst-italic fw-normal"><?= $category->id_category ?></th>
                             <td><?= $category->name ?></td>
-                            <td><a class="text-dark" href="/controllers/dashboard/categories/update-ctrl.php?id_category=<?= $category->id_category ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                            <td><a class="text-dark" href="/controllers/dashboard/category/update-ctrl.php?id_category=<?= $category->id_category ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
                             <!-- Button trigger modal -->
                             <td><a type="button" data-id="<?= $category->id_category ?>" data-bs-toggle="modal" data-bs-target="#deleteModal" class="text-dark modalOpenCategoryDeleteBtn"><i class="fa-solid fa-trash-can"></i></a></td>
                         </tr>

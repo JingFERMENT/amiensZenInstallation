@@ -1,19 +1,29 @@
 <?php
 require_once(__DIR__ . '/../../../models/Category.php');
-require_once(__DIR__ . '/../../../helpers/dd.php');
 require_once(__DIR__ . '/../../../config/init.php');
-
+require_once(__DIR__ . '/../../../helpers/dd.php');
 
 try {
 
-    $title = "Ajouter une catégorie";
+    $title = 'Modifier une catégorie';
+
+    // Récupération du paramètre d'URL correspondant à l'id de la catégorie cliquée
+    $id_category = intval(filter_input(INPUT_GET, 'id_category', FILTER_SANITIZE_NUMBER_INT));
+
+    $categorytoDisplay = Category::get($id_category);
+    
+    if (!$categorytoDisplay) {
+        header('location: /controllers/dashboard/categories/list-ctrl.php');
+        die;
+    }
 
     // Si les données du formulaire ont été transmises
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $errors = [];
-
+        // Récupération, nettoyage et validation des données
         $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
+        
         // Récupération, nettoyage et validation des données
         if (empty($name)) { // le champs est obligatoire
             $errors['name'] = 'Le nom de catégorie est obligatoire.';
@@ -25,34 +35,38 @@ try {
             }
         }
 
-        // vérifier s'il y a des doublons de catégorie
-        $isExist = Category::isExist($name);
-       
-        if($isExist){
-            $errors['name'] = 'Cette catégorie existe déjà.';
-        }
+         // vérifier s'il y a des doublons de catégorie
+         $isExistDuplicate = Category::isExist($name);
+         if ($isExistDuplicate && $name != $categorytoDisplay->name) {
+             $errors['name'] = 'Cette catégorie existe déjà.';
+         } 
 
         // Enregistrement en base de données
         if (empty($errors)) {
-            // Création d'un nouvel objet issu de la classe 'category'
+            // Création d'un nouvel objet issu de la classe 'Type'
             $categoryObj = new Category();
 
             // Hydratation de notre objet
+            $categoryObj->setId_category($id_category);
             $categoryObj->setName($name);
-
-            // Appel de la méthode insert
-            $isOk = $categoryObj->insert();
-
+            
+            // Appel de la méthode update
+            $isOk = $categoryObj->update();
+            
             // Si la méthode a retourné "true", alors on redirige vers la liste
             if($isOk){
-                $msg = 'La catégorie a bien été inséré. Vous pouvez en saisir une autre.';
-                header("Refresh: 1; url=/controllers/dashboard/category/list-ctrl.php");
+                $msg = 'Catégorie modifiée avec succès';
+                // header('location: /controllers/dashboard/category/list-ctrl.php');
             } else {
-                $msg = 'Erreur, la donnée n\'a pas été insérée. Veuillez réessayer.';
+                $msg = 'Erreur, la catégorie n\'a pas été modifiée.';
             }
+
+             // Récupération de la catégorie selon son id
+             $categorytoDisplay = Category::get($id_category);
         }
     }
-}catch (Throwable $th) {
+
+} catch (\Throwable $th) {
     $error = $th->getMessage();
     include __DIR__ . '/../../../views/templates/header.php';
     include __DIR__ . '/../../../views/templates/error.php';
@@ -62,6 +76,5 @@ try {
 
 //views
 include __DIR__ . '/../../../views/templates/header_dashboard.php';
-include __DIR__ . '/../../../views/dashboard/category/add.php';
+include __DIR__ . '/../../../views/dashboard/category/update.php';
 include __DIR__ . '/../../../views/templates/footer_dashboard.php';
-
