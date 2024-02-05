@@ -39,10 +39,10 @@
           <hr class="m-auto">
         </li>
         <li>
-          <a href="#"><i class="fa-solid fa-user"></i>Abonnés</a>
+          <a href="/controllers/dashboard/subscriber/list-ctrl.php"><i class="fa-solid fa-user-group"></i>Abonnés</a>
         </li>
         <li>
-          <a href="#"><i class="fa-solid fa-layer-group"></i></i>Catégories</a>
+          <a href="/controllers/dashboard/category/list-ctrl.php"><i class="fa-solid fa-layer-group"></i>Catégories</a>
         </li>
         <li>
           <a href="#"><i class="fa-solid fa-newspaper"></i>Articles</a>
