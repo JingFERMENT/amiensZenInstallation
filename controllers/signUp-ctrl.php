@@ -2,6 +2,8 @@
 
 require_once __DIR__.'/../config/init.php';
 require_once __DIR__.'/../models/Subscriber.php';
+require_once __DIR__.'/../helpers/JWT.php';
+
 
 try {
 
@@ -96,7 +98,16 @@ try {
 
             // Si la méthode a retourné "true", on redirige vers la liste
             if ($isOk) {
-                $msg = 'Votre inscription a bien été pris compte.';
+                // $to = $email;
+                // $subject = 'Confirmation de votre inscription';
+                // $payload = ['email' => $email, 'lastname'=> $lastname];
+                // $jwt = JWT::set() ;
+                // $message = '<a href=".$SERVER['REQUEST_SCHEME'].'://' .$SERVER['HTTP_HOST .'/controllers/confirmSignUp-ctrl.php?jwt=$jwt']">Merci de cliquer sur votre email.</a>';
+                // mail($to,$subject, $message);
+                //
+                // mail();
+                $msg = 'Votre inscription a bien été prise compte.';
+                // FlashMessage::set('Merci pour votre inscription, vous allez recevoir un email de confirmation!')
                 // header("Refresh: 1; url=/controllers/myProfile-ctrl.php");
                 die;
             } else {

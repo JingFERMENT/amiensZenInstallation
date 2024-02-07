@@ -17,6 +17,26 @@ class Subscriber {
     private ?bool $is_admin;
     private ?bool $personal_advice;
     private ?string $family_situation;
+    // confirmed_at
+
+    // méthode construct initization avec null 
+    // public function __construct()
+    // {
+    //     $this->id_subscriber;
+    //     $this->lastname;
+    //     $this->firstname;
+    //     $this->email;
+    //     $this->password;
+    //     $this->birthdate;
+    //     $this->phone;
+    //     $this->profile_picture;
+    //     $this->subscribed_at;
+    //     $this->updated_at;
+    //     $this->deleted_at;
+    //     $this->is_admin;
+    //     $this->personal_advice;
+    //     $this->family_situation;
+    // }
 
     
     //*************** ID SUBSCRIBER ***************//
@@ -203,6 +223,7 @@ class Subscriber {
         $sth->bindValue(':email', $this->getEmail());
         $sth->bindValue(':password', $this->getPassword());
 
+        // email unique dans la base des données
         // Exécution de la requête
         $sth->execute();
 
@@ -295,6 +316,56 @@ class Subscriber {
             // Retourne true dans le cas contraire (tout s'est bien passé)
             return true;
         }
+    }
+
+
+    // méthode getByEmail 
+    public static function getByEmail(string $email): object|false 
+    {
+         // Création d'une variable recevant un objet issu de la classe PDO 
+         $pdo = Database::connect();
+
+         $sql = 'SELECT * from `subscribers` WHERE `email` = :email';
+
+         $sth = $pdo->prepare($sql);
+
+         $sth->bindValue(':email', $email);
+
+         // Exécution de la requête qui retourne true ou false
+        $sth->execute();
+
+        $data = $sth->fetch();
+        // On teste si data est vide.
+        if (!$data) {
+            // Génération d'une exception renvoyant le message en paramètre au catch créé en amont et arrêt du traitement.
+            throw new Exception('Erreur lors de la récupération de l\'abonné');
+        } else {
+            // Retourne la data dans le cas contraire (tout s'est bien passé)
+            return $data;
+        }
+
+    }
+
+    public static function confirm(string $email): bool 
+    {
+        $pdo = Database::connect();
+        $sql = 'UPDATE `subscribers` SET `confirmed_at` = NOW() WHERE email=:email;';
+
+        $sth = $pdo->prepare($sql);
+        
+        // Affectation de la valeur correspondant au marqueur nominatif concerné
+        $sth->bindValue(':email', $email);
+        $sth->execute();
+
+        // Appel à la méthode rowCount permettant de savoir combien d'enregistrements ont été affectés
+        if ($sth->rowCount() <= 0) {
+            // Génération d'une exception renvoyant le message en paramètre au catch créé en amont et arrêt du traitement.
+           throw new Exception('Nous n\'avons pas reconnu votre email');
+        } else {
+            // Retourne true quand tout s'est bien passé
+            return true;
+        }
+
     }
 
 

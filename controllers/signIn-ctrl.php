@@ -1,29 +1,73 @@
-<?php 
+<?php
+require_once __DIR__ . '/../config/init.php';
 
-require_once __DIR__.'/../config/init.php';
+try {
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $error = [];
 
-    $error = [];
+        // EMAIL
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        if (empty($email)) {
+            $error['email'] = 'L\'email est obligatoire.';
+        } else {
+            $isOk = filter_var($email, FILTER_VALIDATE_EMAIL);
+            if (!$isOk) {
+                $error['email'] = 'L\'email est incorrect.';
+            }
+        }
 
-    // EMAIL
-    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    if (empty($email)) {
-        $error['email'] = 'L\'email est obligatoire.';
-    } else {
-        $isOk = filter_var($email, FILTER_VALIDATE_EMAIL);
-        if (!$isOk) {
-            $error['email'] = 'L\'email est incorrect.';
+        // PASSWORD
+        $password = filter_input(INPUT_POST, 'password');
+        if (empty($password)) {
+            $error['password'] = 'Le mot de passe est obligatoire.';
+        } else {
+            $isOk = filter_var($password, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => '/' . REGEX_PASSWORD . '/')));
+            if (!$isOk) {
+                $error['password'] = 'Le mot de passe doit contenir au moins 8 caractères, un majuscule, un minuscule, un caractère spécial et un chiffre.';
+            }
+        }
+
+        // authentification
+        if (empty($error)) {
+            $subscriber = Subscriber::getByEmail($email);
+
+            if (!$subscriber) {
+                $error['password'] = 'Nous n\'avons pas pu vous identifier';
+            } else {
+                // récupérer le mot de passe hashé
+                $passwordHash = $subscriber->password;
+                // password_verify
+                $isAuth = password_verify($password, $passwordHash);
+                if ($isAuth) {
+                    // if (is_null($subscriber->confirmed_at)) {
+                    //     $msg = 'Veuillez confirmer!';
+                    // } else {
+                    // supprimer le mot de passe qui est une information sensible dans le tableau 'subscriber'
+                    unset($subscriber->password);
+                    // stocker l'info de l'abonné dans la session pour utiliser dans toutes les pages quand l'abonné est connecté.
+                    $_SESSION['subscriber'] = $subscriber;
+                    // }
+                } else {
+                    $error['password'] = 'Votre mot de passe est incorrect!';
+                }
+            }
         }
     }
-
-    // PASSWORD and CONFIRMED PASSWORD: pas de nettoyage avec special chars
-    $password = filter_input(INPUT_POST, 'password');
-    $confirmedPassword = filter_input(INPUT_POST, 'confirmedPassword');
-
-
+} catch (\Throwable $th) {
+    $error = $th->getMessage();
+    include __DIR__ . '/../views/templates/header.php';
+    include __DIR__ . '/../views/templates/error.php';
+    include __DIR__ . '/../views/templates/footer.php';
+    die;
 }
 
-include __DIR__.'/../views/templates/header.php';
-include __DIR__.'/../views/signIn.php';
-include __DIR__.'/../views/templates/footer.php';
+include __DIR__ . '/../views/templates/header.php';
+include __DIR__ . '/../views/signIn.php';
+include __DIR__ . '/../views/templates/footer.php';
+
+
+// bloquer les connexions au bout de 3 tentatives  
+// session : 20 minutes active / fermer le navigateur 
+// cookie: on peut définir la durée de session
+// localStorage / jsonwebtoken 
