@@ -151,10 +151,9 @@ h1 {
     }
 }
 
-input:placeholder-shown {
+input:placeholder-shown, textarea:placeholder-shown {
     font-style: italic;
  }
-
 
  .vehcilePicture {
     max-width: 60px;
@@ -178,5 +177,9 @@ input:placeholder-shown {
 }
 
 .btn-add {
+    background-color: #37B6FC;
+}
+
+.btn-bleu {
     background-color: #37B6FC;
 }

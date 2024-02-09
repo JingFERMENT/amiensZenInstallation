@@ -1,7 +1,6 @@
 CREATE TABLE categories(
    id_category INT AUTO_INCREMENT,
    name VARCHAR(100) ,
-   description VARCHAR(255) ,
    PRIMARY KEY(id_category)
 );
 
@@ -32,7 +31,7 @@ CREATE TABLE posts(
    updated_at DATETIME,
    archived_at DATETIME,
    deleted_at DATETIME,
-   image VARCHAR(50) NOT NULL,
+   photo VARCHAR(50) NOT NULL,
    id_subscriber INT NOT NULL,
    PRIMARY KEY(id_post),
    FOREIGN KEY(id_subscriber) REFERENCES subscribers(id_subscriber)

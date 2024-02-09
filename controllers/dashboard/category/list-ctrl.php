@@ -1,13 +1,13 @@
 <?php
-session_start();
+// session_start();
 require_once(__DIR__ . '/../../../models/Category.php');
 require_once(__DIR__ . '/../../../helpers/dd.php');
 
 // if the susbcriber is not admin, the dashboard is not authorized
 // Auth::Check() -> mettre sur toutes les pages // sécuriser toutes les controlleurs 
-if (empty($_SESSION['subscriber']) || $_SESSION['subscriber']->is_admin == false) {   
-    header('location: /controllers/signIn-ctrl.php');
-} 
+// if (empty($_SESSION['subscriber']) || $_SESSION['subscriber']->is_admin == false) {   
+//     header('location: /controllers/signIn-ctrl.php');
+// } 
 
 try {
 

@@ -134,21 +134,6 @@ a:hover {
     color: #37B6FC
 }
 
-#main__pic {
-    background-image: url(../img/updated_KPI.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 50%;
-    height: 32vh;
-}
-
-#overlay {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(35, 34, 34, 0.5)
-}
 
 
 

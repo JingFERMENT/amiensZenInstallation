@@ -1,6 +1,4 @@
 <?php
-// config
-
 //DSN : Data Source Name qui contient des informations sur la base de données
 define('DSN', 'mysql:dbname=amiens_zen_installation;host =localhost');
 
@@ -15,3 +13,7 @@ define ('REGEX_TELEPHONE','^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$');
 
 // key
 define ('SECRET_KEY', 's$hhshshshshsh34');
+
+// format image 
+define('ARRAY_TYPES_MIMES', ['image/jpeg', 'image/png']);
+define('UPLOAD_MAX_SIZE', 2 * 1024 * 1024);

@@ -1,39 +1,51 @@
 <div class="card border-2">
     <div class="py-5 d-flex flex-column justify-content-center align-items-center">
+        <!-- AJOUTER UN ARTICLE -->
         <h1 class="text-center pb-3">Ajouter un article</h1>
         <span class="text-success fw-bold"><?= $msg ?? '' ?></span>
-        <form class="col-12 col-lg-6" method="POST" enctype='multipart/form-data'>
+        <form class="col-12 col-lg-6" method="POST" enctype='multipart/form-data' novalidate>
             <div class="d-flex flex-wrap">
-                <!-- categorie -->
+                <!-- CATEGORIE DE L'ARTICLE -->
                 <div class="col-12 p-2">
-                    <label for="id_category" class="form-label fw-bold">Catégorie de l'article<span class="text-danger">
-                            *<span></label>
-                    <select name="id_category" class="form-select" aria-label="Default select example">
-                        <option selected disabled>--Sélectionnez votre catégorie--</option>
-                        <?php foreach ($categories as $category) {
-                            $isSelected = (isset($id_category) && $id_category == $category->id_category) ? 'selected' : '';
-                            echo "<option value=\"$category->id_category\" $isSelected>$category->name</option>";
-                        } ?>
-                    </select>
-                    <span class="text-danger"><?= $errors['name'] ?? '' ?></span>
+                   <label class="form-label fw-bold" >Catégorie de l'article<small class="fw-lighter fst-italic"> (plusieurs réponses possibles)</small><span class="text-danger"> * </span></label>
+                        <div class="col-12">
+                            <div class="d-flex flex-wrap justify-content-start">
+                                <?php
+                                foreach ($categories as $category) {
+                                    $isChecked = (isset($selectedCategory) && $selectedCategory == $category->name) ? 'checked' : '';
+                                    echo
+                                    "<div class=\"form-check m-3\">
+                                            <input class=\"form-check-input\" type=\"checkbox\" name=\"selectedCategory[]\" value=\"$category->id_category\" id=\"$category->name\" $isChecked>
+                                            <label class=\"form-check-label\" for=\"$category->name\">$category->name</label>
+                                        </div>";
+                                }
+                                ?>
+                            </div>
+                            <span class="text-danger"><?= $errors['selectedCategory'] ?? '' ?></span>
+                        </div>
                 </div>
-                <!-- content -->
-                <div class="col-12 col-lg-6 p-2">
-                    <label for="brand" class="form-label fw-bold">Marque<span class="text-danger">
-                            *<span></label>
-                    <input type="text" name="brand" value="<?= $brand ?? '' ?>" class="form-control" id="brand" aria-describedby="brandHelp" placeholder="Citroën" minlength="2" maxlength="50" required>
-                    <span class="text-danger"><?= $errors['brand'] ?? '' ?></span>
-                </div>
-                <!-- photo-->
+                <!-- TITLE -->
                 <div class="col-12 p-2">
-                    <label for="photo" class="form-label fw-bold">Photo de véhicule</label>
+                    <label for="title" class="form-label fw-bold">Title<span class="text-danger"> * </span></label>
+                    <input class="form-control" id="title" rows="5" maxlength="1000" name="title" placeholder="Ecrire votre titre ici ..." required>
+                    <span class="text-danger"><?= $errors['title'] ?? '' ?></span>
+                </div>
+                <!-- CONTENT -->
+                <div class="col-12 p-2">
+                    <label for="content" class="form-label fw-bold">Contenu<span class="text-danger"> * </span></label>
+                    <textarea class="form-control" id="content" rows="5" maxlength="1000" name="content" placeholder="Ecrire votre contenu du article ici ..." required></textarea>
+                    <span class="text-danger"><?= $errors['content'] ?? '' ?></span>
+                </div>
+                <!-- PHOTO -->
+                <div class="col-12 p-2">
+                    <label for="photo" class="form-label fw-bold">Photo de l'article</label>
                     <input type="file" name="photo" value="<? $filename ?>" class="form-control" id="photo" accept=".png, image/jpeg">
                     <span class="text-danger"><?= $errors['photo'] ?? '' ?></span>
-                    <img class="img-fluid m-auto mt-3" src="<?= $picture ?? '' ?>">
+                    <img class="img-fluid m-auto mt-3" src="<?=$photoToSave ?? '' ?>">
                 </div>
-                <!-- bouton -->
+                <!-- BOUTON -->
                 <div class="col-12 p-2 text-center">
-                    <button type="submit" class="btn btn-dark text-white" value="Ajouter">Valider</button>
+                    <button type="submit" class="btn text-white" id="btn-add" value="Valider">Valider</button>
                 </div>
                 <small class="text-danger fw-lighter fst-italic"><span class="text-danger">*</span> champs obligatoires</small>
             </div>
