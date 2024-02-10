@@ -15,8 +15,8 @@
                         <th scope="col">Titre</th>
                         <th scope="col">Auteur</th>
                         <th scope="col">Date de publication</th>
-                        <th scope="col">Modifier</th>
                         <th scope="col">Voir l'article</th>
+                        <th scope="col">Modifier</th>
                         <th scope="col">Supprimer</th>
                     </tr>
                 </thead>
@@ -29,10 +29,8 @@
                             <td><?= $post->title ?></td>
                             <td><?= $post->firstname . ' ' . $post->lastname ?></td>
                             <td><?= (new DateTime($post->published_at))->format('d-m-Y') ?></td>
-
-                            <td><a class="text-dark" href="/controllers/dashboard/post/update-ctrl.php?id_post=<?= $post->id_post ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
                             <td><a class="text-dark" href=""><i class="fa-solid fa-link"></i></a></td>
-                            
+                            <td><a class="text-dark" href="/controllers/dashboard/post/update-ctrl.php?id_post=<?= $post->id_post ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
                             <!-- Button trigger modal -->
                             <td><a type="button" data-id="<?= $post->id_post ?>" data-bs-toggle="modal" data-bs-target="#deleteModal" class="text-dark modalOpenCategoryDeleteBtn"><i class="fa-solid fa-trash-can"></i></a></td>
                         </tr>
