@@ -8,7 +8,7 @@
             <div class="text-footer text-center mx-3"><a href="">Cookie</a></div>
         </div>
         <div class="text-footer col-12 col-md-4 text-center p-3">Amiens Zen
-            Installation - © 2023
+            Installation - © 2024
         </div>
         <div class="col-12 col-md-4 d-flex align-items-center justify-content-evenly p-3">
             <div class="text-footer">Suivez-nous:</div>
