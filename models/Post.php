@@ -306,4 +306,41 @@ class Post
 
         return true;
     }
+
+     /**
+     * 
+     * Méthode permettant la suppression d'un article
+     * 
+     * @param int $id_post
+     * 
+     * @return bool True en cas de succès, sinon une erreur de type Exception est générée
+     */
+    public static function delete(int $id_post) :bool 
+    {
+        $pdo = Database::connect();
+
+        // Effacer tous les liens article <-> categories
+        $sql = 'DELETE FROM `posts_categories` WHERE `id_post` = :id_post;';
+        $sth = $pdo->prepare($sql);
+        $sth->bindValue(':id_post', $id_post, PDO::PARAM_INT);
+        $sth->execute();
+
+        if (!$sth->execute()) {
+            throw new Exception('Erreur lors de la suppression de l article');
+        }
+    
+        // Effacer dans la table "posts"
+        $sql2 = 'DELETE FROM `posts` WHERE `id_post` = :id_post;';
+        
+        $sth2 = $pdo->prepare($sql2);
+    
+        $sth2->bindValue(':id_post', $id_post);
+        $sth2->execute();
+
+        if ($sth2->rowCount() <= 0) {
+            throw new Exception("Erreur lors de la suppression de l'article");
+        } else {
+            return true;
+        }
+    }
 }

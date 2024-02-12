@@ -32,7 +32,7 @@
                             <td><a class="text-dark" href=""><i class="fa-solid fa-link"></i></a></td>
                             <td><a class="text-dark" href="/controllers/dashboard/post/update-ctrl.php?id_post=<?= $post->id_post ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
                             <!-- Button trigger modal -->
-                            <td><a type="button" data-id="<?= $post->id_post ?>" data-bs-toggle="modal" data-bs-target="#deleteModal" class="text-dark modalOpenCategoryDeleteBtn"><i class="fa-solid fa-trash-can"></i></a></td>
+                            <td><a type="button" data-id="<?= $post->id_post ?>" data-bs-toggle="modal" data-bs-target="#deleteModal" class="text-dark modalOpenPostDeleteBtn"><i class="fa-solid fa-trash-can"></i></a></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -46,14 +46,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5 text-danger" id="exampleModalLabel">Supprimer une categorie</h1>
+                <h1 class="modal-title fs-5 text-danger" id="exampleModalLabel">Supprimer un article</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 Pouvez-vous confirmer votre choix ?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger deleteCategoryBtn" data-bs-dismiss="modal">Oui</button>
+                <button type="button" class="btn btn-danger deletePostBtn" data-bs-dismiss="modal">Oui</button>
                 <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Non</button>
             </div>
         </div>

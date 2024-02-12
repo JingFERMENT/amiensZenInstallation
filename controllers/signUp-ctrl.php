@@ -98,17 +98,13 @@ try {
 
             // Si la méthode a retourné "true", on redirige vers la liste
             if ($isOk) {
-                // $to = $email;
-                // $subject = 'Confirmation de votre inscription';
-                // $payload = ['email' => $email, 'lastname'=> $lastname];
-                // $jwt = JWT::set() ;
-                // $message = '<a href=".$SERVER['REQUEST_SCHEME'].'://' .$SERVER['HTTP_HOST .'/controllers/confirmSignUp-ctrl.php?jwt=$jwt']">Merci de cliquer sur votre email.</a>';
-                // mail($to,$subject, $message);
-                //
-                // mail();
                 $msg = 'Votre inscription a bien été prise compte.';
-                // FlashMessage::set('Merci pour votre inscription, vous allez recevoir un email de confirmation!')
-                // header("Refresh: 1; url=/controllers/myProfile-ctrl.php");
+                session_start();
+                $subscriber = Subscriber::getByEmail($email);
+                unset($subscriber->password);
+                // stocker l'info de l'abonné dans la session pour utiliser dans toutes les pages quand l'abonné est connecté.
+                $_SESSION['subscriber'] = $subscriber;
+                header("Refresh: 1; url=/controllers/subscriber/myprofile-ctrl.php");
                 die;
             } else {
                 $msg = 'Erreur, votre inscription n\'a pas réussi. Veuillez réessayer.';

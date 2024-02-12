@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../config/init.php';
+require_once __DIR__.'/../models/Subscriber.php';
 
 try {
 
@@ -40,14 +41,12 @@ try {
                 // password_verify
                 $isAuth = password_verify($password, $passwordHash);
                 if ($isAuth) {
-                    // if (is_null($subscriber->confirmed_at)) {
-                    //     $msg = 'Veuillez confirmer!';
-                    // } else {
-                    // supprimer le mot de passe qui est une information sensible dans le tableau 'subscriber'
+                    session_start();
                     unset($subscriber->password);
                     // stocker l'info de l'abonné dans la session pour utiliser dans toutes les pages quand l'abonné est connecté.
                     $_SESSION['subscriber'] = $subscriber;
-                    // }
+                    header("Refresh: 1; url=/controllers/subscriber/myprofile-ctrl.php");
+                    die;
                 } else {
                     $error['password'] = 'Votre mot de passe est incorrect!';
                 }
