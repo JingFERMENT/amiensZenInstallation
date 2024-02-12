@@ -138,7 +138,7 @@ class Comment
     public static function validate(string $id_comment): bool 
     {
         $pdo = Database::connect();
-        $sql = 'UPDATE `comments` SET `validated_at` = TRUE WHERE id_comment =:id_comment;';
+        $sql = 'UPDATE `comments` SET `validated_at` = NOW() WHERE id_comment =:id_comment;';
 
         $sth = $pdo->prepare($sql);
         

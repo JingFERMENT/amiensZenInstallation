@@ -13,6 +13,8 @@ try {
 
     $title = "Liste des commentaires";
     $comments = Comment::getAll();
+   
+    
 
     // // on récupère les messages stockés dans la session.
     // $msg = filter_var($_SESSION['msg'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);

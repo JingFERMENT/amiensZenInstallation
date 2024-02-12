@@ -10,9 +10,8 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Auteur</th>
-                        <th scope="col">Date de création</th>
                         <th scope="col">Commentaires</th>
-                        <th scope="col">Voir l'article</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Supprimer</th>
                     </tr>
                 </thead>
@@ -23,9 +22,13 @@
                         <tr>
                             <th scope="row" class="fst-italic fw-normal"><?= $comment->id_comment ?></th>
                             <td><?= $comment->firstname . ' ' . $comment->lastname ?></td>
-                            <td><?= (new DateTime($comment->created_at))->format('d-m-Y') ?></td>
                             <td><?= $comment->content ?></td>
-                            <td><a class="text-dark" href=""><i class="fa-solid fa-link"></i></a></td>
+                            <?php
+                            if ($comment->validated_at == NULL) {?>
+                            <td><a type="button" href="/controllers/dashboard/comment/validate-ctrl.php?id_comment=<?= $comment->id_comment ?>" class="btn btn-danger btn-sm" id="btnToValidate">A valider</a></td>                       
+                            <?php } else {?>
+                              <td>Validé le <?=(new DateTime($comment->validated_at))->format('d-m-Y') ?></td>  
+                              <?php }?>
                             <!-- Button trigger modal -->
                             <td><a type="button" data-id="<?= $comment->id_comment ?>" data-bs-toggle="modal" data-bs-target="#deleteModal" class="text-dark modalOpenCommentDeleteBtn"><i class="fa-solid fa-trash-can"></i></a></td>
                         </tr>
