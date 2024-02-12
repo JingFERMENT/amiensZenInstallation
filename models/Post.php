@@ -114,6 +114,18 @@ class Post
         $this->id_subscriber = $id_subscriber;
     }
 
+    //*************** ID CATEGORIES ***************// 
+    public function getId_categories()
+    {
+        return $this->id_categories;
+    }
+
+   
+    public function setId_categories($id_categories)
+    {
+        $this->id_categories = $id_categories;
+    }
+
     /**
      * 
      * Méthode permettant l'enregistrement d'un nouvel article
@@ -169,7 +181,6 @@ class Post
                 throw new Exception("Erreur lors de l'enregistrement du lien entre article et catégorie.");
             }
         }
-
         return true;
     }
 
@@ -190,26 +201,6 @@ class Post
         $datas = $sth->fetchAll();
 
         return $datas;
-    }
-
-    /**
-     * Get the value of id_categories
-     */
-    public function getId_categories()
-    {
-        return $this->id_categories;
-    }
-
-    /**
-     * Set the value of id_categories
-     *
-     * @return  self
-     */
-    public function setId_categories($id_categories)
-    {
-        $this->id_categories = $id_categories;
-
-        return $this;
     }
 
     /**

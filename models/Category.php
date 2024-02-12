@@ -162,7 +162,7 @@ class Category
         $pdo = Database::connect();
         $sql = 'DELETE FROM `categories` WHERE `id_category` = :id_category;';
         $sth = $pdo->prepare($sql);
-        $sth->bindValue(':id_category', $id_category);
+        $sth->bindValue(':id_category', $id_category,PDO::PARAM_INT);
         $sth->execute();
         if ($sth->rowCount() <= 0) {
             throw new Exception('Erreur lors de la suppression de la catégorie');

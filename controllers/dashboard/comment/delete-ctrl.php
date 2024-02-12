@@ -1,16 +1,18 @@
 <?php
 session_start();
-require_once(__DIR__ . '/../../../models/Post.php');
+require_once(__DIR__ . '/../../../models/Comment.php');
 require_once(__DIR__ . '/../../../helpers/dd.php');
 
 try {
 
     // supprimer tous sauf les chiffres et + / - ;
-     $idPost = intval(filter_input(INPUT_GET, 'id_post', FILTER_SANITIZE_NUMBER_INT));
+     $idComment = intval(filter_input(INPUT_GET, 'id_comment', FILTER_SANITIZE_NUMBER_INT));
     
-     $isDeleted = Post::delete($idPost);
+
+     $isDeleted = Comment::delete($idComment);
+
      if ($isDeleted) {
-         $msg = 'Article supprimé avec succès.';
+         $msg = 'Commentaire supprimé avec succès.';
      } else {
          $error = 'Erreur, la donnée n\'a pas été supprimée.';
      }
@@ -19,7 +21,7 @@ try {
     $_SESSION['error'] = $error;
     $_SESSION['msg'] = $msg;
 
-    header('location:/controllers/dashboard/post/list-ctrl.php');
+    header('location:/controllers/dashboard/comment/list-ctrl.php');
     die;
 
 
@@ -33,5 +35,5 @@ try {
 
 //views
 include __DIR__ . '/../../../views/templates/header_dashboard.php';
-include __DIR__ . '/../../../views/dashboard/post/list.php';
+include __DIR__ . '/../../../views/dashboard/comment/list.php';
 include __DIR__ . '/../../../views/templates/footer_dashboard.php';

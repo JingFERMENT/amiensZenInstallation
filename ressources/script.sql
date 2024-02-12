@@ -31,7 +31,7 @@ CREATE TABLE posts(
    updated_at DATETIME,
    archived_at DATETIME,
    deleted_at DATETIME,
-   photo VARCHAR(50) NOT NULL,
+   photo VARCHAR(50) ,
    id_subscriber INT NOT NULL,
    PRIMARY KEY(id_post),
    FOREIGN KEY(id_subscriber) REFERENCES subscribers(id_subscriber)
@@ -42,7 +42,7 @@ CREATE TABLE comments(
    content TEXT,
    created_at DATETIME,
    deleted_at DATETIME,
-   updated_at DATETIME,
+   validated_at DATETIME,
    id_post INT NOT NULL,
    id_subscriber INT NOT NULL,
    PRIMARY KEY(id_comment),

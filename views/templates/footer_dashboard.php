@@ -15,4 +15,5 @@
 <script src="/public/assets/js/category.js"></script>
 <script src="/public/assets/js/subscriber.js"></script>
 <script src="/public/assets/js/post.js"></script>
+<script src="/public/assets/js/comment.js"></script>
 </html>
