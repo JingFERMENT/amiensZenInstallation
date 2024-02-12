@@ -8,6 +8,7 @@ try {
     // supprimer tous sauf les chiffres et + / - ;
     $idComment = intval(filter_input(INPUT_GET, 'id_comment', FILTER_SANITIZE_NUMBER_INT));
     $isValidated = Comment::validate($idComment);
+    
     if ($isValidated) {
         $msg = 'Commentaire validé avec succès.';
     } else {

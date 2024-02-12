@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once(__DIR__ . '/../../../models/Post.php');
 require_once(__DIR__ . '/../../../helpers/dd.php');
 require_once(__DIR__ . '/../../../models/Category.php');
@@ -7,30 +9,37 @@ require_once(__DIR__ . '/../../../config/init.php');
 try {
 
     $title = "Ajouter un article";
-    $categories = Category::getAll();
-    
+    $categoriesInDataBase = Category::getAll();
+   
     // Si les données du formulaire ont été transmises
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $errors = [];
 
         // SELECTED CATEGORY
-        $id_categories = filter_input(INPUT_POST, 'selectedCategory', FILTER_SANITIZE_NUMBER_INT, FILTER_REQUIRE_ARRAY);
-
-        if (empty($id_categories)) {
+        $selectedIdCategories = filter_input(INPUT_POST, 'selectedCategory', FILTER_SANITIZE_NUMBER_INT, FILTER_REQUIRE_ARRAY);
+       
+        // Récupération, nettoyage et validation des données
+        if (empty($selectedIdCategories)) {
             $errors['selectedCategory'] = 'Votre choix est obligatoire.';
+        } else {
+            foreach($selectedIdCategories as $selectedIdCategory) {
+                $idCategoriesInDataBase = array_column($categoriesInDataBase, 'id_category');
+                $isOk = in_array($selectedIdCategory, $idCategoriesInDataBase);
+                if (!$isOk) {
+                    $errors['selectedCategory'] = 'La catégorie n\'existe pas.';
+                }
+            }
         }
 
-        
-
-        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+        $inputTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
 
         // Récupération, nettoyage et validation des données
-        if (empty($title)) { // le champs est obligatoire
-            $errors['title'] = 'Le title de l\'article est obligatoire.';
+        if (empty($inputTitle)) { // le champs est obligatoire
+            $errors['title'] = 'Le titre de l\'article est obligatoire.';
         } else {
             // validation des données "name"
-            $isOk = filter_var($title, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => '/' . REGEX_NAME . '/')));
+            $isOk = filter_var($inputTitle, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => '/' . REGEX_NAME . '/')));
             if (!$isOk) {
                 $errors['title'] = 'Le nom de l\'article doit contenir entre 2 à 50 caractères alphabétiques.';
             }
@@ -41,8 +50,8 @@ try {
         if (empty($content)) {
             $errors['content'] = 'Le contenu de catégorie est obligatoire.';
         } else {
-            if (strlen($content) > 1000) {
-                $errors['content'] = 'Merci de ne pas dépasser 1000 mots.';
+            if (strlen($content) > 3000) {
+                $errors['content'] = 'Merci de ne pas dépasser 3000 mots.';
             }
         }
 
@@ -78,19 +87,18 @@ try {
                 
             }
         }
-
+        
         if (empty($errors)) {
-
             // Création d'un nouvel objet issu de la classe 'post'
             $postObj = new Post();
 
-            $id_subscriber = 15; // ATTENTION A REVOIR
+            $id_subscriber = $_SESSION['subscriber']->id_subscriber;
             // Hydratation de notre objet
-            $postObj->setTitle($title);
+            $postObj->setTitle($inputTitle);
             $postObj->setContent($content);
             $postObj->setPhoto($photoToSave);
             $postObj->setId_subscriber($id_subscriber);
-            $postObj->setId_categories($id_categories);
+            $postObj->setId_categories($selectedIdCategories);
 
             // Appel de la méthode insert
             $isOk = $postObj->insert();

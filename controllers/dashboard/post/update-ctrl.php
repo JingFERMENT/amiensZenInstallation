@@ -7,7 +7,7 @@ require_once(__DIR__ . '/../../../config/init.php');
 try {
 
     $title = "Modifier un article";
-    $categories = Category::getAll();
+    $categoriesInDataBase = Category::getAll();
 
     $id_post = intval(filter_input(INPUT_GET, 'id_post', FILTER_SANITIZE_NUMBER_INT));
     $postToDisplay = Post::get($id_post);
@@ -18,11 +18,19 @@ try {
 
         $errors = [];
 
-        // SELECTED CATEGORY
-        $id_categories = filter_input(INPUT_POST, 'selectedCategory', FILTER_SANITIZE_NUMBER_INT, FILTER_REQUIRE_ARRAY);
-
-        if (empty($id_categories)) {
+        $selectedIdCategories = filter_input(INPUT_POST, 'selectedCategory', FILTER_SANITIZE_NUMBER_INT, FILTER_REQUIRE_ARRAY);
+       
+        // Récupération, nettoyage et validation des données
+        if (empty($selectedIdCategories)) {
             $errors['selectedCategory'] = 'Votre choix est obligatoire.';
+        } else {
+            foreach($selectedIdCategories as $selectedIdCategory) {
+                $idCategoriesInDataBase = array_column($categoriesInDataBase, 'id_category');
+                $isOk = in_array($selectedIdCategory, $idCategoriesInDataBase);
+                if (!$isOk) {
+                    $errors['selectedCategory'] = 'La catégorie n\'existe pas.';
+                }
+            }
         }
 
         $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -43,8 +51,8 @@ try {
         if (empty($content)) {
             $errors['content'] = 'Le contenu de catégorie est obligatoire.';
         } else {
-            if (strlen($content) > 1000) {
-                $errors['content'] = 'Merci de ne pas dépasser 1000 mots.';
+            if (strlen($content) > 3000) {
+                $errors['content'] = 'Merci de ne pas dépasser 3000 mots.';
             }
         }
 
@@ -85,14 +93,14 @@ try {
             // Création d'un nouvel objet issu de la classe 'post'
             $postObj = new Post();
 
-            $id_subscriber = 15; // ATTENTION A REVOIR
+            $id_subscriber = $_SESSION['subscriber']->id_subscriber;
             // Hydratation de notre objet
             $postObj->setId_post($id_post);
             $postObj->setTitle($title);
             $postObj->setContent($content);
             $postObj->setPhoto($photoToSave);
             $postObj->setId_subscriber($id_subscriber);
-            $postObj->setId_categories($id_categories);
+            $postObj->setId_categories($selectedIdCategories);
 
             // Appel de la méthode insert
             $isOk = $postObj->update();

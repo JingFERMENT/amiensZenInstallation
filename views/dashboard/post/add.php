@@ -11,12 +11,12 @@
                         <div class="col-12">
                             <div class="d-flex flex-wrap justify-content-start">
                                 <?php
-                                foreach ($categories as $category) {
-                                    $isChecked = (isset($selectedCategory) && $selectedCategory == $category->name) ? 'checked' : '';
+                                foreach ($categoriesInDataBase as $categoryInDataBase) {
+                                    $isChecked = (isset($selectedIdCategories) && in_array($categoryInDataBase->id_category, $selectedIdCategories)) ? 'checked' : '';
                                     echo
                                     "<div class=\"form-check m-3\">
-                                            <input class=\"form-check-input\" type=\"checkbox\" name=\"selectedCategory[]\" value=\"$category->id_category\" id=\"$category->name\" $isChecked>
-                                            <label class=\"form-check-label\" for=\"$category->name\">$category->name</label>
+                                            <input class=\"form-check-input\" type=\"checkbox\" name=\"selectedCategory[]\" value=\"$categoryInDataBase->id_category\" id=\"$categoryInDataBase->name\" $isChecked>
+                                            <label class=\"form-check-label\" for=\"$categoryInDataBase->name\">$categoryInDataBase->name</label>
                                         </div>";
                                 }
                                 ?>
@@ -27,13 +27,13 @@
                 <!-- TITLE -->
                 <div class="col-12 p-2">
                     <label for="title" class="form-label fw-bold">Title<span class="text-danger"> * </span></label>
-                    <input class="form-control" id="title" rows="5" maxlength="1000" name="title" placeholder="Ecrire votre titre ici ..." required>
+                    <input class="form-control" id="title" name="title" value ="<?= $inputTitle ?? '' ?>" placeholder="Ecrire votre titre ici ..." required>
                     <span class="text-danger"><?= $errors['title'] ?? '' ?></span>
                 </div>
                 <!-- CONTENT -->
                 <div class="col-12 p-2">
                     <label for="content" class="form-label fw-bold">Contenu<span class="text-danger"> * </span></label>
-                    <textarea class="form-control" id="content" rows="5" maxlength="1000" name="content" placeholder="Ecrire votre contenu du article ici ..." required></textarea>
+                    <textarea class="form-control" id="content" rows="10" maxlength="3000" name="content" placeholder="Ecrire votre contenu du article ici ..." required><?=$content ?? ''?></textarea>
                     <span class="text-danger"><?= $errors['content'] ?? '' ?></span>
                 </div>
                 <!-- PHOTO -->
@@ -41,7 +41,9 @@
                     <label for="photo" class="form-label fw-bold">Photo de l'article</label>
                     <input type="file" name="photo" value="<? $filename ?>" class="form-control" id="photo" accept=".png, image/jpeg">
                     <span class="text-danger"><?= $errors['photo'] ?? '' ?></span>
-                    <img class="img-fluid m-auto mt-3" src="<?=$photoToSave ?? '' ?>">
+                    <?php if (!empty($photoToSave)) { ?>
+                        <img class="img-fluid m-auto mt-3" src="<?='/public/uploads/posts/'.$photoToSave ?? '' ?>">
+                    <?php } ?>
                 </div>
                 <!-- BOUTON -->
                 <div class="col-12 p-2 text-center">

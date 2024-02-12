@@ -10,13 +10,13 @@
                    <label class="form-label fw-bold" >Catégorie de l'article<small class="fw-lighter fst-italic"> (plusieurs réponses possibles)</small><span class="text-danger"> * </span></label>
                         <div class="col-12">
                             <div class="d-flex flex-wrap justify-content-start">
-                                <?php
-                                foreach ($categories as $category) {
-                                    $isChecked = (in_array($category->id_category, $postToDisplay->id_categories)) ? 'checked' : '';
+                            <?php
+                                foreach ($categoriesInDataBase as $categoryInDataBase) {
+                                    $isChecked = (in_array($categoryInDataBase->id_category, $postToDisplay->id_categories)) ? 'checked' : '';
                                     echo
                                     "<div class=\"form-check m-3\">
-                                            <input class=\"form-check-input\" type=\"checkbox\" name=\"selectedCategory[]\" value=\"$category->id_category\" id=\"$category->name\" $isChecked>
-                                            <label class=\"form-check-label\" for=\"$category->name\">$category->name</label>
+                                            <input class=\"form-check-input\" type=\"checkbox\" name=\"selectedCategory[]\" value=\"$categoryInDataBase->id_category\" id=\"$categoryInDataBase->name\" $isChecked>
+                                            <label class=\"form-check-label\" for=\"$categoryInDataBase->name\">$categoryInDataBase->name</label>
                                         </div>";
                                 }
                                 ?>
@@ -34,7 +34,7 @@
                 <!-- CONTENT -->
                 <div class="col-12 p-2">
                     <label for="content" class="form-label fw-bold">Contenu<span class="text-danger"> * </span></label>
-                    <textarea class="form-control" id="content" rows="5" maxlength="1000" name="content" placeholder="Ecrire votre contenu du article ici ..." required><?=$postToDisplay->content ?? '' ?></textarea>
+                    <textarea class="form-control" id="content" rows="10" maxlength="3000" name="content" placeholder="Ecrire votre contenu du article ici ..." required><?=$postToDisplay->content ?? '' ?></textarea>
                     <span class="text-danger"><?= $errors['content'] ?? '' ?></span>
                 </div>
 
