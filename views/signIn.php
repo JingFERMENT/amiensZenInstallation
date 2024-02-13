@@ -5,6 +5,12 @@
         <h2 class="font-weight-bold mt-4">Connexion</h2>
         </div>
 
+        <?php if (!empty($generalError)) { ?>
+        <div class="alert alert-danger" role="alert">
+            <?=$generalError?>
+        </div>
+        <?php } ?>
+
         <form class="my-4" action="" method="POST" name="signIn">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>

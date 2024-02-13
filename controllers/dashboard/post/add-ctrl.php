@@ -5,6 +5,8 @@ require_once(__DIR__ . '/../../../models/Post.php');
 require_once(__DIR__ . '/../../../helpers/dd.php');
 require_once(__DIR__ . '/../../../models/Category.php');
 require_once(__DIR__ . '/../../../config/init.php');
+require_once(__DIR__ . '/../../../helpers/Auth.php');
+Auth::verifyIsConnected();
 
 try {
 
@@ -38,10 +40,9 @@ try {
         if (empty($inputTitle)) { // le champs est obligatoire
             $errors['title'] = 'Le titre de l\'article est obligatoire.';
         } else {
-            // validation des données "name"
-            $isOk = filter_var($inputTitle, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => '/' . REGEX_NAME . '/')));
+            $isOk = (strlen($inputTitle) <= 100);
             if (!$isOk) {
-                $errors['title'] = 'Le nom de l\'article doitt contenir entre 2 à 50 caractères alphabétiques.';
+                $errors['title'] = 'Le nom de l\'article doit contenir maximum 100 caractères alphabétiques.';
             }
         }
 
@@ -93,10 +94,6 @@ try {
             $postObj = new Post();
 
             $id_subscriber = $_SESSION['subscriber']->id_subscriber;
-            
-            // if (empty($id_subscriber)) {   
-            //     header('location: /controllers/signIn-ctrl.php');
-            //     } // ATTENTION: A MODIFIER
 
             // Hydratation de notre objet
             $postObj->setTitle($inputTitle);

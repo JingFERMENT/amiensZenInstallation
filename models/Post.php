@@ -201,7 +201,7 @@ class Post
      * 
      * @return array Tableau d'objets
      */
-    public static function getAllPost(int $id_category = 20 ,int $offset = 0): array | false
+    public static function getAllPost(int $id_category, int $offset = 0): array | false
     {
         $pdo = Database::connect();
 

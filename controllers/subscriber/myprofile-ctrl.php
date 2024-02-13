@@ -12,7 +12,6 @@ if (empty($_SESSION['subscriber'])) {
     include __DIR__.'/../../views/templates/error.php';
     include __DIR__.'/../../views/templates/footer.php';
     die();
-
 }
 
 $connectedSubscriber = $_SESSION['subscriber'];

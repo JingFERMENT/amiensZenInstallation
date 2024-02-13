@@ -1,8 +1,11 @@
 <?php
+session_start();
 require_once(__DIR__ . '/../../../models/Post.php');
 require_once(__DIR__ . '/../../../helpers/dd.php');
 require_once(__DIR__ . '/../../../models/Category.php');
 require_once(__DIR__ . '/../../../config/init.php');
+require_once(__DIR__ . '/../../../helpers/Auth.php');
+Auth::verifyIsConnected();
 
 try {
 

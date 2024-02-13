@@ -61,6 +61,11 @@ try {
     die;
 }
 
+$generalError = null;
+if (!empty($_GET['error']) && $_GET['error'] == 'denied') {
+    $generalError = 'Vous n\'avez pas le droit d\'accéder à cette page';
+}
+
 include __DIR__ . '/../views/templates/header.php';
 include __DIR__ . '/../views/signIn.php';
 include __DIR__ . '/../views/templates/footer.php';

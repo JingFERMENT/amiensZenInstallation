@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once(__DIR__ . '/../../../models/Subscriber.php');
+require_once(__DIR__ . '/../../../helpers/Auth.php');
+Auth::verifyIsConnected();
 
 try {
     $title = "Liste des abonnés";

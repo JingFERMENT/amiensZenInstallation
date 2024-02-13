@@ -47,7 +47,7 @@
                             <a class="nav-link" href="/controllers/mission-ctrl.php">Notre mission</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/controllers/post-ctrl.php">Se loger</a>
+                            <a class="nav-link" href="/controllers/post-ctrl.php?id_category=20">Se loger</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/controllers/post-ctrl.php">Emploi</a>

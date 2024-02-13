@@ -2,6 +2,8 @@
 session_start();
 require_once(__DIR__ . '/../../../models/Comment.php');
 require_once(__DIR__ . '/../../../helpers/dd.php');
+require_once(__DIR__ . '/../../../helpers/Auth.php');
+Auth::verifyIsConnected();
 
 // if the susbcriber is not admin, the dashboard is not authorized
 // Auth::Check() -> mettre sur toutes les pages // sécuriser toutes les controlleurs 
