@@ -93,6 +93,11 @@ try {
             $postObj = new Post();
 
             $id_subscriber = $_SESSION['subscriber']->id_subscriber;
+            
+            // if (empty($id_subscriber)) {   
+            //     header('location: /controllers/signIn-ctrl.php');
+            //     } // ATTENTION: A MODIFIER
+
             // Hydratation de notre objet
             $postObj->setTitle($inputTitle);
             $postObj->setContent($content);

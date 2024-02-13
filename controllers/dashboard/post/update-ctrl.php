@@ -93,8 +93,8 @@ try {
             // Création d'un nouvel objet issu de la classe 'post'
             $postObj = new Post();
 
-            $id_subscriber = $_SESSION['subscriber']->id_subscriber;
-            // Hydratation de notre objet
+            //$id_subscriber = $_SESSION['subscriber']->id_subscriber;
+            $id_subscriber = 26 ;            // Hydratation de notre objet
             $postObj->setId_post($id_post);
             $postObj->setTitle($title);
             $postObj->setContent($content);
@@ -108,7 +108,7 @@ try {
             // Si la méthode a retourné "true", alors on redirige vers la liste
             if($isOk){
                 $msg = 'Votre article a bien été modifié.';
-                //header("Refresh: 1; url=/controllers/dashboard/post/list-ctrl.php");
+                header("Refresh: 1; url=/controllers/dashboard/post/list-ctrl.php");
             } else {
                 $msg = 'Erreur, la donnée n\'a pas été insérée. Veuillez réessayer.';
             }

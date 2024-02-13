@@ -6,23 +6,30 @@ require_once(__DIR__ . '/../../../helpers/dd.php');
 try {
 
     // supprimer tous sauf les chiffres et + / - ;
-     $idPost = intval(filter_input(INPUT_GET, 'id_post', FILTER_SANITIZE_NUMBER_INT));
-    
-     $isDeleted = Post::delete($idPost);
-     if ($isDeleted) {
-         $msg = 'Article supprimé avec succès.';
-     } else {
-         $error = 'Erreur, la donnée n\'a pas été supprimée.';
-     }
+    $idPost = intval(filter_input(INPUT_GET, 'id_post', FILTER_SANITIZE_NUMBER_INT));
 
-     //on stock les messages dans la session
+    $post = Post::get($idPost);
+    
+
+    if ($post) {
+        // Appel de la méthode delete
+        $isDeleted = Post::delete($idPost);
+        
+        // Suppression du visuel associé
+        @unlink(__DIR__."/../../../public/uploads/posts/$post->photo");
+        
+        $msg = 'Article supprimé avec succès.';
+        
+    } else {
+        $error = 'Erreur, la donnée n\'a pas été supprimée.';
+    }
+
+    //on stock les messages dans la session
     $_SESSION['error'] = $error;
     $_SESSION['msg'] = $msg;
 
     header('location:/controllers/dashboard/post/list-ctrl.php');
     die;
-
-
 } catch (Throwable $th) {
     $error = $th->getMessage();
     include __DIR__ . '/../../../views/templates/header.php';
