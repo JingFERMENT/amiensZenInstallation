@@ -9,11 +9,11 @@ try {
     // déclaration des variables
     $title = 'Se loger';
 
+    $id_category = intval(filter_input(INPUT_GET, 'id_category', FILTER_SANITIZE_NUMBER_INT));
+
     // ! filtres input 
     $page = intval(filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT));
-    $id_category = intval(filter_input(INPUT_GET, 'id_category', FILTER_SANITIZE_NUMBER_INT));
-    $keywords = filter_input(INPUT_GET, 'keywords', FILTER_SANITIZE_SPECIAL_CHARS);
-    
+
     
     if ($page == 0) {
         $page = 1;
@@ -26,20 +26,15 @@ try {
         $previousPage = 1;
     }
 
-    $categories = Post::filterByCategory();
-    // récupérer ID Categorie il vaut mieux utiliser intval que la valeur nulle 
-    
-    // $id_category = filter_input(INPUT_GET, 'id_category', FILTER_SANITIZE_NUMBER_INT);
-    
     $offset = PER_PAGE * ($page - 1);
    
-    $accommodationArticles = Post::getAll('ASC', $offset, false, $id_category, $keywords);
-    
-    $nbOfAllVehicles = Post::nbOfAllVehicles($id_category, $keywords);
-
+    $accommodationArticles = Post::getAll($id_category, $offset);
+   
     // round : arrondir au plus proche
     // ceil : arrondir au ceil / floor: arrond dans 
-    $nbOfPages = ceil($nbOfAllVehicles / PER_PAGE);
+    $nbOfPostInAccommodation = POST::count();
+
+    $nbOfPages = ceil( $nbOfPostInAccommodation / PER_PAGE);
 
     if ($page >= $nbOfPages) {
         $nextPage = $page;
@@ -54,5 +49,5 @@ try {
 
 // views
 include __DIR__.'/../views/templates/header.php';
-include __DIR__.'/../views/accommodation.php';
+include __DIR__.'/../views/post.php';
 include __DIR__.'/../views/templates/footer.php';

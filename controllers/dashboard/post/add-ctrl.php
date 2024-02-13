@@ -41,7 +41,7 @@ try {
             // validation des données "name"
             $isOk = filter_var($inputTitle, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => '/' . REGEX_NAME . '/')));
             if (!$isOk) {
-                $errors['title'] = 'Le nom de l\'article doit contenir entre 2 à 50 caractères alphabétiques.';
+                $errors['title'] = 'Le nom de l\'article doitt contenir entre 2 à 50 caractères alphabétiques.';
             }
         }
 

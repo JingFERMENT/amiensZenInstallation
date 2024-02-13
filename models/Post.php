@@ -7,7 +7,6 @@ class Post
     private string $title;
     private string $content;
     private ?DateTime $published_at;
-    private ?DateTime $archived_at;
     private ?DateTime $updated_at;
     private ?DateTime $deleted_at;
     private ?string $photo;
@@ -56,17 +55,6 @@ class Post
     public function setPublished_at(?string $published_at)
     {
         $this->published_at = new DateTime($published_at);
-    }
-
-    //*************** ARCHIVED AT ***************// 
-    public function getArchived_at(): ?DateTime
-    {
-        return $this->archived_at;
-    }
-
-    public function setArchived_at(?string $archived_at)
-    {
-        $this->archived_at = new DateTime($archived_at);
     }
 
     //*************** UPDATED AT ***************// 
@@ -120,7 +108,7 @@ class Post
         return $this->id_categories;
     }
 
-   
+
     public function setId_categories($id_categories)
     {
         $this->id_categories = $id_categories;
@@ -193,11 +181,46 @@ class Post
     public static function getAll(): array | false
     {
         $pdo = Database::connect();
+
         $sql = 'SELECT `posts`.*, `subscribers`.`firstname`, `subscribers`.`lastname`
         from `posts` JOIN `subscribers`
-        ON `posts`.`id_subscriber` = `subscribers`.`id_subscriber`';
+        ON `posts`.`id_subscriber` = `subscribers`.`id_subscriber`;';
 
         $sth = $pdo->query($sql);
+
+        $sth->execute();
+
+        $datas = $sth->fetchAll();
+
+        return $datas;
+    }
+
+    /**
+     * 
+     * Méthode permettant de récupérer la liste des articles sous forme de tableau d'objets
+     * 
+     * @return array Tableau d'objets
+     */
+    public static function getAllPost(int $id_category = 20 ,int $offset = 0): array | false
+    {
+        $pdo = Database::connect();
+
+        $sql = 'SELECT `posts`.*, `subscribers`.`firstname`, `subscribers`.`lastname`
+        from `posts` 
+        JOIN `subscribers` ON `posts`.`id_subscriber` = `subscribers`.`id_subscriber`
+        JOIN `posts_categories` ON `posts`.`id_post` = `posts_categories`.`id_post`
+
+        WHERE `posts_categories`.`id_category` = :id_category
+        
+        LIMIT ' . PER_PAGE . ' OFFSET :offset';
+
+        $sth = $pdo->prepare($sql);
+
+        $sth->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $sth->bindValue(':id_category', $id_category, PDO::PARAM_INT);
+
+        $sth->execute();
+
         $datas = $sth->fetchAll();
 
         return $datas;
@@ -239,7 +262,7 @@ class Post
         $dataCategories = $sth2->fetchAll();
 
         $categoryIds = [];
-        foreach($dataCategories as $dataCategory) {
+        foreach ($dataCategories as $dataCategory) {
             $categoryIds[] = $dataCategory->id_category;
         }
 
@@ -298,7 +321,7 @@ class Post
         return true;
     }
 
-     /**
+    /**
      * 
      * Méthode permettant la suppression d'un article
      * 
@@ -306,7 +329,7 @@ class Post
      * 
      * @return bool True en cas de succès, sinon une erreur de type Exception est générée
      */
-    public static function delete(int $id_post) :bool 
+    public static function delete(int $id_post): bool
     {
         $pdo = Database::connect();
 
@@ -319,12 +342,12 @@ class Post
         if (!$sth->execute()) {
             throw new Exception('Erreur lors de la suppression de l article');
         }
-    
+
         // Effacer dans la table "posts"
         $sql2 = 'DELETE FROM `posts` WHERE `id_post` = :id_post;';
-        
+
         $sth2 = $pdo->prepare($sql2);
-    
+
         $sth2->bindValue(':id_post', $id_post);
         $sth2->execute();
 
@@ -333,5 +356,59 @@ class Post
         } else {
             return true;
         }
+    }
+
+    /**
+     * 
+     * Méthode permettant d'archiver l'article' concerné
+     * 
+     * @param int $id_post
+     * 
+     * @return bool
+     */
+    public static function archive(int $id_post): bool
+    {
+        $pdo = Database::connect();
+
+        // fonction SQL: NOW() (heure de serveur des données) , décalage avec l'heure réelle (heure de web)
+        $sql = 'UPDATE `posts` SET 
+                    `deleted_at` = NOW() WHERE `id_post` =:id_post;';
+
+        $sth = $pdo->prepare($sql);
+
+        $sth->bindValue(':id_post', $id_post, PDO::PARAM_INT);
+
+        $sth->execute();
+
+        if ($sth->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
+     * Méthode permettant de retourner le nombre d'artcile dans la catégory "se loger"
+     * 
+     * @return int
+     */
+    public static function count(): int
+    {
+        $pdo = Database::connect();
+
+        $sql = 'SELECT COUNT(`id_post`) AS nb_posts 
+        FROM `posts_categories`
+        JOIN `categories` 
+        ON `categories`.`id_category` = `posts_categories`.`id_category`
+        WHERE `categories`.`id_category` = 20;';
+
+        $sth = $pdo->prepare($sql);
+
+        $sth->execute();
+
+        $result = $sth->fetchColumn();
+
+        return $result;
     }
 }

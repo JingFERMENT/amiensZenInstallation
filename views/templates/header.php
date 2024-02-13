@@ -26,13 +26,17 @@
         <!-- begin navbar -->
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand order-lg-1" href="./home-ctrl.php">
+                <a class="navbar-brand order-lg-1" href="/controllers/home-ctrl.php">
                     <img class="logo_site" src="/public/assets/img/logo_amiens_zen_installation.png" alt="Logo Amiens Zen Installation">
                 </a>
                 <div class="d-flex justify-content-center align-items-center order-lg-3">
                     <a class="nav-link mx-1" href="#"><i class="bi bi-search"></i>
                     </a>
-                    <a class="nav-link mx-1 d-none d-lg-block" href="./signUp-ctrl.php"><i class="bi bi-person-circle"></i></a>
+                    <?php if(empty($_SESSION['subscriber'])) { ?>
+                    <a class="nav-link mx-1 d-none d-lg-block" href="/controllers/signUp-ctrl.php"><i class="bi bi-person-circle"></i></a>
+                    <?php } else {?>
+                    <a class="nav-link mx-1 d-none d-lg-block" href="/controllers/logOut-ctrl.php"><i class="bi bi-box-arrow-right"></i></a>
+                    <?php }?>
                     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -40,24 +44,30 @@
                 <div class="collapse navbar-collapse order-lg-2 justify-content-end" id="navbarSupportedContent">
                     <ul class="navbar-nav text-center px-5">
                         <li class="nav-item">
-                            <a class="nav-link" href="./mission-ctrl.php">Notre mission</a>
+                            <a class="nav-link" href="/controllers/mission-ctrl.php">Notre mission</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./accommodation-ctrl.php">Se loger</a>
+                            <a class="nav-link" href="/controllers/post-ctrl.php">Se loger</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./work-ctrl.php">Emploi</a>
+                            <a class="nav-link" href="/controllers/post-ctrl.php">Emploi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./life-ctrl.php">Vie amiénoise</a>
+                            <a class="nav-link" href="/controllers/post-ctrl.php">Vie amiénoise</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./contact-ctrl.php">Contact</a>
+                            <a class="nav-link" href="/controllers/contact-ctrl.php">Contact</a>
                         </li>
-                    </ul>
+                    </ul> 
+                    <?php if(empty($_SESSION['subscriber'])) { ?>
                     <div class="text-center d-lg-none">
-                        <a class="nav-link link-my-account" href="./signUp-ctrl.php"><i class="bi bi-person-circle"></i> Mon compte</a>
+                        <a class="nav-link link-my-account" href="/controllers/signUp-ctrl.php"><i class="bi bi-person-circle"></i> Mon compte</a>
                     </div>
+                    <?php } else {?>
+                    <div class="text-center d-lg-none">
+                        <a class="nav-link link-my-account" href="/controllers/logOut-ctrl.php"><i class="bi bi-box-arrow-right"></i> Déconnecter</a>
+                    </div>
+                    <?php }?>
                 </div>
             </div>
         </nav>

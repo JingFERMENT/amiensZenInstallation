@@ -1,7 +1,10 @@
 <?php 
 session_start();
 
+$title = "Mon profil";
+
 if (empty($_SESSION['subscriber'])) {
+
 
     $error = 'Vous n etes pas connecté.';
 
@@ -15,5 +18,5 @@ if (empty($_SESSION['subscriber'])) {
 $connectedSubscriber = $_SESSION['subscriber'];
 
 include __DIR__.'/../../views/templates/header.php';
-include __DIR__.'/../../views/myprofile.php';
+include __DIR__.'/../../views/subscriber/myprofile.php';
 include __DIR__.'/../../views/templates/footer.php';
