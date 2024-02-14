@@ -1,8 +1,11 @@
-Bienvenue dans Mon Compte!!
+<div class="container">
+    <div class="py-5">
+        Bienvenue <?= $connectedSubscriber->firstname ?><?= $connectedSubscriber->lastname ?>
+        (<?= $connectedSubscriber->email ?>)
+    </div>
 
-Vous êtes connecté avec le compte de <?=$connectedSubscriber->firstname?> 
-<?=$connectedSubscriber->lastname?> (<?=$connectedSubscriber->email?>)
-<br/>
-<br/>
-Pour se déconnecter -> c'est par 
-<a href="/controllers/logOut-ctrl.php">là</a>
+
+    <?php if ($_SESSION['subscriber']->is_admin == 1) { ?>
+        <a type="button" class="btn btn-info text-white" href="/controllers/dashboard/subscriber/list-ctrl.php">Accès Dashboard Admin</a>
+    <?php } ?>
+</div>

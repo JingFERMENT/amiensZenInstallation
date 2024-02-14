@@ -156,3 +156,8 @@ a:hover {
 .pagination a:hover:not(.active) {
   background-color: #ddd;
 }
+
+#logOut {
+  color: #37b6fc;
+}
+

@@ -35,7 +35,7 @@
                     <?php if(empty($_SESSION['subscriber'])) { ?>
                     <a class="nav-link mx-1 d-none d-lg-block" href="/controllers/signUp-ctrl.php"><i class="bi bi-person-circle"></i></a>
                     <?php } else {?>
-                    <a class="nav-link mx-1 d-none d-lg-block" href="/controllers/logOut-ctrl.php"><i class="bi bi-box-arrow-right"></i></a>
+                    <a id="logOut" class="nav-link mx-1 d-none d-lg-block" href="/controllers/logOut-ctrl.php"><i class="bi bi-box-arrow-right"></i>Se déconnecter</a>
                     <?php }?>
                     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -65,7 +65,7 @@
                     </div>
                     <?php } else {?>
                     <div class="text-center d-lg-none">
-                        <a class="nav-link link-my-account" href="/controllers/logOut-ctrl.php"><i class="bi bi-box-arrow-right"></i> Déconnecter</a>
+                        <a id="logOut" class="nav-link link-my-account" href="/controllers/logOut-ctrl.php"><i class="bi bi-box-arrow-right"></i>Se déconnecter</a>
                     </div>
                     <?php }?>
                 </div>

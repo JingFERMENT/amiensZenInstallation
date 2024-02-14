@@ -201,13 +201,17 @@ class Post
      * 
      * @return array Tableau d'objets
      */
-    public static function getAllPost(int $id_category, int $offset = 0): array | false
+    public static function getAllPost(int $id_category, int $offset = 0, string $keywords = null): array | false
     {
         $pdo = Database::connect();
 
+        $research = $keywords ? " AND (`posts`.`title` LIKE :keywords OR 
+        `posts`.`content` LIKE :keywords OR 
+        `susbcribers`.`lastname` LIKE :keywords OR 
+        `susbcribers`.`firstname` LIKE :keywords)" : '';
+
         $sql = 'SELECT `posts`.*, 
-        `subscribers`.`firstname`, `subscribers`.`lastname`,
-        `posts_categories`.`id_category`
+        `subscribers`.`firstname`, `subscribers`.`lastname`
         from `posts` 
         JOIN `subscribers` ON `posts`.`id_subscriber` = `subscribers`.`id_subscriber`
         JOIN `posts_categories` ON `posts`.`id_post` = `posts_categories`.`id_post`
