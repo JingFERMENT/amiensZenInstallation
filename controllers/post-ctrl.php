@@ -1,19 +1,21 @@
 <?php 
 session_start();
-
+require_once(__DIR__ . '/../models/Category.php');
 require_once(__DIR__ . '/../models/Post.php');
 require_once(__DIR__ . '/../config/init.php');
 require_once(__DIR__ . '/../helpers/dd.php');
 
 try {
     // déclaration des variables
-    $title = 'Se loger';
+    
 
     $id_category = intval(filter_input(INPUT_GET, 'id_category', FILTER_SANITIZE_NUMBER_INT));
 
+    $categoryName = Category::get($id_category)->name;
+
+    $title = $categoryName;
     // ! filtres input 
     $page = intval(filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT));
-
     
     if ($page == 0) {
         $page = 1;
@@ -27,14 +29,17 @@ try {
     }
 
     $offset = PER_PAGE * ($page - 1);
-   
-    $accommodationArticles = Post::getAll($id_category, $offset);
-   
+    
+    $postsInCategory = Post::getAllPost($id_category, $offset);
+    // dd($postsInCategory);
+    
     // round : arrondir au plus proche
     // ceil : arrondir au ceil / floor: arrond dans 
-    $nbOfPostInAccommodation = POST::count();
+    $nbOfPost = POST::count($id_category);
+  
 
-    $nbOfPages = ceil( $nbOfPostInAccommodation / PER_PAGE);
+    $nbOfPages = ceil( $nbOfPost / PER_PAGE);
+   
 
     if ($page >= $nbOfPages) {
         $nextPage = $page;

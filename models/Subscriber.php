@@ -343,9 +343,9 @@ class Subscriber {
             // Retourne la data dans le cas contraire (tout s'est bien passé)
             return $data;
         }
-
     }
 
+    // envoie de l'email quand l'abonné a confirmé son email pour valider son compte
     public static function confirm(string $email): bool 
     {
         $pdo = Database::connect();

@@ -43,7 +43,7 @@
                     <label for="photo" class="form-label fw-bold">Photo de l'article</label>
                     <input type="file" name="photo" value="<? $filename ?>" class="form-control" id="photo" accept=".png, image/jpeg">
                     <span class="text-danger"><?= $errors['photo'] ?? '' ?></span>
-                    <?php if (!empty($postToDisplay->photo)) { ?>
+                    <?php if ($postToDisplay->photo !== NULL) { ?>
                         <img class="img-fluid m-auto mt-3" src="/public/uploads/posts/<?=$postToDisplay->photo ?>">
                     <?php } ?>
                 </div>

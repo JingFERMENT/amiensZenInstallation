@@ -50,10 +50,10 @@
                             <a class="nav-link" href="/controllers/post-ctrl.php?id_category=20">Se loger</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/controllers/post-ctrl.php">Emploi</a>
+                            <a class="nav-link" href="/controllers/post-ctrl.php?id_category=21">Emploi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/controllers/post-ctrl.php">Vie amiénoise</a>
+                            <a class="nav-link" href="/controllers/post-ctrl.php?id_category=22">Vie amiénoise</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/controllers/contact-ctrl.php">Contact</a>

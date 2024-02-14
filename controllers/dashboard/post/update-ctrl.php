@@ -60,7 +60,7 @@ try {
         }
 
         // Enregistrement de photo localement sur le serveur
-        $photoToSave = null;
+        $photoToSave = $postToDisplay->photo;
 
         if ($_FILES['photo']['error'] != 4) {
             try {

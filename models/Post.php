@@ -205,14 +205,14 @@ class Post
     {
         $pdo = Database::connect();
 
-        $sql = 'SELECT `posts`.*, `subscribers`.`firstname`, `subscribers`.`lastname`
+        $sql = 'SELECT `posts`.*, 
+        `subscribers`.`firstname`, `subscribers`.`lastname`,
+        `posts_categories`.`id_category`
         from `posts` 
         JOIN `subscribers` ON `posts`.`id_subscriber` = `subscribers`.`id_subscriber`
         JOIN `posts_categories` ON `posts`.`id_post` = `posts_categories`.`id_post`
-
         WHERE `posts_categories`.`id_category` = :id_category
-        
-        LIMIT ' . PER_PAGE . ' OFFSET :offset';
+        LIMIT ' . PER_PAGE . ' OFFSET :offset;';
 
         $sth = $pdo->prepare($sql);
 
@@ -393,7 +393,7 @@ class Post
      * 
      * @return int
      */
-    public static function count(): int
+    public static function count(int $id_category): int
     {
         $pdo = Database::connect();
 
@@ -401,9 +401,10 @@ class Post
         FROM `posts_categories`
         JOIN `categories` 
         ON `categories`.`id_category` = `posts_categories`.`id_category`
-        WHERE `categories`.`id_category` = 20;';
+        WHERE `categories`.`id_category` = :id_category;';
 
         $sth = $pdo->prepare($sql);
+        $sth->bindValue(':id_category', $id_category, PDO::PARAM_INT);
 
         $sth->execute();
 

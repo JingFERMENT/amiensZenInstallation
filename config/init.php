@@ -19,4 +19,4 @@ define('ARRAY_TYPES_MIMES', ['image/jpeg', 'image/png']);
 define('UPLOAD_MAX_SIZE', 8 * 1024 * 1024);
 
 // PER PAGE
-define ('PER_PAGE', 3);
+define ('PER_PAGE', 6);
