@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <h5 class="card-title fw-bold"><?= $postInCategory->title ?></h5>
                         <p class="text-justify text-truncate"><?= $postInCategory->content ?></p>
-                        <a href="../controllers/accommodation_detail-ctrl.php?id_post=<?= $postInCategory->id_post ?>" target="_blank" class="btn btn-primary" id="btn-send-connexion">Lire plus</a>
+                        <a href="../controllers/post_detail-ctrl.php?id_post=<?= $postInCategory->id_post ?>" target="_blank" class="btn btn-primary" id="btn-send-connexion">Lire plus</a>
                     </div>
                 </div>
 

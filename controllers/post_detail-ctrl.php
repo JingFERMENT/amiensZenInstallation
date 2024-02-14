@@ -11,8 +11,7 @@ try {
     
     // Appel de la méthode statique getAll permettant de récupérer tous les véhicules
     $post = Post::get($id_post);
-    
-    
+
 
 } catch (\Throwable $th) {
     $error = $th->getMessage();
@@ -25,6 +24,6 @@ try {
 
 
 include __DIR__.'/../views/templates/header.php';
-include __DIR__.'/../views/accommodation_detail.php';
+include __DIR__.'/../views/post_detail.php';
 include __DIR__.'/../views/templates/comment.php';
 include __DIR__.'/../views/templates/footer.php';
