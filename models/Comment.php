@@ -4,7 +4,7 @@ require_once(__DIR__ . '/../helpers/connect.php');
 class Comment
 {
     private ?int $id_comment;
-    private string $content;
+    private string $description;
     private ?DateTime $created_at;
     private ?DateTime $deleted_at;
     private ?DateTime $validated_at;
@@ -22,15 +22,15 @@ class Comment
         $this->id_post = $id_comment;
     }
 
-    //*************** CONTENT ***************//
-    public function getContent(): string
+    //*************** DESCRIPTION ***************//
+    public function getDescription(): string
     {
-        return $this->content;
+        return $this->description;
     }
 
-    public function setContent(string $content)
+    public function setDescription(string $description)
     {
-        $this->content = $content;
+        $this->description = $description;
     }
 
     //*************** CREATED AT ***************//
@@ -90,9 +90,43 @@ class Comment
         $this->id_subscriber = $id_subscriber;
     }
 
+
+    /**
+     * Méthode permettant l'enregistrement d'un nouveau commentaire
+     * 
+     * @return bool
+     */
+    public function insert(): bool
+    {
+        $pdo = Database::connect();
+
+        // Requête contenant un marqueur nominatif
+        $sql = 'INSERT INTO `comments` (`description`, `id_post`, `id_subscriber`) VALUES (:description, :id_post, :id_subscriber);';
+
+        // Si marqueur nominatif, il faut préparer la requête
+        $sth = $pdo->prepare($sql);
+
+        // Affectation de la valeur correspondant au marqueur nominatif concerné
+        $sth->bindValue(':description', $this->getDescription());
+        $sth->bindValue(':id_post', $this->getId_post());
+        $sth->bindValue(':id_subscriber', $this->getId_subscriber());
+
+        // Exécution de la requête
+        $sth->execute();
+
+        // Appel à la méthode rowCount permettant de savoir combien d'enregistrements ont été affectés
+        // par la dernière requête (fonctionnel uniquement sur insert, update, ou delete. PAS SUR SELECT!!)
+        if ($sth->rowCount() <= 0) {
+            // Génération d'une exception renvoyant le message en paramètre au catch créé en amont et arrêt du traitement.
+            throw new Exception('Erreur lors de l\'enregistrement du commentaire');
+        } else {
+            return true;
+        }
+    }
+
     /**
      * 
-     * Méthode permettant de récupérer la liste des commentaires sous forme de tableau d'objets
+     * Méthode permettant de récupérer la liste de tous les commentaires sous forme de tableau d'objets
      * 
      * @return array Tableau d'objets
      */
@@ -104,6 +138,33 @@ class Comment
         ON `comments`.`id_subscriber` = `subscribers`.`id_subscriber`';
 
         $sth = $pdo->query($sql);
+        $datas = $sth->fetchAll();
+
+        return $datas;
+    }
+
+    /**
+     * 
+     * Méthode permettant de récupérer la liste des commentaires d'un article
+     * 
+     * @return array Tableau d'objets
+     */
+    public static function getAllCommentsForOnePost($id_post): array | false
+    {
+        $pdo = Database::connect();
+        $sql = 'SELECT `comments`.*, `subscribers`.`firstname`, `subscribers`.`lastname`,
+        `posts`.`id_post`
+        from `comments` 
+        JOIN `subscribers` ON `comments`.`id_subscriber` = `subscribers`.`id_subscriber`
+        JOIN `posts` ON `posts`.`id_post` = `comments`.`id_post`
+        WHERE `comments`.`id_post` = :id_post';
+
+        $sth = $pdo->prepare($sql);
+        
+        $sth->bindValue(':id_post', $id_post);
+
+        $sth->execute();
+        
         $datas = $sth->fetchAll();
 
         return $datas;
@@ -124,7 +185,7 @@ class Comment
         // Effacer tous les liens article <-> categories
         $sql = 'DELETE FROM `comments` WHERE `id_comment` = :id_comment;';
         $sth = $pdo->prepare($sql);
-        $sth->bindValue(':id_comment', $id_comment,PDO::PARAM_INT);
+        $sth->bindValue(':id_comment', $id_comment, PDO::PARAM_INT);
         $sth->execute();
 
         if ($sth->rowCount() > 0) {
@@ -132,16 +193,15 @@ class Comment
         } else {
             return false;
         }
-
     }
 
-    public static function validate(string $id_comment): bool 
+    public static function validate(string $id_comment): bool
     {
         $pdo = Database::connect();
         $sql = 'UPDATE `comments` SET `validated_at` = NOW() WHERE id_comment =:id_comment;';
 
         $sth = $pdo->prepare($sql);
-        
+
         // Affectation de la valeur correspondant au marqueur nominatif concerné
         $sth->bindValue(':id_comment', $id_comment);
         $sth->execute();
@@ -149,11 +209,10 @@ class Comment
         // Appel à la méthode rowCount permettant de savoir combien d'enregistrements ont été affectés
         if ($sth->rowCount() <= 0) {
             // Génération d'une exception renvoyant le message en paramètre au catch créé en amont et arrêt du traitement.
-           throw new Exception('Votre commentaire n\'a pas été validé.');
+            throw new Exception('Votre commentaire n\'a pas été validé.');
         } else {
             // Retourne true quand tout s'est bien passé
             return true;
         }
-
     }
 }

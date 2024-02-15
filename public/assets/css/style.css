@@ -73,13 +73,8 @@ a:hover {
 }
 
 .rounded-circle {
-  width: 150px;
-  height: 150px;
-}
-
-.profile_comment {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
 }
 
 .send_button {
@@ -92,12 +87,11 @@ a:hover {
   font-size: 0.8rem;
 }
 
-footer {
-  position: fixed; 
+/* footer {
   bottom: 0;
   width: 100%;
   background-color: #f8f9fa; 
-}
+} */
 
 /********** formulaire de contact ***********/
 
@@ -170,6 +164,11 @@ footer {
 
 #inputSearch {
   max-width: 50%;
+}
+
+#send_comment {
+  background-color: #37b6fc;
+  color: white;
 }
 
 @media only screen and (max-width: 767px) {

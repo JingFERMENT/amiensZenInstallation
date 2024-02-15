@@ -293,7 +293,7 @@ class Post
 
         if (!$data) {
             // Génération d'une exception renvoyant le message en paramètre au catch créé en amont et arrêt du traitement.
-            throw new Exception('Erreur lors de la récupération de l article');
+            throw new Exception('Erreur lors de la récupération de l\'article');
         }
 
         $sql2 = 'SELECT `id_category` from `posts_categories` WHERE `id_post` = :id_post';

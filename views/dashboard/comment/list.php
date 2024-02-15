@@ -22,7 +22,7 @@
                         <tr>
                             <th scope="row" class="fst-italic fw-normal"><?= $comment->id_comment ?></th>
                             <td><?= $comment->firstname . ' ' . $comment->lastname ?></td>
-                            <td><?= $comment->content ?></td>
+                            <td><?= $comment->description ?></td>
                             <?php
                             if ($comment->validated_at == NULL) {?>
                             <td><a type="button" href="/controllers/dashboard/comment/validate-ctrl.php?id_comment=<?= $comment->id_comment ?>" class="btn btn-danger btn-sm" id="btnToValidate">A valider</a></td>                       

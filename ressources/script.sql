@@ -39,7 +39,7 @@ CREATE TABLE posts(
 
 CREATE TABLE comments(
    id_comment INT AUTO_INCREMENT,
-   content TEXT,
+   description TEXT NOT NULL,
    created_at DATETIME,
    deleted_at DATETIME,
    validated_at DATETIME,
