@@ -166,10 +166,17 @@ a:hover {
   max-width: 50%;
 }
 
-#send_comment {
+#send_comment, #btn-access {
   background-color: #37b6fc;
   color: white;
 }
+
+#btn-access {
+  z-index: 1;
+  background-color: #37b6fc;
+  color: white;
+}
+
 
 @media only screen and (max-width: 767px) {
   #inputSearch {
@@ -177,5 +184,26 @@ a:hover {
   }
 }
 
+/********** bannière photo ***********/
+#banner {
+  background-color: rgb(55, 182, 252, 0.7);
+  height:200px 
+}
+
+#image-profile {
+  width: 150px; z-index: 1
+}
+
+.fa-trash-can {
+  color: red;
+}
+
+#myName{
+  margin-top: 130px;
+}
+
+.profile-area {
+  background-color: #f8f9fa;
+}
 
 

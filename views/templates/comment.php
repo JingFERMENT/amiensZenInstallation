@@ -14,27 +14,29 @@
 </div>
 
 <div class="container">
-  <hr>
-  <h4>Les commentaires</h4>
   <!-- AFFICHAGE COMMENTAIRES -->
-  <?php  foreach ($comments as $comment) { 
-    if(!is_null($comment->validated_at)) {?>
-    <div class="card py-3 border-0">
-      <div class="d-flex w-100">
-        <img id="profile_comment" class="rounded-circle shadow-1-strong me-3 d-none d-sm-block" src="../public/assets/img/Testimonial_2.webp" alt="avatar" />
-        <div class="rounded-3 bg-body-secondary px-3 py-1">
-          <small class="fw-bold mb-1"><?=$comment->firstname?> <?=$comment->lastname?>:</small>
-          <small class="mb-0">
-            <?=$comment->description?>
-          </small>
-          <br>
-          <small class="mb-0 fst-italic">
-            <?=(new DateTime($comment->validated_at))->format('d-m-Y')
-            ?>
-          </small>
+  <?php if (!($comments == NULL)) { ?>
+    <hr>
+    <h4>Les commentaires</h4>
+  <?php } ?>
+  <?php foreach ($comments as $comment) {
+    if (!is_null($comment->validated_at)) { ?>
+      <div class="card py-3 border-0">
+        <div class="d-flex w-100">
+          <img id="profile_comment" class="rounded-circle shadow-1-strong me-3 d-none d-sm-block" src="../public/assets/img/Testimonial_2.webp" alt="avatar" />
+          <div class="rounded-3 bg-body-secondary px-3 py-1">
+            <small class="fw-bold mb-1"><?= $comment->firstname ?> <?= $comment->lastname ?>:</small>
+            <small class="mb-0">
+              <?= $comment->description ?>
+            </small>
+            <br>
+            <small class="mb-0 fst-italic">
+              <?= (new DateTime($comment->validated_at))->format('d-m-Y')
+              ?>
+            </small>
+          </div>
         </div>
       </div>
-    </div>
   <?php }
-}?>
+  } ?>
 </div>

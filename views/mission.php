@@ -1,6 +1,6 @@
 <section class="container pb-5" id="our-mission">
     <div class="row">
-        <h2 class="text-center fw-bold p-5">Notre mission</h2>
+        <h2 class="text-center p-5">Notre mission</h2>
         <div class="col-12 col-xl-6 p-0">
             <img class="img-fluid image-our-mission w-100 h-100" src="/public/assets/img/little_story.webp" alt="image d'un homme qui pointe sur une cible">
         </div>

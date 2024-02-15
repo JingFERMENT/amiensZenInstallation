@@ -5,8 +5,7 @@ $title = "Mon profil";
 
 if (empty($_SESSION['subscriber'])) {
 
-
-    $error = 'Vous n etes pas connecté.';
+    $error = 'Vous n\'êtes pas connecté.';
 
     include __DIR__.'/../../views/templates/header.php';
     include __DIR__.'/../../views/templates/error.php';
