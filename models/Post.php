@@ -201,14 +201,9 @@ class Post
      * 
      * @return array Tableau d'objets
      */
-    public static function getAllPost(int $id_category, int $offset = 0, string $keywords = null): array | false
+    public static function getAllPosts(int $id_category, int $offset = 0): array | false
     {
         $pdo = Database::connect();
-
-        $research = $keywords ? " AND (`posts`.`title` LIKE :keywords OR 
-        `posts`.`content` LIKE :keywords OR 
-        `susbcribers`.`lastname` LIKE :keywords OR 
-        `susbcribers`.`firstname` LIKE :keywords)" : '';
 
         $sql = 'SELECT `posts`.*, 
         `subscribers`.`firstname`, `subscribers`.`lastname`
@@ -228,6 +223,48 @@ class Post
         $datas = $sth->fetchAll();
 
         return $datas;
+    }
+
+    /**
+     * 
+     * Méthode permettant de récupérer la liste des articles sous forme de tableau d'objets
+     * 
+     * @return array Tableau d'objets
+     */
+    public static function searchPosts(string $keywords = null): array | false
+    {
+        $pdo = Database::connect();
+
+        $sql = 'SELECT `posts`.*, 
+        `subscribers`.`firstname`, `subscribers`.`lastname`
+        from `posts` 
+        JOIN `subscribers` ON `posts`.`id_subscriber` = `subscribers`.`id_subscriber`
+        JOIN `posts_categories` ON `posts`.`id_post` = `posts_categories`.`id_post`
+        JOIN `categories` ON `categories`.`id_category` = `posts_categories`.`id_category`
+        WHERE (`posts`.`title` LIKE :keywords OR 
+        `posts`.`content` LIKE :keywords OR 
+        `categories`.`name` LIKE :keywords OR 
+        `subscribers`.`lastname` LIKE :keywords OR 
+        `subscribers`.`firstname` LIKE :keywords)';
+
+        $sth = $pdo->prepare($sql);
+
+        $sth->bindValue(':keywords', '%' . $keywords . '%');
+
+        $sth->execute();
+
+        $datas = $sth->fetchAll();
+
+        // to deduplicate the post 
+        // create an empty associative array that will be used to store elements indexed by their 'id_post'.
+        $arrayIndexedByPostIds = array();
+        
+        foreach ($datas as $postRow) {
+            $id_post = $postRow->id_post;
+            $arrayIndexedByPostIds[$id_post] = $postRow;
+        }
+
+        return $arrayIndexedByPostIds;
     }
 
     /**

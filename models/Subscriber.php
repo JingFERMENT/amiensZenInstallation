@@ -345,6 +345,31 @@ class Subscriber {
         }
     }
 
+
+       /**
+     * Méthode permettant de savoir si un email existe déjà
+     * 
+     * @param mixed $email
+     * 
+     * @return bool
+     */
+    public static function isExist(string $email): bool
+    {
+        $pdo = Database::connect();
+
+        $sql = 'SELECT COUNT(*) AS `nbcolumn` FROM `subscribers` WHERE `email` = :email;';
+
+        $sth = $pdo->prepare($sql);
+
+        $sth->bindValue(':email', $email);
+
+        $sth->execute();
+
+        $result = $sth->fetchColumn();
+
+        return $result > 0;
+    }
+
     // envoie de l'email quand l'abonné a confirmé son email pour valider son compte
     public static function confirm(string $email): bool 
     {

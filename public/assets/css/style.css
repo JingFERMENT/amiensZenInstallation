@@ -92,6 +92,13 @@ a:hover {
   font-size: 0.8rem;
 }
 
+footer {
+  position: fixed; 
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f9fa; 
+}
+
 /********** formulaire de contact ***********/
 
 /* champs obligatoire */
@@ -160,4 +167,16 @@ a:hover {
 #logOut {
   color: #37b6fc;
 }
+
+#inputSearch {
+  max-width: 50%;
+}
+
+@media only screen and (max-width: 767px) {
+  #inputSearch {
+    max-width: 100%;
+  }
+}
+
+
 

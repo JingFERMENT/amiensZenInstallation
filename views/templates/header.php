@@ -30,8 +30,7 @@
                     <img class="logo_site" src="/public/assets/img/logo_amiens_zen_installation.png" alt="Logo Amiens Zen Installation">
                 </a>
                 <div class="d-flex justify-content-center align-items-center order-lg-3">
-                    <a class="nav-link mx-1" href="#"><i class="bi bi-search"></i>
-                    </a>
+                    <a class="nav-link mx-1" href="/controllers/search-ctrl.php"><i class="bi bi-search"></i></a>
                     <?php if(empty($_SESSION['subscriber'])) { ?>
                     <a class="nav-link mx-1 d-none d-lg-block" href="/controllers/signUp-ctrl.php"><i class="bi bi-person-circle"></i></a>
                     <?php } else {?>

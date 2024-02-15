@@ -30,7 +30,7 @@ try {
 
     $offset = PER_PAGE * ($page - 1);
     
-    $postsInCategory = Post::getAllPost($id_category, $offset);
+    $postsInCategory = Post::getAllPosts($id_category, $offset);
     // dd($postsInCategory);
     
     // round : arrondir au plus proche

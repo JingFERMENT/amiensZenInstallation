@@ -1,9 +1,9 @@
-<?php 
+<?php
 
-require_once __DIR__.'/../config/init.php';
-require_once __DIR__.'/../models/Subscriber.php';
-require_once __DIR__.'/../helpers/JWT.php';
-
+require_once __DIR__ . '/../config/init.php';
+require_once __DIR__ . '/../models/Subscriber.php';
+require_once __DIR__ . '/../helpers/JWT.php';
+require_once(__DIR__ . '/../helpers/dd.php');
 
 try {
 
@@ -12,11 +12,11 @@ try {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $error = [];
-        
+
         // LASTNAME
         // 1) nettoyage des données récupérées des utilisateurs => éviter "<script> </script>" 
         $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_SPECIAL_CHARS);
-    
+
         if (empty($lastname)) { // pour les champs obligatoires
             $error['lastname'] = 'Le nom est obligatoire.';
         } else {
@@ -26,10 +26,10 @@ try {
                 $error['lastname'] = 'Le nom est invalide.';
             }
         }
-    
+
         // FIRSTNAME
         $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_SPECIAL_CHARS);
-    
+
         if (empty($firstname)) { // pour les champs obligatoires
             $error['firstname'] = 'Le prénom est obligatoire.';
         } else {
@@ -39,7 +39,7 @@ try {
                 $error['firstname'] = 'Le prénom est invalide.';
             }
         }
-    
+
         // EMAIL
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
         if (empty($email)) {
@@ -50,11 +50,18 @@ try {
                 $error['email'] = 'L\'email est invalide.';
             }
         }
-    
+
+        // vérifier s'il y a des doublons dans l'email
+        $isExistDuplicate = Subscriber::isExist($email);
+
+        if ($isExistDuplicate) {
+            $error['email'] = 'Cet email existe déjà.';
+        }
+
         // PASSWORD and CONFIRMED PASSWORD: pas de nettoyage avec special chars
         $password = filter_input(INPUT_POST, 'password');
         $confirmedPassword = filter_input(INPUT_POST, 'confirmedPassword');
-    
+
         if (!(empty($password) && empty($confirmedPassword))) {
             if ($confirmedPassword != $password) {
                 $error['password'] = 'Les mots de passe ne correspondent pas.';
@@ -70,10 +77,10 @@ try {
         } else {
             $error['password'] = 'Les mots de passe sont obligatoires.';
         }
-    
+
         // RGPD
         $checkRGPD = filter_input(INPUT_POST, 'checkRGPD', FILTER_SANITIZE_NUMBER_INT);
-    
+
         if (empty($checkRGPD)) {
             $error['checkRGPD'] = 'Merci d\'accepter les conditions générales.';
         } else {
@@ -83,9 +90,9 @@ try {
             }
         }
 
-        if(empty($error)) {
-           // Création d'un nouvel objet issu de la classe 'subscriber'
-           $subscriberObj = new Subscriber();
+        if (empty($error)) {
+            // Création d'un nouvel objet issu de la classe 'subscriber'
+            $subscriberObj = new Subscriber();
 
             // Hydratation de notre objet
             $subscriberObj->setLastname($lastname);
@@ -110,8 +117,9 @@ try {
                 $msg = 'Erreur, votre inscription n\'a pas réussi. Veuillez réessayer.';
             }
         }
-    }  
-} catch (\Throwable $th){
+    }
+} catch (\Throwable $th) {
+
     $error = $th->getMessage();
     include __DIR__ . '/../views/templates/header.php';
     include __DIR__ . '/../views/templates/error.php';
@@ -120,6 +128,6 @@ try {
 }
 
 //views
-include __DIR__.'/../views/templates/header.php';
-include __DIR__.'/../views/signUp.php';
-include __DIR__.'/../views/templates/footer.php';
+include __DIR__ . '/../views/templates/header.php';
+include __DIR__ . '/../views/signUp.php';
+include __DIR__ . '/../views/templates/footer.php';

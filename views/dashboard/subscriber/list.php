@@ -12,6 +12,7 @@
                         <th scope="col">Nom</th>
                         <th scope="col">Prénom</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Rôle</th>
                         <th scope="col">Inscrit le</th>
                         <th scope="col">Supprimer</th>
                     </tr>
@@ -25,6 +26,13 @@
                             <td><?= $subscriber->lastname ?></td>
                             <td><?= $subscriber->firstname ?></td>
                             <td><?= $subscriber->email ?></td>
+                            <?php 
+                            if($subscriber->is_admin == 1) {?>
+                               <td>Admin</td>
+                            <?php } else {?>
+                                <td>Abonné(e)</td>
+                                <?php }?>
+                           </td>
                             <td><?= (new DateTime($subscriber->subscribed_at))->format('d-m-Y') ?></td>
                             <!-- Button trigger modal -->
                             <td><a type="button" data-id="<?= $subscriber->id_subscriber ?>" data-bs-toggle="modal" data-bs-target="#deleteModal" class="text-dark modalOpenSubscriberDeleteBtn"><i class="fa-solid fa-trash-can"></i></a></td>

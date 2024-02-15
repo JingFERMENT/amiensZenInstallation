@@ -11,7 +11,7 @@ try {
     
     // Appel de la méthode statique getAll permettant de récupérer tous les véhicules
     $post = Post::get($id_post);
-
+    
 
 } catch (\Throwable $th) {
     $error = $th->getMessage();
