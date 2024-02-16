@@ -80,6 +80,7 @@ try {
                 // le fichier venait de dossier tmp_name
                 $from = $_FILES['photo']['tmp_name'];
 
+                // "/" sinon le chemin ne sera pas reconnu
                 $toBack = __DIR__ . '/../../../public/uploads/posts/' . $filename . '.' . $extension;
                 $photoToSave =  $filename . '.' . $extension; // enregistrer uniquement le nom du fichier
                 move_uploaded_file($from, $toBack);

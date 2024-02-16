@@ -1,3 +1,4 @@
+<?php if(!empty($_SESSION['subscriber'])) { ?>
 <div class="container">
   <hr>
   <h4>Laisser un commentaire</h4>
@@ -12,6 +13,7 @@
     </div>
   </div>
 </div>
+<?php } ?>
 
 <div class="container">
   <!-- AFFICHAGE COMMENTAIRES -->

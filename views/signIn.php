@@ -11,7 +11,7 @@
         </div>
         <?php } ?>
 
-        <form class="my-4" action="" method="POST" name="signIn">
+        <form class="my-4" action="" method="POST" name="signIn" novalidate>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input
@@ -20,7 +20,9 @@
             class="form-control"
             id="email"
             aria-describedby="emailHelp"
-            />
+            value ="<?=$email ?? ''?>"
+            required/>
+            <span class="text-danger"><?=$error['email'] ?? ''?></span>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Mot de passe</label>
@@ -29,7 +31,8 @@
             name = "password"
             class="form-control"
             id="password"
-            />
+            required/>
+            <span class="text-danger"><?=$error['password'] ?? ''?></span>
         </div>
         <button
             type="submit"

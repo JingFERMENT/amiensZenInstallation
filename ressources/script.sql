@@ -17,8 +17,7 @@ CREATE TABLE subscribers(
    updated_at DATETIME,
    deleted_at DATETIME,
    is_admin BOOLEAN,
-   personal_advice BOOLEAN NOT NULL,
-   family_situation VARCHAR(255)  NOT NULL,
+   family_situation VARCHAR(255),
    PRIMARY KEY(id_subscriber),
    UNIQUE(email)
 );

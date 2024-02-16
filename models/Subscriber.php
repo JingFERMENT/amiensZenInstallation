@@ -1,7 +1,8 @@
 <?php
 require_once(__DIR__ . '/../helpers/connect.php');
 
-class Subscriber {
+class Subscriber
+{
 
     private int $id_subscriber;
     private string $lastname;
@@ -15,9 +16,7 @@ class Subscriber {
     private DateTime $updated_at;
     private DateTime $deleted_at;
     private ?bool $is_admin;
-    private ?bool $personal_advice;
     private ?string $family_situation;
-    // confirmed_at
 
     // méthode construct initization avec null 
     // public function __construct()
@@ -34,13 +33,12 @@ class Subscriber {
     //     $this->updated_at;
     //     $this->deleted_at;
     //     $this->is_admin;
-    //     $this->personal_advice;
     //     $this->family_situation;
     // }
 
-    
+
     //*************** ID SUBSCRIBER ***************//
-    public function getId_subscriber():?int
+    public function getId_subscriber(): ?int
     {
         return $this->id_subscriber;
     }
@@ -49,20 +47,20 @@ class Subscriber {
     {
         $this->id_subscriber = $id_subscriber;
     }
- 
+
     //*************** LASTNAME ***************//
-    public function getLastname():string
+    public function getLastname(): string
     {
         return $this->lastname;
     }
- 
+
     public function setLastname(string $lastname)
     {
         $this->lastname = $lastname;
     }
 
     //*************** FIRSTNAME ***************//
-    public function getFirstname():string
+    public function getFirstname(): string
     {
         return $this->firstname;
     }
@@ -73,30 +71,30 @@ class Subscriber {
     }
 
     //*************** EMAIL ***************//
-    public function getEmail():string
+    public function getEmail(): string
     {
         return $this->email;
     }
- 
+
     public function setEmail(string $email)
     {
         $this->email = $email;
     }
 
     //*************** PASSWORD ***************// 
-    public function getPassword():string
+    public function getPassword(): string
     {
         return $this->password;
     }
- 
+
     public function setPassword(string $password)
     {
         $this->password = $password;
     }
 
     //*************** BIRTHDATE ***************// 
- 
-    public function getBirthdate():DateTime
+
+    public function getBirthdate(): DateTime
     {
         return $this->birthdate;
     }
@@ -108,7 +106,7 @@ class Subscriber {
 
     //*************** PHONE ***************// 
 
-    public function getPhone():string
+    public function getPhone(): string
     {
         return $this->phone;
     }
@@ -119,18 +117,18 @@ class Subscriber {
     }
 
     //*************** PROFILE PICTURE ***************// 
-    public function getProfile_picture():string
+    public function getProfile_picture(): string
     {
         return $this->profile_picture;
     }
 
-    public function setProfile_picture(string $profile_picture)
+    public function setProfile_picture(?string $profile_picture)
     {
         $this->profile_picture = $profile_picture;
     }
 
     //*************** SUBSCRIBED_AT ***************// 
-    public function getSubscribed_at():DateTime
+    public function getSubscribed_at(): DateTime
     {
         return $this->subscribed_at;
     }
@@ -138,22 +136,21 @@ class Subscriber {
     public function setSubscribed_at(string $subscribed_at)
     {
         $this->subscribed_at = new DateTime($subscribed_at);
-
     }
 
     //*************** SUBSCRIBED_AT ***************// 
-    public function getUpdated_at():DateTime
+    public function getUpdated_at(): DateTime
     {
         return $this->updated_at;
     }
- 
+
     public function setUpdated_at(string $updated_at)
     {
         $this->updated_at = new DateTime($updated_at);
     }
 
     //*************** DELETED_AT ***************// 
-    public function getDeleted_at():DateTime
+    public function getDeleted_at(): DateTime
     {
         return $this->deleted_at;
     }
@@ -164,7 +161,7 @@ class Subscriber {
     }
 
     //*************** IS_ADMIN***************// 
-    public function getIs_admin():bool
+    public function getIs_admin(): bool
     {
         return $this->is_admin;
     }
@@ -174,19 +171,8 @@ class Subscriber {
         $this->is_admin = $is_admin;
     }
 
-    //*************** PERSONAL_ADIVCE ***************//  
-    public function getPersonal_advice():bool
-    {
-        return $this->personal_advice;
-    }
-
-    public function setPersonal_advice(bool $personal_advice)
-    {
-        $this->personal_advice = $personal_advice;
-    }
-
     //*************** FAMILY_SITUATION ***************// 
-    public function getFamily_situation():string
+    public function getFamily_situation(): string
     {
         return $this->family_situation;
     }
@@ -194,7 +180,6 @@ class Subscriber {
     public function setFamily_situation(string $family_situation)
     {
         $this->family_situation = $family_situation;
-
     }
 
     /**
@@ -203,7 +188,6 @@ class Subscriber {
      * @return bool True en cas de succès, sinon une erreur de type Exception est générée
      */
     public function insert(): bool
-
     {
         // Création d'une variable recevant un objet issu de la classe PDO 
         $pdo = Database::connect();
@@ -213,7 +197,7 @@ class Subscriber {
                     (`lastname`, `firstname`, `email`, `password`) 
                 VALUES
                     (:lastname, :firstname, :email, :password);';
-    
+
         // Si marqueur nominatif, il faut préparer la requête
         $sth = $pdo->prepare($sql);
 
@@ -233,8 +217,47 @@ class Subscriber {
             // Génération d'une exception renvoyant le message en paramètre au catch créé en amont et arrêt du traitement.
             throw new Exception("Erreur lors de l'enregistrement de l'abonné.");
         } else {
-         // Retourne true dans le cas contraire (tout s'est bien passé)
-         return true;
+            // Retourne true dans le cas contraire (tout s'est bien passé)
+            return true;
+        }
+    }
+
+    /**
+     * Méthode permettant la mise à jour d'un abonné
+     * 
+     * @return bool True en cas de succès, sinon une erreur de type Exception est générée
+     */
+    public function update(): bool
+    {
+        // Création d'une variable recevant un objet issu de la classe PDO 
+        $pdo = Database::connect();
+
+        $sql = 'UPDATE `subscribers`
+            SET `lastname` = :lastname, `firstname` = :firstname, `email` = :email,
+            `birthdate` = :birthdate, `phone` = :phone, 
+            `family_situation` = :family_situation, `profile_picture` = :profile_picture 
+            WHERE `id_subscriber` = :id_subscriber;';
+
+        $sth = $pdo->prepare($sql);
+
+        $sth->bindValue(':lastname', $this->getLastname());
+        $sth->bindValue(':firstname', $this->getFirstname());
+        $sth->bindValue(':email', $this->getEmail());
+        $sth->bindValue(':birthdate', ($this->getBirthdate())->format('Y-m-d'));
+        $sth->bindValue(':phone', $this->getPhone());
+        $sth->bindValue(':family_situation', $this->getFamily_situation());
+        $sth->bindValue(':profile_picture', $this->getProfile_picture());
+        $sth->bindValue(':id_subscriber', $this->getId_subscriber(), PDO::PARAM_INT);
+
+        
+        $sth->execute();
+        
+        if (!$sth->execute()) {
+            // Génération d'une exception renvoyant le message en paramètre au catch créé en amont et arrêt du traitement.
+            throw new Exception('Erreur lors de la mise à jour de l\'abonné');
+        } else {
+            // Retourne true dans le cas contraire (tout s'est bien passé)
+            return true;
         }
     }
 
@@ -293,17 +316,17 @@ class Subscriber {
      * 
      * @return bool True en cas de succès, sinon une erreur de type Exception est générée
      */
-    public static function delete(int $id_subscriber) :bool 
+    public static function delete(int $id_subscriber): bool
     {
         // Création d'une variable recevant un objet issu de la classe PDO 
         $pdo = Database::connect();
 
         // Requête contenant des marqueurs nominatifs
         $sql = 'DELETE FROM `subscribers` WHERE `id_subscriber` = :id_subscriber;';
-        
-         // Si marqueur nominatif, il faut préparer la requête
+
+        // Si marqueur nominatif, il faut préparer la requête
         $sth = $pdo->prepare($sql);
-        
+
         // Affectation de la valeur correspondant au marqueur nominatif concerné
         $sth->bindValue(':id_subscriber', $id_subscriber);
         $sth->execute();
@@ -320,18 +343,18 @@ class Subscriber {
 
 
     // méthode getByEmail 
-    public static function getByEmail(string $email): object|false 
+    public static function getByEmail(string $email): object|false
     {
-         // Création d'une variable recevant un objet issu de la classe PDO 
-         $pdo = Database::connect();
+        // Création d'une variable recevant un objet issu de la classe PDO 
+        $pdo = Database::connect();
 
-         $sql = 'SELECT * from `subscribers` WHERE `email` = :email';
+        $sql = 'SELECT * from `subscribers` WHERE `email` = :email';
 
-         $sth = $pdo->prepare($sql);
+        $sth = $pdo->prepare($sql);
 
-         $sth->bindValue(':email', $email);
+        $sth->bindValue(':email', $email);
 
-         // Exécution de la requête qui retourne true ou false
+        // Exécution de la requête qui retourne true ou false
         $sth->execute();
 
         $data = $sth->fetch();
@@ -346,7 +369,7 @@ class Subscriber {
     }
 
 
-       /**
+    /**
      * Méthode permettant de savoir si un email existe déjà
      * 
      * @param mixed $email
@@ -371,13 +394,13 @@ class Subscriber {
     }
 
     // envoie de l'email quand l'abonné a confirmé son email pour valider son compte
-    public static function confirm(string $email): bool 
+    public static function confirm(string $email): bool
     {
         $pdo = Database::connect();
         $sql = 'UPDATE `subscribers` SET `confirmed_at` = NOW() WHERE email=:email;';
 
         $sth = $pdo->prepare($sql);
-        
+
         // Affectation de la valeur correspondant au marqueur nominatif concerné
         $sth->bindValue(':email', $email);
         $sth->execute();
@@ -385,13 +408,10 @@ class Subscriber {
         // Appel à la méthode rowCount permettant de savoir combien d'enregistrements ont été affectés
         if ($sth->rowCount() <= 0) {
             // Génération d'une exception renvoyant le message en paramètre au catch créé en amont et arrêt du traitement.
-           throw new Exception('Nous n\'avons pas reconnu votre email');
+            throw new Exception('Nous n\'avons pas reconnu votre email');
         } else {
             // Retourne true quand tout s'est bien passé
             return true;
         }
-
     }
-
-
 }

@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../config/init.php';
 session_start();
-
+$title = 'Contact';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

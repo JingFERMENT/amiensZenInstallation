@@ -18,6 +18,13 @@ try {
             }
         }
 
+         // vérifier s'il y a des doublons dans l'email
+         $isExistDuplicate = Subscriber::isExist($email);
+
+         if (!$isExistDuplicate) {
+             $error['email'] = 'L\'email inconnu.';
+         }
+
         // PASSWORD
         $password = filter_input(INPUT_POST, 'password');
         if (empty($password)) {
@@ -61,6 +68,8 @@ try {
     die;
 }
 
+// Dans Auth::verifyIsConnectedAsAdmin on redirige sur ce controleur
+// avec le paramètre error=denied pour afficher un message
 $generalError = null;
 if (!empty($_GET['error']) && $_GET['error'] == 'denied') {
     $generalError = 'Vous n\'avez pas le droit d\'accéder à cette page';
@@ -69,9 +78,3 @@ if (!empty($_GET['error']) && $_GET['error'] == 'denied') {
 include __DIR__ . '/../views/templates/header.php';
 include __DIR__ . '/../views/signIn.php';
 include __DIR__ . '/../views/templates/footer.php';
-
-
-// bloquer les connexions au bout de 3 tentatives  
-// session : 20 minutes active / fermer le navigateur 
-// cookie: on peut définir la durée de session
-// localStorage / jsonwebtoken 

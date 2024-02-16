@@ -33,11 +33,18 @@
                 </a>
                 <div class="d-flex justify-content-center align-items-center order-lg-3">
                     <a class="nav-link mx-1" href="/controllers/search-ctrl.php"><i class="bi bi-search"></i></a>
+                    
+                    <!--Non connecté-->
                     <?php if (empty($_SESSION['subscriber'])) { ?>
                         <a class="nav-link mx-1 d-none d-lg-block" href="/controllers/signUp-ctrl.php"><i class="bi bi-person-circle"></i></a>
-                    <?php } else { ?>
+                    <!--Je suis sur la page Mon profil-->
+                    <?php } elseif ($title == 'Mon profil') { ?>
                         <a id="logOut" class="nav-link mx-1 d-none d-lg-block" href="/controllers/logOut-ctrl.php"><i class="bi bi-box-arrow-right"></i> Se déconnecter</a>
+                    <!--Je suis connecté, sur une autre page-->
+                    <?php } else { ?>
+                        <a class="nav-link mx-1 d-none d-lg-block" href="/controllers/subscriber/myprofile-ctrl.php"><i class="bi bi-person-circle"></i></a>
                     <?php } ?>
+
                     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -60,13 +67,20 @@
                             <a class="nav-link" href="/controllers/contact-ctrl.php">Contact</a>
                         </li>
                     </ul>
+                    <!--Non connecté-->
                     <?php if (empty($_SESSION['subscriber'])) { ?>
                         <div class="text-center d-lg-none">
                             <a class="nav-link link-my-account" href="/controllers/signUp-ctrl.php"><i class="bi bi-person-circle"></i> Mon compte</a>
                         </div>
-                    <?php } else { ?>
+                    <!--Je suis sur la page Mon profil-->
+                    <?php } elseif ($title == 'Mon profil') { ?>
                         <div class="text-center d-lg-none">
                             <a id="logOut" class="nav-link link-my-account" href="/controllers/logOut-ctrl.php"><i class="bi bi-box-arrow-right"></i>Se déconnecter</a>
+                        </div>
+                    <!--Je suis connecté, sur une autre page-->
+                    <?php } else { ?>
+                        <div class="text-center d-lg-none">
+                            <a class="nav-link link-my-account" href="/controllers/subscriber/myprofile-ctrl.php"><i class="bi bi-person-circle"></i> Mon compte</a>
                         </div>
                     <?php } ?>
                 </div>

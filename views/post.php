@@ -7,7 +7,7 @@
             <div class="col-12 col-md-6 col-lg-4 mb-5 ">
                 <div class="card h-100">
                     <?php if (!is_null($postInCategory->photo)) {
-                        echo "<img src=\"/public/uploads/posts/$postInCategory->photo\" class=\"h-100 card-img-top img-fluid\" alt=\"\">";
+                        echo "<img src=\"/public/uploads/posts/$postInCategory->photo\" class=\"h-100 card-img-top img-fluid\" alt=\"photo de l\'article\">";
                     } ?>
                     <div class="card-body">
                         <h5 class="card-title fw-bold"><?= $postInCategory->title ?></h5>

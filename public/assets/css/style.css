@@ -72,6 +72,11 @@ a:hover {
   text-decoration: solid underline #37b6fc 2px;
 }
 
+.img-fluid.rounded-circle {
+  width: 150px;
+  height: 150px;
+}
+
 .rounded-circle {
   width: 50px;
   height: 50px;
