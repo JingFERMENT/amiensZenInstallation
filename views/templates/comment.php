@@ -4,10 +4,10 @@
   <h4>Laisser un commentaire</h4>
   <div class="card py-3 border-0">
     <div class="d-flex w-100">
-      <img class="rounded-circle shadow-1-strong me-3 d-none d-sm-block" src="../public/assets/img/Testimonial_2.webp" alt="avatar" />
+      <img class="rounded-circle shadow-1-strong me-3 d-none d-sm-block" src="../public/uploads/users/<?=$_SESSION['subscriber']->profile_picture?>" alt="avatar" />
       <!-- FORMULAIRE COMMENTAIRE -->
       <form class="form-outline w-100" method="POST">
-        <textarea class="form-control" id="description" maxlength="500" name="description" rows="2" placeholder="Laisser un message">Hello</textarea>
+        <textarea class="form-control" id="description" maxlength="500" name="description" rows="2" placeholder="Laisser un message"></textarea>
         <button id="send_comment" type="submit" class="btn my-3 text-white">Envoyer</button>
       </form>
     </div>

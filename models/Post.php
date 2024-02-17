@@ -195,6 +195,32 @@ class Post
         return $datas;
     }
 
+    // /**
+    //  * 
+    //  * Méthode permettant de récupérer la liste des articles sous forme de tableau d'objets d'un abonné
+    //  * 
+    //  * @return array Tableau d'objets
+    //  */
+    //  public static function getAll($id_subscriber): array | false
+    // {
+    //     $pdo = Database::connect();
+
+    //     $sql = 'SELECT `posts`.*, `subscribers`.`firstname`, `subscribers`.`lastname`
+    //     from `posts` JOIN `subscribers`
+    //     ON `posts`.`id_subscriber` = `subscribers`.`id_subscriber`
+    //     WHERE `subscribers`.`id_subscriber` = :id_subscriber;';
+
+    //     $sth = $pdo->prepare($sql);
+
+    //     $sth->bindValue(':id_subscriber', $id_subscriber, PDO::PARAM_INT);
+
+    //     $sth->execute();
+
+    //     $datas = $sth->fetchAll();
+
+    //     return $datas;
+    // }
+
     /**
      * 
      * Méthode permettant de récupérer la liste des articles sous forme de tableau d'objets
@@ -258,7 +284,7 @@ class Post
         // to deduplicate the post 
         // create an empty associative array that will be used to store elements indexed by their 'id_post'.
         $arrayIndexedByPostIds = array();
-        
+
         foreach ($datas as $postRow) {
             $id_post = $postRow->id_post;
             $arrayIndexedByPostIds[$id_post] = $postRow;

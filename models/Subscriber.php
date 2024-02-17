@@ -117,7 +117,7 @@ class Subscriber
     }
 
     //*************** PROFILE PICTURE ***************// 
-    public function getProfile_picture(): string
+    public function getProfile_picture(): ?string
     {
         return $this->profile_picture;
     }

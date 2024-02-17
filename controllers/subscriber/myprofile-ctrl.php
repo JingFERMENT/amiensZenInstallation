@@ -3,21 +3,12 @@ require_once(__DIR__ . '/../../helpers/Auth.php');
 require_once __DIR__ . '/../../config/init.php';
 require_once __DIR__ . '/../../models/Subscriber.php';
 require_once(__DIR__ . '/../../helpers/dd.php');
+require_once (__DIR__ . '/../../models/Post.php');
 
 session_start();
 Auth::verifyIsConnected();
 
 $title = "Mon profil";
-
-if (empty($_SESSION['subscriber'])) {
-
-    $error = 'Vous n\'êtes pas connecté.';
-
-    include __DIR__ . '/../../views/templates/header.php';
-    include __DIR__ . '/../../views/templates/error.php';
-    include __DIR__ . '/../../views/templates/footer.php';
-    die();
-}
 
 $connectedSubscriber = $_SESSION['subscriber'];
 
@@ -31,6 +22,8 @@ $profilePicture = $connectedSubscriber->profile_picture;
 
 $minDate = new DateTime('1904-01-01');
 $maxDate = new DateTime();
+
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $error = [];
@@ -167,8 +160,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // mettre la session à jour avec les nouvelles informations du profil
             unset($subscriber->password);
             $_SESSION['subscriber'] = $subscriber;
-
             $msg = 'Votre profil est à jour.';
+            header("Refresh: 1; url=myprofile-ctrl.php");
         } else {
             $msg = 'Erreur, votre modification n\'a pas réussi. Veuillez réessayer.';
         }
