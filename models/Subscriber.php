@@ -172,12 +172,12 @@ class Subscriber
     }
 
     //*************** FAMILY_SITUATION ***************// 
-    public function getFamily_situation(): string
+    public function getFamily_situation(): ?string
     {
         return $this->family_situation;
     }
 
-    public function setFamily_situation(string $family_situation)
+    public function setFamily_situation(?string $family_situation)
     {
         $this->family_situation = $family_situation;
     }

@@ -96,8 +96,8 @@ try {
             // Création d'un nouvel objet issu de la classe 'post'
             $postObj = new Post();
 
-            //$id_subscriber = $_SESSION['subscriber']->id_subscriber;
-            $id_subscriber = 26 ;            // Hydratation de notre objet
+            $id_subscriber = $_SESSION['subscriber']->id_subscriber;
+            // Hydratation de notre objet
             $postObj->setId_post($id_post);
             $postObj->setTitle($title);
             $postObj->setContent($content);
@@ -105,7 +105,7 @@ try {
             $postObj->setId_subscriber($id_subscriber);
             $postObj->setId_categories($selectedIdCategories);
 
-            // Appel de la méthode insert
+            // Appel de la méthode update
             $isOk = $postObj->update();
 
             // Si la méthode a retourné "true", alors on redirige vers la liste
@@ -113,7 +113,7 @@ try {
                 $msg = 'Votre article a bien été modifié.';
                 header("Refresh: 1; url=/controllers/dashboard/post/list-ctrl.php");
             } else {
-                $msg = 'Erreur, la donnée n\'a pas été insérée. Veuillez réessayer.';
+                $msg = 'Erreur, la donnée n\'a pas été modifiée. Veuillez réessayer.';
             }
 
             $postToDisplay = Post::get($id_post);

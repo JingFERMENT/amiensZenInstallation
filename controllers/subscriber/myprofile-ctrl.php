@@ -20,8 +20,9 @@ $phone = $connectedSubscriber->phone;
 $familySituation = $connectedSubscriber->family_situation;
 $profilePicture = $connectedSubscriber->profile_picture;
 
-$minDate = new DateTime('1904-01-01');
-$maxDate = new DateTime();
+
+$maxDate = date('Y-m-d');
+$minDate = (date('Y') - 120) . '-01-01';
 
 
 
@@ -77,9 +78,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // BIRTHDATE
     $birthdate = filter_input(INPUT_POST, 'birthdate', FILTER_SANITIZE_NUMBER_INT);
+    
     if (!empty($birthdate)) {
         $isOk = filter_var($birthdate, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => '/' . REGEX_BIRTHDATE . '/')));
-        if (!$isOk || new DateTime($birthdate) > $maxDate || new DateTime($birthdate) < $minDate) {
+        if (!$isOk || $birthdate > $maxDate || $birthdate < $minDate) {
             $error['birthdate'] = 'La date de naissance est invalide.';
         }
     }
@@ -145,6 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $subscriberObj->setFirstname($firstname);
         $subscriberObj->setEmail($email);
         $subscriberObj->setBirthdate($birthdate);
+
         $subscriberObj->setPhone($phone);
         $subscriberObj->setFamily_situation($familySituation);
         $subscriberObj->setProfile_picture($profilePictureToSave);

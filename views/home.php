@@ -24,8 +24,8 @@
         </div>
         <div class="col-12 col-xl-6 bg-light text-center p-5 d-none d-sm-block">
             <h5 class="fw-bold pb-2">La petite histoire</h5>
-            <p>Après avoir passé plusieurs années à Paris, nous sommes arrivés en 2020 à Amiens pour une meilleure qualité de vie.</p>
-            <p>Mais l'installation est loin d’être évident pour nous. Nous nous sommes aperçus que notre expérience était loin d’être isolé et que beaucoup de personnes auraient bien aimé être plus guidé dans ce changement.</p>
+            <p>Après avoir passé plusieurs années à Paris, ma famille et moi sommes arrivés en 2020 à Amiens pour une meilleure qualité de vie.</p>
+            <p>Mais l'installation est loin d’être évidente pour nous. Nous nous sommes aperçus que notre expérience était loin d’être isolée et que beaucoup de personnes auraient bien aimé être plus guidées dans ce changement.</p>
             <p>Zen Installation est né dans ce contexte pour accompagner ces personnes à s'installer en toute sérénité dans cette nouvelle ville.</p>
         </div>
         <div class="col-12 col-xl-6 bg-light text-center p-5">

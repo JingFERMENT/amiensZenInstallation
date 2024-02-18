@@ -8,7 +8,9 @@
                         <!-- IMAGE PROFILE -->
                         <?php if ($connectedSubscriber->profile_picture !== NULL) { ?>
                                     <img id="image-profile" class="img-fluid img-thumbnail mt-4 mb-2" src="<?= '/public/uploads/users/' . $connectedSubscriber->profile_picture ?>" alt="photo profile" >
-                                <?php } ?>
+                                <?php } else { ?>
+                                     <img id="image-profile" class="img-fluid img-thumbnail mt-4 mb-2" src="/public/assets/image/default-avatar-profile.jpg" alt="photo profile" >
+                                   <?php }?>
                     </div>
                     <div id="myName" class="ms-3">
                         <!-- TITRE -->
@@ -53,7 +55,7 @@
                             <!-- BIRTHDATE -->
                             <div class="col-12 col-md-6 p-1 mb-2">
                                 <label for="birthdate" class="form-label">Date de naissance</label>
-                                <input type="date" class="form-control" id="birthdate" name="birthdate" min="<?= $minDate->format('Y-m-d') ?>" max="<?= $maxDate->format('Y-m-d') ?>" value="<?= $birthdate ?? '' ?>" pattern="<?= REGEX_BIRTHDATE ?>" aria-describedby="birthdayHelp">
+                                <input type="date" class="form-control" id="birthdate" name="birthdate" min="<?= $minDate ?>" max="<?= $maxDate ?>" value="<?= $birthdate ?? '' ?>" pattern="<?= REGEX_BIRTHDATE ?>" aria-describedby="birthdayHelp">
                                 <span class="text-danger"><?= $error['birthdate'] ?? '' ?></span>
                             </div>
                             <!-- PHONE -->
