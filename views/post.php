@@ -1,9 +1,23 @@
 <section class="container">
-    <h2 class="text-center p-5"><?=$title?></h2>
-    <div class="row">
+    <h2 class="text-center pt-5"><?= $title ?></h2>
+    <div class="row justify-content-center">
+        <!-- FILTRE CATEGORIE -->
+        <div class="d-flex justify-content-end my-4">
+            <form class="d-flex justify-content-end">
+                <!-- TRIER PAR CATEGORIE -->
+                <select name="id_category" class="form-select rounded-0">
+                    <option selected value="0">Toutes les catégories</option>
+                    <?php foreach ($categories as $category) {
+                        $isSelected = ($id_category == $category->id_category) ? "selected" : '';
+                        echo "<option value=\"$category->id_category\" $isSelected >$category->name</option>";
+                    } ?>
+                </select>  
+                <button type="submit" id ="btn-filter" class="rounded-0 btn text-white" value="Filtrer">Filtrer</button>
+            </form>
+        </div>
 
+        <!-- CARTE ARTICLE -->
         <?php foreach ($postsInCategory as $postInCategory) { ?>
-            <!-- article card  -->
             <div class="col-12 col-md-6 col-lg-4 mb-5 ">
                 <div class="card h-100">
                     <?php if (!is_null($postInCategory->photo)) {
@@ -15,7 +29,6 @@
                         <a href="../controllers/post_detail-ctrl.php?id_post=<?= $postInCategory->id_post ?>" target="_blank" class="btn btn-primary" id="btn-send-connexion">Lire plus</a>
                     </div>
                 </div>
-
             </div>
         <?php } ?>
     </div>
@@ -34,7 +47,7 @@
                 }
             } ?>
             <!-- page suivante -->
-            <a href="?page=<?= $nextPage ?>&id_category=<?=$id_category?>">&raquo;</a>
+            <a href="?page=<?= $nextPage ?>&id_category=<?= $id_category ?>">&raquo;</a>
         </div>
     </div>
 </section>

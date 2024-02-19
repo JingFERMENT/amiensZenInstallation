@@ -20,7 +20,7 @@ define('ARRAY_TYPES_MIMES', ['image/jpeg', 'image/png']);
 define('UPLOAD_MAX_SIZE', 8 * 1024 * 1024);
 
 // PER PAGE
-define ('PER_PAGE', 6);
+define ('PER_PAGE', 3);
 
 // Situation familiale
 define('ARRAY_FAMILY_SITUATION', ['Célibataire', 'Couple sans enfant', 'Famillle avec les enfants', 'Retraité(e)', 'Autres']);

@@ -78,8 +78,8 @@ a:hover {
 }
 
 .rounded-circle {
-  width: 50px;
-  height: 50px;
+  width: 58px;
+  height: 60px;
 }
 
 .send_button {
@@ -182,6 +182,10 @@ a:hover {
   color: white;
 }
 
+#btn-filter {
+  background-color: #37b6fc;
+  color: white;
+}
 
 @media only screen and (max-width: 767px) {
   #inputSearch {
@@ -196,7 +200,10 @@ a:hover {
 }
 
 #image-profile {
-  width: 150px; z-index: 1
+  width: 125px; 
+  z-index: 1;
+  height:150px;
+
 }
 
 .fa-trash-can {

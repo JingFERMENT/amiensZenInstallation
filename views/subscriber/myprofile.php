@@ -9,7 +9,7 @@
                         <?php if ($connectedSubscriber->profile_picture !== NULL) { ?>
                                     <img id="image-profile" class="img-fluid img-thumbnail mt-4 mb-2" src="<?= '/public/uploads/users/' . $connectedSubscriber->profile_picture ?>" alt="photo profile" >
                                 <?php } else { ?>
-                                     <img id="image-profile" class="img-fluid img-thumbnail mt-4 mb-2" src="/public/assets/image/default-avatar-profile.jpg" alt="photo profile" >
+                                     <img id="image-profile" class="img-fluid img-thumbnail mt-4 mb-2" src="/public/assets/img/default-avatar-profile.jpg" alt="photo profile" >
                                    <?php }?>
                     </div>
                     <div id="myName" class="ms-3">

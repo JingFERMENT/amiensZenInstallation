@@ -153,7 +153,7 @@ class Comment
     {
         $pdo = Database::connect();
         $sql = 'SELECT `comments`.*, `subscribers`.`firstname`, `subscribers`.`lastname`,
-        `posts`.`id_post`
+        `posts`.`id_post`, `subscribers`.`profile_picture`
         from `comments` 
         JOIN `subscribers` ON `comments`.`id_subscriber` = `subscribers`.`id_subscriber`
         JOIN `posts` ON `posts`.`id_post` = `comments`.`id_post`

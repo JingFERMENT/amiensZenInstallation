@@ -25,7 +25,6 @@ $maxDate = date('Y-m-d');
 $minDate = (date('Y') - 120) . '-01-01';
 
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $error = [];
 
@@ -104,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // PROFILE PICTURE
-    $profilePictureToSave = null;
+    $profilePictureToSave = $profilePicture;
 
     if ($_FILES['profilePicture']['error'] != 4) {
         try {
@@ -146,6 +145,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $subscriberObj->setLastname($lastname);
         $subscriberObj->setFirstname($firstname);
         $subscriberObj->setEmail($email);
+        if($birthdate == "") {
+            $birthdate = NULL ;
+        }
         $subscriberObj->setBirthdate($birthdate);
 
         $subscriberObj->setPhone($phone);

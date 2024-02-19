@@ -55,7 +55,7 @@ try {
                     header("Refresh: 1; url=/controllers/subscriber/myprofile-ctrl.php");
                     die;
                 } else {
-                    $error['password'] = 'Votre mot de passe est incorrect!';
+                    $error['password'] = 'Votre mot de passe est incorrect !';
                 }
             }
         }

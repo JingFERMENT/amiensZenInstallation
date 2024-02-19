@@ -42,10 +42,9 @@ try {
         if (empty($title)) { // le champs est obligatoire
             $errors['title'] = 'Le title de l\'article est obligatoire.';
         } else {
-            // validation des données "name"
-            $isOk = filter_var($title, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => '/' . REGEX_NAME . '/')));
+            $isOk = (strlen($title) <= 100);
             if (!$isOk) {
-                $errors['title'] = 'Le nom de l\'article doit contenir entre 2 à 50 caractères alphabétiques.';
+                $errors['title'] = 'Le nom de l\'article doit contenir maximum 100 caractères alphabétiques.';
             }
         }
 

@@ -6,7 +6,7 @@
         <div class="row h-100 justify-content-center align-items-center titleName">
             <div class="col-12 d-flex flex-column justify-content-center">
                 <h1 class="title-josefinSans text-center text-white mt-3">ZEN INSTALLATION</h1>
-                <h4 class="title-josefinSans text-center text-white mb-4">Voulez-vous installer à Amiens en toute sérénité ?
+                <h4 class="title-josefinSans text-center text-white mb-4">Voulez-vous vous installer à Amiens en toute sérénité ?
                 </h4>
                 <a class="title-josefinSans text-white m-auto btn btn-lg mb-3" href="../controllers/contact-ctrl.php" id="btn-send-contact" role="button">C'est parti !</a>
             </div>

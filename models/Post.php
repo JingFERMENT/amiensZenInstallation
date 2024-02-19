@@ -205,19 +205,21 @@ class Post
     {
         $pdo = Database::connect();
 
+        // $sortCategory = ($id_category != 0) ? " WHERE `posts_categories`.`id_category`= :id_category" : '';
+
         $sql = 'SELECT `posts`.*, 
         `subscribers`.`firstname`, `subscribers`.`lastname`
         from `posts` 
         JOIN `subscribers` ON `posts`.`id_subscriber` = `subscribers`.`id_subscriber`
         JOIN `posts_categories` ON `posts`.`id_post` = `posts_categories`.`id_post`
-        WHERE `posts_categories`.`id_category` = :id_category
+        WHERE `posts_categories`.`id_category`= :id_category
         LIMIT ' . PER_PAGE . ' OFFSET :offset;';
 
         $sth = $pdo->prepare($sql);
 
         $sth->bindValue(':offset', $offset, PDO::PARAM_INT);
         $sth->bindValue(':id_category', $id_category, PDO::PARAM_INT);
-
+        
         $sth->execute();
 
         $datas = $sth->fetchAll();
@@ -302,6 +304,11 @@ class Post
         $sth2->execute();
         $dataCategories = $sth2->fetchAll();
 
+        if (!$dataCategories) {
+            // Génération d'une exception renvoyant le message en paramètre au catch créé en amont et arrêt du traitement.
+            throw new Exception('Erreur lors de la récupération de l\'article');
+        } 
+
         $categoryIds = [];
         foreach ($dataCategories as $dataCategory) {
             $categoryIds[] = $dataCategory->id_category;
@@ -311,6 +318,7 @@ class Post
 
         // Retourne la data dans le cas contraire (tout s'est bien passé)
         return $data;
+ 
     }
 
     /**
@@ -340,6 +348,10 @@ class Post
         $sth2->bindValue(':id_post', $this->getId_post(), PDO::PARAM_INT);
         // Exécution de la requête
         $sth2->execute();
+
+        if (!$sth2->execute()) {
+            throw new Exception('Erreur lors de la mise à jour de l article');
+        }
 
         // Reinserer les liens article <-> categories mis a jour
         $sql3 = 'INSERT INTO `posts_categories` 
@@ -381,7 +393,7 @@ class Post
         $sth->execute();
 
         if (!$sth->execute()) {
-            throw new Exception('Erreur lors de la suppression de l article');
+            throw new Exception('Erreur lors de la suppression de l\'article');
         }
 
         // Effacer dans la table "posts"

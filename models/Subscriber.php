@@ -94,14 +94,19 @@ class Subscriber
 
     //*************** BIRTHDATE ***************// 
 
-    public function getBirthdate(): DateTime
+    public function getBirthdate(): ?DateTime
     {
         return $this->birthdate;
     }
 
-    public function setBirthdate(string $birthdate)
+    public function setBirthdate(?string $birthdate)
     {
-        $this->birthdate = new DateTime($birthdate);
+        if($birthdate !== NULL) {
+            $this->birthdate = new DateTime($birthdate);
+        } else {
+            $this->birthdate = NULL ;
+        }
+        
     }
 
     //*************** PHONE ***************// 
@@ -243,7 +248,12 @@ class Subscriber
         $sth->bindValue(':lastname', $this->getLastname());
         $sth->bindValue(':firstname', $this->getFirstname());
         $sth->bindValue(':email', $this->getEmail());
-        $sth->bindValue(':birthdate', ($this->getBirthdate())->format('Y-m-d'));
+        if($this->getBirthdate() == NULL) {
+            $sth->bindValue(':birthdate', NULL);
+        } else {
+            $sth->bindValue(':birthdate', ($this->getBirthdate())->format('Y-m-d'));
+        }
+        
         $sth->bindValue(':phone', $this->getPhone());
         $sth->bindValue(':family_situation', $this->getFamily_situation());
         $sth->bindValue(':profile_picture', $this->getProfile_picture());
