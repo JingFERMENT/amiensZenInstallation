@@ -11,7 +11,7 @@
                 </div>
                 <div class="article-content px-2 pt-5">
                     <p class="description">
-                    <?=$post->content?>
+                    <?=nl2br($post->content)?>
                     </p>
                 </div>
             </div>

@@ -6,7 +6,7 @@
             <form class="d-flex justify-content-end">
                 <!-- TRIER PAR CATEGORIE -->
                 <select name="id_category" class="form-select rounded-0">
-                    <option selected value="0">Toutes les catégories</option>
+                    <option value="0">Toutes les catégories</option>
                     <?php foreach ($categories as $category) {
                         $isSelected = ($id_category == $category->id_category) ? "selected" : '';
                         echo "<option value=\"$category->id_category\" $isSelected >$category->name</option>";
