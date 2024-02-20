@@ -23,7 +23,7 @@
                 <!-- EMAIL -->
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="email@email.com" value="<?= $email ?? '' ?>" required>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="ex: email@email.com" value="<?= $email ?? '' ?>" required>
                     <span class="text-danger"><?= $error['email'] ?? '' ?></span>
                 </div>
                 <!-- PASSWORD -->

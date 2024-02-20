@@ -65,7 +65,7 @@
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Emploi</h5>
                     <p class="card-text text-justify">Identifier les opportunités d'emploi alignées avec vos attentes ?</p>
-                    <a href="../controllers/post-ctrl.php" class="btn text-white" id="btn-send-contact">Découvrir plus</a>
+                    <a href="../controllers/post-ctrl.php?id_category=21" class="btn text-white" id="btn-send-contact">Découvrir plus</a>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Logement</h5>
                     <p class="card-text text-justify">Envie de trouver un logement mais ne sait pas par quoi commencer ?</p>
-                    <a href="../controllers/post-ctrl.php" class="btn text-white" id="btn-send-contact">Découvrir plus</a>
+                    <a href="../controllers/post-ctrl.php?id_category=20" class="btn text-white" id="btn-send-contact">Découvrir plus</a>
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Vie amiénoise</h5>
                     <p class="card-text text-justify">Quelles sont les principales activités de loisirs et culturelles à découvrir ?</p>
-                    <a href="../controllers/post-ctrl.php" class="btn text-white" id="btn-send-contact">Découvrir plus</a>
+                    <a href="../controllers/post-ctrl.php?id_category=22" class="btn text-white" id="btn-send-contact">Découvrir plus</a>
                 </div>
             </div>
         </div>

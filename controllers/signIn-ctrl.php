@@ -4,6 +4,8 @@ require_once __DIR__.'/../models/Subscriber.php';
 
 try {
 
+    $title = "Connexion";
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = [];
 
