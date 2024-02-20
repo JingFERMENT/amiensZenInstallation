@@ -62,6 +62,14 @@ try {
     die;
 }
 
+// traiter le cas où l'article est archivé
+if($post->deleted_at !=NULL){
+    $error = 'L\'article que vous cherchez est archivé.';
+    include __DIR__ . '/../views/templates/header.php';
+    include __DIR__ . '/../views/templates/error.php';
+    include __DIR__ . '/../views/templates/footer.php';
+    die;
+}
 
 
 include __DIR__ . '/../views/templates/header.php';

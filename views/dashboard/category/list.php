@@ -4,7 +4,7 @@
         <span class="text-info fw-bold"><?= $msg ?? '' ?></span>
         <span class="text-danger fw-bold"><?= $error ?? '' ?></span>
         <div class="d-flex justify-content-end">
-            <a href="/controllers/dashboard/category/add-ctrl.php"><button type="submit" id="btn-add" class="btn my-4 text-white" value="Envoyer">Ajouter une catégorie</button></a>
+            <a href="/controllers/dashboard/category/add-ctrl.php" id="btn-add" class="btn my-4 text-white" >Ajouter une catégorie</a>
         </div>
         <!-- LISTE DES ABONNEES -->
         <div class="d-flex justify-content-end gap-5 pt-5">

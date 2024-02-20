@@ -402,26 +402,4 @@ class Subscriber
 
         return $result > 0;
     }
-
-    // envoie de l'email quand l'abonné a confirmé son email pour valider son compte
-    public static function confirm(string $email): bool
-    {
-        $pdo = Database::connect();
-        $sql = 'UPDATE `subscribers` SET `confirmed_at` = NOW() WHERE email=:email;';
-
-        $sth = $pdo->prepare($sql);
-
-        // Affectation de la valeur correspondant au marqueur nominatif concerné
-        $sth->bindValue(':email', $email);
-        $sth->execute();
-
-        // Appel à la méthode rowCount permettant de savoir combien d'enregistrements ont été affectés
-        if ($sth->rowCount() <= 0) {
-            // Génération d'une exception renvoyant le message en paramètre au catch créé en amont et arrêt du traitement.
-            throw new Exception('Nous n\'avons pas reconnu votre email');
-        } else {
-            // Retourne true quand tout s'est bien passé
-            return true;
-        }
-    }
 }

@@ -12,12 +12,12 @@ try {
     $id_category = intval(filter_input(INPUT_GET, 'id_category', FILTER_SANITIZE_NUMBER_INT));
     $categories = Category::getAll();
 
-    $categoryName = Category::get($id_category)->name;
-
-    if (empty($categoryName)) {
-        $title = "Toutes les catégories";
-    } else {
+    if ($id_category != 0) {
+        $categoryName = Category::get($id_category)->name;
         $title = $categoryName;
+    } else {
+        $title = "Toutes les catégories";
+        
     }
 
     // ! filtres input 
@@ -37,23 +37,27 @@ try {
     $offset = PER_PAGE * ($page - 1);
 
     $postsInCategory = Post::getAllPosts($id_category, $offset);
-    // dd($postsInCategory);
+    
 
     // round : arrondir au plus proche
     // ceil : arrondir au ceil / floor: arrond dans 
     $nbOfPost = POST::count($id_category);
 
-
     $nbOfPages = ceil($nbOfPost / PER_PAGE);
-
 
     if ($page >= $nbOfPages) {
         $nextPage = $page;
     } else {
         $nextPage = $page + 1;
     }
-} catch (Throwable $e) {
-    echo "Connection failed: " . $e->getMessage();
+} catch (Throwable $th) {
+    $error = $th->getMessage();
+    $title = "Page erreur ";
+    include __DIR__ . '/../views/templates/header.php';
+    include __DIR__ . '/../views/templates/error.php';
+    include __DIR__ . '/../views/templates/footer.php';
+
+    die;
 }
 
 // views

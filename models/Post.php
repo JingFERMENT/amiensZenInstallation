@@ -178,13 +178,17 @@ class Post
      * 
      * @return array Tableau d'objets
      */
-    public static function getAll(): array | false
+    public static function getAll(bool $isArchived = false): array | false
     {
         $pdo = Database::connect();
 
+        //condition pour archivage
+        $archive = $isArchived ? 'IS NOT NULL;' : 'IS NULL;';
+
         $sql = 'SELECT `posts`.*, `subscribers`.`firstname`, `subscribers`.`lastname`
         from `posts` JOIN `subscribers`
-        ON `posts`.`id_subscriber` = `subscribers`.`id_subscriber`;';
+        ON `posts`.`id_subscriber` = `subscribers`.`id_subscriber`
+        WHERE `posts`.`deleted_at` ' . $archive;
 
         $sth = $pdo->query($sql);
 
@@ -201,25 +205,30 @@ class Post
      * 
      * @return array Tableau d'objets
      */
-    public static function getAllPosts(int $id_category, int $offset = 0): array | false
+    public static function getAllPosts(int $id_category = 0, int $offset = 0): array | false
     {
         $pdo = Database::connect();
 
-        // $sortCategory = ($id_category != 0) ? " WHERE `posts_categories`.`id_category`= :id_category" : '';
+        $sortCategory = ($id_category != 0) ? " AND `posts_categories`.`id_category`= :id_category"
+            : " AND `posts_categories`.`id_category` != 22";
 
         $sql = 'SELECT `posts`.*, 
         `subscribers`.`firstname`, `subscribers`.`lastname`
-        from `posts` 
+        FROM `posts` 
         JOIN `subscribers` ON `posts`.`id_subscriber` = `subscribers`.`id_subscriber`
         JOIN `posts_categories` ON `posts`.`id_post` = `posts_categories`.`id_post`
-        WHERE `posts_categories`.`id_category`= :id_category
-        LIMIT ' . PER_PAGE . ' OFFSET :offset;';
+        WHERE `posts`.`deleted_at` IS NULL ' .
+            $sortCategory .
+            ' LIMIT ' . PER_PAGE . ' OFFSET :offset;';
 
         $sth = $pdo->prepare($sql);
 
         $sth->bindValue(':offset', $offset, PDO::PARAM_INT);
-        $sth->bindValue(':id_category', $id_category, PDO::PARAM_INT);
-        
+
+        if ($id_category != 0) {
+            $sth->bindValue(':id_category', $id_category, PDO::PARAM_INT);
+        }
+
         $sth->execute();
 
         $datas = $sth->fetchAll();
@@ -247,7 +256,7 @@ class Post
         `posts`.`content` LIKE :keywords OR 
         `categories`.`name` LIKE :keywords OR 
         `subscribers`.`lastname` LIKE :keywords OR 
-        `subscribers`.`firstname` LIKE :keywords)';
+        `subscribers`.`firstname` LIKE :keywords) AND `posts`.`deleted_at` IS NULL;';
 
         $sth = $pdo->prepare($sql);
 
@@ -307,7 +316,7 @@ class Post
         if (!$dataCategories) {
             // Génération d'une exception renvoyant le message en paramètre au catch créé en amont et arrêt du traitement.
             throw new Exception('Erreur lors de la récupération de l\'article');
-        } 
+        }
 
         $categoryIds = [];
         foreach ($dataCategories as $dataCategory) {
@@ -318,7 +327,6 @@ class Post
 
         // Retourne la data dans le cas contraire (tout s'est bien passé)
         return $data;
- 
     }
 
     /**
@@ -413,7 +421,7 @@ class Post
 
     /**
      * 
-     * Méthode permettant d'archiver l'article' concerné
+     * Méthode permettant d'archiver l'article concerné
      * 
      * @param int $id_post
      * 
@@ -442,23 +450,65 @@ class Post
 
 
     /**
-     * Méthode permettant de retourner le nombre d'artcile dans la catégory "se loger"
      * 
-     * @return int
+     * Méthode permettant de réactiver un article concerné
+     * 
+     * @param int $id_post
+     * 
+     * @return bool
      */
-    public static function count(int $id_category): int
+    public static function unarchive(int $id_post): bool
     {
         $pdo = Database::connect();
 
-        $sql = 'SELECT COUNT(`id_post`) AS nb_posts 
-        FROM `posts_categories`
-        JOIN `categories` 
-        ON `categories`.`id_category` = `posts_categories`.`id_category`
-        WHERE `categories`.`id_category` = :id_category;';
+        $sql = 'UPDATE `posts` SET `deleted_at` = NULL WHERE `id_post` = :id_post ;';
 
         $sth = $pdo->prepare($sql);
-        $sth->bindValue(':id_category', $id_category, PDO::PARAM_INT);
 
+        $sth->bindValue(':id_post', $id_post, PDO::PARAM_INT);
+
+        $sth->execute();
+
+        if (!$sth->execute()) {
+            throw new Exception('Erreur lors de la réactivation de l\'artcile.');
+        } else {
+            // Retourne true dans le cas contraire (tout s'est bien passé)
+            return true;
+        }
+    }
+
+
+    /**
+     * Méthode permettant de retourner le nombre d'article dans la catégorie concernée
+     * 
+     * @return int
+     */
+    public static function count(int $id_category = 0): int
+    {
+        $pdo = Database::connect();
+
+        if ($id_category == 0) {
+
+            $sql = 'SELECT COUNT(`posts`.`id_post`) FROM `posts`
+            JOIN `posts_categories`
+            ON `posts`.`id_post` = `posts_categories`.`id_post`
+            WHERE `id_category` NOT IN (22) AND `posts`.`deleted_at` IS NULL;';
+        } else {
+            $sql = 'SELECT COUNT(`posts_categories`.`id_post`) AS nb_posts 
+                    FROM `posts_categories`
+                    JOIN `categories` 
+                    ON `categories`.`id_category` = `posts_categories`.`id_category`
+                    JOIN `posts`
+                    ON `posts`.`id_post` = `posts_categories`.`id_post`
+                    WHERE `categories`.`id_category`= :id_category AND `posts`.`deleted_at` IS NULL;';
+        }
+
+        if ($id_category == 0) {
+            $sth = $pdo->query($sql);
+        } else {
+            $sth = $pdo->prepare($sql);
+            $sth->bindValue(':id_category', $id_category, PDO::PARAM_INT);
+        }
         $sth->execute();
 
         $result = $sth->fetchColumn();
