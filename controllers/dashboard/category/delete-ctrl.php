@@ -9,7 +9,7 @@ try {
 
      // supprimer tous sauf les chiffres et + / - ;
      $idCategory = intval(filter_input(INPUT_GET, 'id_category', FILTER_SANITIZE_NUMBER_INT));
-    
+
      $isDeleted = Category::delete($idCategory);
      if ($isDeleted) {
          $msg = 'Catégorie supprimée avec succès.';
@@ -26,9 +26,9 @@ try {
 
 } catch (Throwable $th) {
     $error = $th->getMessage();
-    include __DIR__ . '/../../../views/templates/header.php';
+    include __DIR__ . '/../../../views/templates/header_dashboard.php';
     include __DIR__ . '/../../../views/templates/error.php';
-    include __DIR__ . '/../../../views/templates/footer.php';
+    include __DIR__ . '/../../../views/templates/footer_dashboard.php';
     die;
 }
 
