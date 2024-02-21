@@ -123,11 +123,6 @@ try {
     die;
 }
 
-
-
-
-
-
 // views
 include __DIR__ . '/../../../views/templates/header_dashboard.php';
 include __DIR__ . '/../../../views/dashboard/post/add.php';

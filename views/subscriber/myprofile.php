@@ -7,10 +7,10 @@
                     <div class="ms-4 mt-5 d-flex flex-column">
                         <!-- IMAGE PROFILE -->
                         <?php if ($connectedSubscriber->profile_picture !== NULL) { ?>
-                                    <img id="image-profile" class="img-fluid img-thumbnail mt-4 mb-2" src="<?= '/public/uploads/users/' . $connectedSubscriber->profile_picture ?>" alt="photo profile" >
-                                <?php } else { ?>
-                                     <img id="image-profile" class="img-fluid img-thumbnail mt-4 mb-2" src="/public/assets/img/default-avatar-profile.jpg" alt="photo profile" >
-                                   <?php }?>
+                            <img id="image-profile" class="img-fluid img-thumbnail mt-4 mb-2" src="<?= '/public/uploads/users/' . $connectedSubscriber->profile_picture ?>" alt="photo profile">
+                        <?php } else { ?>
+                            <img id="image-profile" class="img-fluid img-thumbnail mt-4 mb-2" src="/public/assets/img/default-avatar-profile.jpg" alt="photo profile">
+                        <?php } ?>
                     </div>
                     <div id="myName" class="ms-3">
                         <!-- TITRE -->
@@ -83,7 +83,7 @@
                                 <label for="profilePicture" class="form-label">Photo de profile</label>
                                 <input type="file" name="profilePicture" value="<? $filename ?>" class="form-control" id="profilePicture" accept=".png, image/jpeg">
                                 <span class="text-danger"><?= $errors['profilePicture'] ?? '' ?></span>
-                                
+
                             </div>
 
                             <!-- BOUTON ENVOYER -->
@@ -94,9 +94,9 @@
                     <div class="mb-4">
                         <p class="lead fw-bold">Mes articles</p>
                         <div class="d-flex justify-content-end pt-3">
-                            <button type="button" class="btn btn-outline-dark">
-                                Editer un nouvel article
-                            </button>
+                            <a href="/controllers/subscriber/write-article-ctrl.php" class="btn btn-outline-dark">
+                                Ecrire un nouvel article
+                            </a>
                         </div>
                     </div>
                     <!-- MES ARTICLES - LISTE  -->
@@ -112,13 +112,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="d-none d-sm-table-cell">Mon premier article</td>
-                                    <td class="d-none d-sm-table-cell">2024/02/01</td>
-                                    <td><a class="text-dark" href="/controllers/post_detail-ctrl.php?id_post=5"><i class="fa-solid fa-link"></i></a></td>
-                                    <td><a class="text-dark" href=""><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                    <td><a type="button" data-id="5" data-bs-toggle="modal" data-bs-target="#deleteModal" class="text-dark modalOpenPostDeleteBtn"><i class="fa-solid fa-trash-can text-danger"></i></a></td>
-                                </tr>
+                                <?php
+
+                                foreach ($posts as $post) { ?>
+                                    <tr>
+                                        <td><?= $post->title ?></td>
+                                        <td><?= (new DateTime($post->published_at))->format('d-m-Y') ?></td>
+                                        <td><a class="text-dark" href="/controllers/post_detail-ctrl.php?id_post=<?= $post->id_post ?>"><i class="fa-solid fa-link"></i></a></td>
+                                        <td><a class="text-dark" href=""><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                        <td><a type="button" data-id="5" data-bs-toggle="modal" data-bs-target="#deleteModal" class="text-dark modalOpenPostDeleteBtn"><i class="fa-solid fa-trash-can text-danger"></i></a></td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>

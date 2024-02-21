@@ -19,6 +19,7 @@ $birthdate = $connectedSubscriber->birthdate;
 $phone = $connectedSubscriber->phone;
 $familySituation = $connectedSubscriber->family_situation;
 $profilePicture = $connectedSubscriber->profile_picture;
+$posts = Post::getBySubscriber($connectedSubscriber->id_subscriber);
 
 
 $maxDate = date('Y-m-d');

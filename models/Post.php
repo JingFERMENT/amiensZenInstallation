@@ -515,4 +515,29 @@ class Post
 
         return $result;
     }
+
+    /**
+     * 
+     * Méthode permettant de récupérer la liste des articles sous forme de tableau d'objets
+     * 
+     * @return array Tableau d'objets
+     */
+    public static function getBySubscriber(int $id_subscriber): array | false
+    {
+        $pdo = Database::connect();
+
+        $sql = 'SELECT `posts`.*, `subscribers`.`firstname`, `subscribers`.`lastname`
+        from `posts` JOIN `subscribers`
+        ON `posts`.`id_subscriber` = `subscribers`.`id_subscriber`
+        WHERE `posts`.`id_subscriber` = :id_subscriber;';
+
+        $sth = $pdo->prepare($sql);
+        $sth->bindValue(':id_subscriber', $id_subscriber, PDO::PARAM_INT);
+
+        $sth->execute();
+
+        $datas = $sth->fetchAll();
+
+        return $datas;
+    }
 }

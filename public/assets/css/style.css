@@ -113,6 +113,11 @@ a:hover {
   border-color: #37b6fc;
 }
 
+.btn-send-contact {
+  background-color: #37b6fc !important;
+  border-color: #37b6fc !important;
+}
+
 .text-justify {
   text-align: justify !important;
 }
