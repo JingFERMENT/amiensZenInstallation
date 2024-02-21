@@ -11,7 +11,8 @@
                 </div>
                 <div class="article-content px-2 pt-5">
                     <p class="description">
-                    <?=nl2br($post->content)?>
+                        <!-- nl2br: new line to br // html_entity_decode : Convert HTML entities to their corresponding characters-->
+                    <?=nl2br(html_entity_decode($post->content))?>
                     </p>
                 </div>
             </div>

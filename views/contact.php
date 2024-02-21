@@ -31,7 +31,7 @@
                 <!-- TELEPHONE -->
                 <div class="col-md-6">
                     <label for="telephone" class="form-label">Téléphone</label>
-                    <input type="tel" name ="telephone" class="form-control" id="telephone" value="<?= $telephone ?? '' ?>" placeholder="Entrez votre numéro de téléphone" pattern="<?= REGEX_TELEPHONE ?>">
+                    <input type="tel" name ="telephone" class="form-control" id="telephone" value="<?= $telephone ?? '' ?>" placeholder="ex: 06 12 34 56 78" pattern="<?= REGEX_TELEPHONE ?>">
                     <span class="text-danger"><?= $error['telephone'] ?? '' ?></span>
                 </div>
                 <!-- MESSAGE -->

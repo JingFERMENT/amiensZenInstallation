@@ -14,7 +14,7 @@
                     </div>
                     <div id="myName" class="ms-3">
                         <!-- TITRE -->
-                        <h3>Profile de <?= $firstname . ' ' . $lastname ?></h3>
+                        <h3>Profil de <?= $firstname . ' ' . $lastname ?></h3>
                     </div>
                 </div>
                 <!-- ACCES ADMIN SI C'EST ADMIN -->

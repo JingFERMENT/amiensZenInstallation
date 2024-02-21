@@ -1,15 +1,13 @@
 <!-- begin home page -->
 
 <!-- begin section banner -->
-<section class="container-fluid p-0">
-    <div class="cover-image">
-        <div class="row h-100 justify-content-center align-items-center titleName">
-            <div class="col-12 d-flex flex-column justify-content-center">
-                <h1 class="title-josefinSans text-center text-white mt-3">ZEN INSTALLATION</h1>
-                <h4 class="title-josefinSans text-center text-white mb-4">Voulez-vous vous installer à Amiens en toute sérénité ?
-                </h4>
-                <a class="title-josefinSans text-white m-auto btn btn-lg mb-3" href="../controllers/contact-ctrl.php" id="btn-send-contact" role="button">C'est parti !</a>
-            </div>
+<section class="container-fluid cover-image">
+    <div class="row h-100 justify-content-center align-items-center titleName">
+        <div class="col-12 d-flex flex-column justify-content-center">
+            <h1 class="title-josefinSans text-center text-white mt-3">ZEN INSTALLATION</h1>
+            <h4 class="title-josefinSans text-center text-white mb-4">Voulez-vous vous installer à Amiens en toute sérénité ?
+            </h4>
+            <a class="title-josefinSans text-white m-auto btn btn-lg mb-3" href="../controllers/contact-ctrl.php" id="btn-send-contact" role="button">C'est parti !</a>
         </div>
     </div>
 </section>
@@ -53,7 +51,7 @@
                 <img src="../public/assets/img/personalized_service.webp" class="card-img-top img-fluid" alt="Quartier saint-leu à Amiens">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Conseil</h5>
-                    <p class="card-text text-justify">Envie d'accélérer votre projet avec un accompagnement personnalisé ?</p>
+                    <p class="card-text text-justify">Envie d'accélérer votre projet avec un accompagnement ?</p>
                     <a href="../controllers/contact-ctrl.php" class="btn text-white" id="btn-send-contact">Découvrir plus</a>
                 </div>
             </div>
@@ -102,53 +100,50 @@
 
 <!-- begin section temoignage -->
 <section class="container pt-5">
-  <div class="row d-flex justify-content-center">
-    <div class="col-md-10 col-lg-8 text-center pb-5">
-      <h2 class="text-center fw-bold">Ils sont déjà installés à Amiens</h3>
-    </div>
-  </div>
-
-  <div class="row text-center">
-    <div class="col-md-4 mb-5 mb-md-0">
-      <div class="d-flex justify-content-center mb-4">
-        <img src="../public/assets/img/Testimonial_1.webp"
-          class="img-fluid rounded-circle"/>
-      </div>
-      <h5 class="mb-3">Alexandre</h5>
-      <p class="px-xl-3 fst-italic">
-      « Grâce à Zen Installation, mon arrivée à Amiens a été sans tracas. Une équipe dévouée a assuré une transition en douceur. »
-      </p>
-      <h6 class="mb-3">Etudiante à Amiens</h6>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-lg-8 text-center pb-5">
+            <h2 class="text-center fw-bold">Ils sont déjà installés à Amiens</h3>
+        </div>
     </div>
 
-    <div class="col-md-4 mb-5 mb-md-0">
-      <div class="d-flex justify-content-center mb-4">
-        <img src="../public/assets/img/Testimonial_2.webp"
-          class="img-fluid rounded-circle"/>
-      </div>
-      <h5 class="mb-3">Sarah</h5>
-      <p class="px-xl-3 fst-italic">
-      « J'ai choisi Zen Installation. Gain de temps, efficacité remarquable. Une solution idéale pour installer à Amiens. »
-      </p>
-      <h6 class="mb-3">Salariée et mère de deux enfants</h6>
-    </div>
+    <div class="row text-center">
+        <div class="col-md-4 mb-5 mb-md-0">
+            <div class="d-flex justify-content-center mb-4">
+                <img src="../public/assets/img/Testimonial_1.webp" class="img-fluid rounded-circle" />
+            </div>
+            <h5 class="mb-3">Alexandre</h5>
+            <p class="px-xl-3 fst-italic">
+                « Grâce à Zen Installation, mon arrivée à Amiens a été sans tracas. Une équipe dévouée a assuré une transition en douceur. »
+            </p>
+            <h6 class="mb-3">Etudiante à Amiens</h6>
+        </div>
 
-    <div class="col-md-4 mb-5 mb-md-0">
-      <div class="d-flex justify-content-center mb-4">
-        <img src="../public/assets/img/Testimonial_3.webp"
-          class="img-fluid rounded-circle"/>
-      </div>
-      <h5 class="mb-3">Julien</h5>
-      <p class="px-xl-3 fst-italic">
-      « Satisfait des services de Zen Installation. Professionnalisme et qualité remarquables. Un partenaire de confiance ! »
-      </p>
-      <h6 class="mb-3">Gérant d'une société à Amiens</h6>
-    </div>
+        <div class="col-md-4 mb-5 mb-md-0">
+            <div class="d-flex justify-content-center mb-4">
+                <img src="../public/assets/img/Testimonial_2.webp" class="img-fluid rounded-circle" />
+            </div>
+            <h5 class="mb-3">Sarah</h5>
+            <p class="px-xl-3 fst-italic">
+                « J'ai choisi Zen Installation. Gain de temps, efficacité remarquable. Une solution idéale pour installer à Amiens. »
+            </p>
+            <h6 class="mb-3">Salariée et mère de deux enfants</h6>
+        </div>
 
-    <div class="col-md-4 mb-5 mb-md-0 m-auto p-5">
-        <a class="text-white btn btn-lg mb-3" href="http://amienszeninstallation.localhost/controllers/contact-ctrl.php" id="btn-send-contact" role="button">A mon tour !</a>
+        <div class="col-md-4 mb-5 mb-md-0">
+            <div class="d-flex justify-content-center mb-4">
+                <img src="../public/assets/img/Testimonial_3.webp" class="img-fluid rounded-circle" />
+            </div>
+            <h5 class="mb-3">Julien</h5>
+            <p class="px-xl-3 fst-italic">
+                « Satisfait des services de Zen Installation. Professionnalisme et qualité remarquables. Un partenaire de confiance ! »
+            </p>
+            <h6 class="mb-3">Gérant d'une société à Amiens</h6>
+        </div>
+
+        <div class="col-md-4 mb-5 mb-md-0 m-auto p-5">
+            <a class="text-white btn btn-lg mb-3" href="http://amienszeninstallation.localhost/controllers/contact-ctrl.php" id="btn-send-contact" role="button">A mon tour !</a>
+        </div>
     </div>
-</div>
 </section>
 <!-- end section temoignage -->
 
