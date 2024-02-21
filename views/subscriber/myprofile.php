@@ -94,7 +94,7 @@
                     <div class="mb-4">
                         <p class="lead fw-bold">Mes articles</p>
                         <div class="d-flex justify-content-end pt-3">
-                            <a href="/controllers/subscriber/write-article-ctrl.php" class="btn btn-outline-dark">
+                            <a href="/controllers/subscriber/write-article-ctrl.php" class="btn btn-send-contact text-white">
                                 Ecrire un nouvel article
                             </a>
                         </div>
