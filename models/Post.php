@@ -354,8 +354,6 @@ class Post
         $sql2 = 'DELETE FROM `posts_categories` WHERE `id_post` = :id_post;';
         $sth2 = $pdo->prepare($sql2);
         $sth2->bindValue(':id_post', $this->getId_post(), PDO::PARAM_INT);
-        // Exécution de la requête
-        $sth2->execute();
 
         if (!$sth2->execute()) {
             throw new Exception('Erreur lors de la mise à jour de l article');
