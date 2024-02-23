@@ -80,7 +80,7 @@
                             </div>
                             <!-- PHOTO -->
                             <div class="col-12 p-1 mb-2">
-                                <label for="profilePicture" class="form-label">Photo de profile</label>
+                                <label for="profilePicture" class="form-label">Photo de profil</label>
                                 <input type="file" name="profilePicture" value="<? $filename ?>" class="form-control" id="profilePicture" accept=".png, image/jpeg">
                                 <span class="text-danger"><?= $errors['profilePicture'] ?? '' ?></span>
 

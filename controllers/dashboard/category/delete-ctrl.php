@@ -25,7 +25,13 @@ try {
 
 
 } catch (Throwable $th) {
-    $error = $th->getMessage();
+
+    if ($th->getCode() == '23000') {
+        $error = 'Impossible de supprimer cette catégorie car des articles y sont attachés.';
+    } else {
+        $error = $th->getMessage();
+    }
+
     include __DIR__ . '/../../../views/templates/header_dashboard.php';
     include __DIR__ . '/../../../views/templates/error.php';
     include __DIR__ . '/../../../views/templates/footer_dashboard.php';

@@ -29,10 +29,15 @@ try {
     header('location: /controllers/dashboard/subscriber/list-ctrl.php');
     die;
 
-} catch (\Throwable $th) {
-    $error = $th->getMessage();
-    include __DIR__ . '/../../../views/templates/header.php';
+} catch (\Throwable $th) { 
+    if ($th->getCode() == '23000') {
+        $error = 'Impossible de supprimer cet abonné car il a écrit des commentaires ou des articles.';
+    } else {
+        $error = $th->getMessage();
+    }
+
+    include __DIR__ . '/../../../views/templates/header_dashboard.php';
     include __DIR__ . '/../../../views/templates/error.php';
-    include __DIR__ . '/../../../views/templates/footer.php';
+    include __DIR__ . '/../../../views/templates/footer_dashboard.php';
     die;
 }
