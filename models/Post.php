@@ -541,3 +541,13 @@ class Post
         return $datas;
     }
 }
+
+// query for favorite articles
+// SELECT favorite_articles.id_post FROM favorite_articles
+// JOIN subscribers ON subscribers.id_subscriber = favorite_articles.id_subscriber
+// where subscribers.id_subscriber = 26;
+
+// query for preference in terms of categories
+// SELECT subscribers_categories.id_category FROM subscribers_categories
+// JOIN subscribers ON subscribers.id_subscriber = subscribers_categories.id_subscriber
+// WHERE subscribers_categories.id_subscriber = 26;
