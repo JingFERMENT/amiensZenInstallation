@@ -93,8 +93,10 @@
                     <!-- MES ARTICLES - TITRE -->
                     <div class="mb-4">
                         <p class="lead fw-bold">Mes articles</p>
+                        <span class="text-success fw-bold"><?= $message ?? '' ?></span>
+                        <span class="text-danger fw-bold"><?= $error ?? '' ?></span>
                         <div class="d-flex justify-content-end pt-3">
-                            <a href="/controllers/subscriber/write-article-ctrl.php" class="btn btn-send-contact text-white">
+                            <a href="/controllers/subscriber/add-post-ctrl.php" class="btn btn-send-contact text-white">
                                 Ecrire un nouvel article
                             </a>
                         </div>
@@ -119,8 +121,9 @@
                                         <td><?= $post->title ?></td>
                                         <td><?= (new DateTime($post->published_at))->format('d-m-Y') ?></td>
                                         <td><a class="text-dark" href="/controllers/post_detail-ctrl.php?id_post=<?= $post->id_post ?>"><i class="fa-solid fa-link"></i></a></td>
-                                        <td><a class="text-dark" href=""><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                        <td><a type="button" data-id="5" data-bs-toggle="modal" data-bs-target="#deleteModal" class="text-dark modalOpenPostDeleteBtn"><i class="fa-solid fa-trash-can text-danger"></i></a></td>
+                                        <td><a class="text-dark" href="/controllers/subscriber/update-post-ctrl.php?id_post=<?= $post->id_post ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                        <!-- Button trigger modal -->
+                                        <td><a type="button" data-id="<?= $post->id_post ?>" data-bs-toggle="modal" data-bs-target="#deletePostOfSubscriberModal" class="text-dark modalOpenPostOfSubscriberDeleteBtn"><i class="fa-solid fa-trash-can text-danger"></i></a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -138,3 +141,22 @@
         </div>
     </div>
 </section>
+
+<!-- delete Modal -->
+<div class="modal fade" id="deletePostOfSubscriberModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-danger" id="exampleModalLabel">Supprimer un article</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Pouvez-vous confirmer votre choix ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger deletePostOfSubscriberBtn" data-bs-dismiss="modal">Oui</button>
+                <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Non</button>
+            </div>
+        </div>
+    </div>
+</div>
