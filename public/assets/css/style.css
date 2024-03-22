@@ -223,4 +223,57 @@ a:hover {
   background-color: #f8f9fa;
 }
 
+#heart {
+  width: 30px;  
+  stroke: #37b6fc;
+  fill:white;
+}
+
+#heart.like {
+  animation: 0.5s ease-in forwards like, 
+  0.5s linear 0.5s 3 forwards beat;
+}
+
+#heart.unlike {
+  animation: 0.5s ease-out forwards unlike; 
+}
+
+@keyframes like {
+  0% {
+    fill:white; 
+  }
+
+  100% {
+    fill: red;
+    stroke: red; 
+  }
+}
+
+@keyframes unlike {
+  0% {
+    stroke-dashoffset: 0;
+    fill: red
+  }
+  
+  100% {
+    stroke-dashoffset: 60;
+  }
+}
+
+
+@keyframes beat {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  80% {
+    transform: scale(0.9, 0.9);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+
+}
+
 
