@@ -10,13 +10,21 @@ try {
     $post = Post::get($id_post);
     $title = $post->title;
   
-    $id_subscriber = $_SESSION['subscriber']->id_subscriber;
-    $favoriteArticleObj = new FavoritePost();
+    $isDeleted = FavoritePost::deleteFavoritePost($id_post);
     
-    // Hydratation de notre objet
-    $favoriteArticleObj->setId_post($id_post);
-    $favoriteArticleObj->setId_subscriber($id_subscriber);
-    $isOk = $favoriteArticleObj->insertFavoritePost();  
+
+    if ($isDeleted) {
+        $msg = 'Article favori supprimé avec succès.';
+    } else {
+        $error = 'Erreur, l\'article favori n\'a pas été supprimée.';
+    }
+
+    //on stock les messages dans la session
+   $_SESSION['error'] = $error;
+   $_SESSION['msg'] = $msg;
+
+   header('location:/controllers/post_detail-ctrl.php');
+   die;
     
 } catch (Throwable $th) {
     $error = $th->getMessage();

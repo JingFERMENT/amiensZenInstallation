@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once(__DIR__ . '/../models/Post.php');
+require_once(__DIR__ . '/../models/FavoritePost.php');
 require_once(__DIR__ . '/../config/init.php');
 require_once(__DIR__ . '/../helpers/dd.php');
 require_once(__DIR__ . '/../models/Comment.php');
@@ -51,7 +52,10 @@ try {
         }
     }
 
+    $id_subscriber = $_SESSION['subscriber']->id_subscriber;
+
     $post = Post::get($id_post);
+    $favoritePost = FavoritePost ::existFavoritePost($id_post, $id_subscriber);
     $comments= Comment::getAllCommentsForOnePost($id_post);
 
 } catch (\Throwable $th) {

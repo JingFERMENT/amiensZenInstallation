@@ -229,6 +229,12 @@ a:hover {
   fill:white;
 }
 
+#filledHeart {
+  width: 40px;  
+  stroke: red;
+  fill:red;
+}
+
 #heart.like {
   animation: 0.5s ease-in forwards like, 
   0.5s linear 0.5s 3 forwards beat;

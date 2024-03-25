@@ -7,11 +7,16 @@
                     <small class="text-body-secondary"><?= $post->firstname ?> <?= $post->lastname ?> | <?= (new DateTime($post->published_at))->format('d-m-Y') ?></small>
                     <div class="d-flex justify-content-between align-items-center">
                         <?php if (isset($_SESSION['subscriber'])) { ?>
-                            <small class="text-blue px-2 fw-bold">Ajouter en favoris</small>
-                            <a href="../controllers/favorite-post-ctrl.php?id_post=<?= $post->id_post ?>">
-                                <svg xmlns="http://www.w3.org/2000/svg" id="heart" viewBox="0 0 24 24">
+                            <a href="../controllers/favorite-post-ctrl.php?id_post=<?= $post->id_post ?>"> 
+                                <?php if(isset($favoritePost) && !$favoritePost) {?>
+                                    <svg xmlns="http://www.w3.org/2000/svg" id="heart" viewBox="0 0 24 24">
                                     <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                 </svg>
+                                <?php } else {?> 
+                                <svg xmlns="http://www.w3.org/2000/svg" id="filledHeart" viewBox="0 0 24 24">
+                                    <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                                <?php } ?>
                             </a>
                         <?php } ?>
                         <!-- add favorite article -->
