@@ -290,10 +290,10 @@ class Post
         $pdo = Database::connect();
         $sql = 'SELECT `posts`.*, `subscribers`.`firstname`, `subscribers`.`lastname` from `posts` JOIN `subscribers`
         ON `posts`.`id_subscriber` = `subscribers`.`id_subscriber` WHERE `id_post` = :id_post';
-        
+
         // Si marqueur nominatif, il faut préparer la requête
         $sth = $pdo->prepare($sql);
-        
+
 
         // Affectation de la valeur correspondant au marqueur nominatif concerné
         $sth->bindValue(':id_post', $id_post);
@@ -301,7 +301,7 @@ class Post
         // Exécution de la requête
         $sth->execute();
         $data = $sth->fetch();
-        
+
         // On teste si data est vide.
 
         if (!$data) {
@@ -540,12 +540,8 @@ class Post
 
         return $datas;
     }
-}
 
-// query for favorite articles
-// SELECT favorite_articles.id_post FROM favorite_articles
-// JOIN subscribers ON subscribers.id_subscriber = favorite_articles.id_subscriber
-// where subscribers.id_subscriber = 26;
+}
 
 // query for preference in terms of categories
 // SELECT subscribers_categories.id_category FROM subscribers_categories
